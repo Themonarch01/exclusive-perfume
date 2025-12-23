@@ -89,6 +89,30 @@
       border-bottom:1px solid var(--line);
       background: linear-gradient(180deg, rgba(255,255,255,.04), transparent);
     }
+    /* ====== FIX SELECT DROPDOWN DARK MODE ====== */
+select,
+select option {
+  background-color: #0b1020;   /* fondo oscuro */
+  color: #ffffff;              /* texto blanco */
+}
+
+/* cuando pasas el mouse */
+select option:hover {
+  background-color: #1a2140;
+}
+
+/* opción seleccionada */
+select option:checked {
+  background-color: #2a3cff;
+  color: #ffffff;
+}
+
+/* en navegadores WebKit (Chrome, Edge) */
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(79,124,255,.4);
+}
+
 
     .tools{
       display:flex;
@@ -543,3 +567,4 @@
   </script>
 </body>
 </html>
+
