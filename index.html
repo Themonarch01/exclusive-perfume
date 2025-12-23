@@ -332,6 +332,7 @@ const perfumes = [
   { id:49, name:"Afnan Rare Carbon", brand:"Afnan", family:"Árabe / Cuero", type:"arabic", img:"img/afnan-rare-carbon.jpg", desc:"Cuero elegante." },
   { id:50, name:"Armaf Ventana", brand:"Armaf", family:"Fresco / Especiado", type:"fresh", img:"img/armaf-ventana.jpg", desc:"Inspirado en Sauvage." }
 ];
+    
     const brandFilter = document.getElementById("brandFilter");
 
 function loadBrands() {
@@ -373,7 +374,8 @@ loadBrands();
 
         const matchesFilter = (f === "all") ? true : (p.type === f);
         return matchesText && matchesFilter;
-        const selectedBrand = brandFilter.value;
+      });
+ const selectedBrand = brandFilter.value;
 
 const filtered = perfumes.filter(p => {
   const matchBrand = selectedBrand === "all" || p.brand === selectedBrand;
@@ -382,9 +384,6 @@ const filtered = perfumes.filter(p => {
 
   return matchBrand && matchType && matchSearch;
 });
-
-      });
-
       grid.innerHTML = "";
 
       list.forEach(p => {
@@ -446,5 +445,6 @@ const filtered = perfumes.filter(p => {
 </a>
 </body>
 </html>
+
 
 
