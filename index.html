@@ -88,31 +88,13 @@
       padding: 14px 14px 12px 14px;
       border-bottom:1px solid var(--line);
       background: linear-gradient(180deg, rgba(255,255,255,.04), transparent);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      font-size:14px;
+      font-weight:600;
     }
-/* ====== FIX SELECT DROPDOWN DARK MODE ====== */
-select,
-select option {
-  background-color: #0b1020;   /* fondo oscuro */
-  color: #ffffff;              /* texto blanco */
-}
-
-/* cuando pasas el mouse */
-select option:hover {
-  background-color: #1a2140;
-}
-
-/* opción seleccionada */
-select option:checked {
-  background-color: #2a3cff;
-  color: #ffffff;
-}
-
-/* en navegadores WebKit (Chrome, Edge) */
-select:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(79,124,255,.4);
-}
-
 
     .tools{
       display:flex;
@@ -130,9 +112,10 @@ select:focus {
       border-radius: 12px;
       padding: 10px 12px;
       outline:none;
+      font-size:13px;
     }
     .input{ flex: 1 1 240px; }
-    .select{ flex: 0 0 auto; min-width: 160px; }
+    .select{ flex: 0 0 auto; min-width: 150px; }
 
     .grid{
       display:grid;
@@ -254,6 +237,7 @@ select:focus {
       letter-spacing: .2px;
       cursor:pointer;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-size:13px;
     }
     .btn:hover{
       transform: translateY(-1px);
@@ -304,6 +288,27 @@ select:focus {
       .brand{ min-width: auto; }
       .select{ min-width: 140px; }
     }
+
+    /* ====== FIX SELECT DROPDOWN DARK MODE ====== */
+    select,
+    select option {
+      background-color: #0b1020;
+      color: #ffffff;
+    }
+
+    select option:hover {
+      background-color: #1a2140;
+    }
+
+    select option:checked {
+      background-color: #2a3cff;
+      color: #ffffff;
+    }
+
+    select:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(79,124,255,.4);
+    }
   </style>
 </head>
 
@@ -323,12 +328,12 @@ select:focus {
       <!-- LEFT: Catalog -->
       <section class="panel">
         <div class="panelHead">
-          <strong>Catálogo</strong>
-          <span style="color:rgba(255,255,255,.65); font-size:12px;">(50 perfumes)</span>
+          <span>Catálogo de perfumes</span>
         </div>
 
         <div class="tools">
           <input id="search" class="input" placeholder="Buscar perfume, notas, familia..." />
+
           <select id="filter" class="select">
             <option value="all">Todos los tipos</option>
             <option value="fresh">Frescos</option>
@@ -339,6 +344,12 @@ select:focus {
 
           <select id="brandFilter" class="select">
             <option value="all">Todas las marcas</option>
+          </select>
+
+          <select id="genderFilter" class="select">
+            <option value="all">Hombres y mujeres</option>
+            <option value="men">Solo hombres</option>
+            <option value="women">Solo mujeres</option>
           </select>
         </div>
 
@@ -385,8 +396,8 @@ select:focus {
 
   <script>
     // ✅ Tu número de WhatsApp (formato internacional sin +)
-    // Puerto Rico: 1 + número (ej: 1787xxxxxxx)
-    const WHATSAPP_NUMBER = "19392937940"; // <-- cambia si quieres
+    // Puerto Rico: 1 + número
+    const WHATSAPP_NUMBER = "19392937940"; // cámbialo si quieres otro
 
     const perfumes = [
       { id:1, name:"Dior Sauvage EDP", brand:"Dior", family:"Fresco / Amaderado", type:"fresh", img:"img/dior-sauvage.jpg", desc:"Bergamota y ambroxan. Muy masculino y duradero." },
@@ -447,242 +458,64 @@ select:focus {
       { id:47, name:"Davidoff Cool Water", brand:"Davidoff", family:"Fresco / Acuático", type:"fresh", img:"img/davidoff-cool-water.jpg", desc:"Clásico fresco." },
       { id:48, name:"Lattafa Emeer", brand:"Lattafa", family:"Árabe / Dulce", type:"arabic", img:"img/lattafa-emeer.jpg", desc:"Ámbar y vainilla." },
       { id:49, name:"Afnan Rare Carbon", brand:"Afnan", family:"Árabe / Cuero", type:"arabic", img:"img/afnan-rare-carbon.jpg", desc:"Cuero elegante." },
-      { id:50, name:"Armaf Ventana", brand:"Armaf", family:"Fresco / Especiado", type:"fresh", img:"img/armaf-ventana.jpg", desc:"Inspirado en Sauvage." }
-{
-  id: 51,
-  name: "Good Girl EDP",
-  brand: "Carolina Herrera",
-  family: "Dulce / Floral",
-  type: "sweet",
-  img: "carolina-herrera-good-girl.jpg",
-  desc: "La clásica del tacón negro. Cacao, café y flores blancas. Muy femenina y elegante."
-},
-{
-  id: 52,
-  name: "Good Girl Légère",
-  brand: "Carolina Herrera",
-  family: "Dulce / Floral",
-  type: "sweet",
-  img: "carolina-herrera-good-girl-legere.jpg",
-  desc: "Versión más ligera y cremosa de la clásica. Ideal para uso diario."
-},
-{
-  id: 53,
-  name: "Very Good Girl",
-  brand: "Carolina Herrera",
-  family: "Dulce / Frutal",
-  type: "sweet",
-  img: "carolina-herrera-very-good-girl.jpg",
-  desc: "Tacón rojo. Notas de lichi y rosa, dulce pero sofisticada."
-},
-{
-  id: 54,
-  name: "Good Girl Blush",
-  brand: "Carolina Herrera",
-  family: "Floral / Dulce",
-  type: "sweet",
-  img: "carolina-herrera-good-girl-blush.jpg",
-  desc: "Tacón rosa pastel. Floral, delicada y romántica, perfecta para el día."
-},
-{
-  id: 55,
-  name: "Very Good Girl Glam",
-  brand: "Carolina Herrera",
-  family: "Dulce / Intensa",
-  type: "sweet",
-  img: "carolina-herrera-very-good-girl-glam.jpg",
-  desc: "Versión más intensa y brillante, ideal para noche y ocasiones especiales."
-}
-// ---- ORIENTICA (56-65) ----
-{
-  id: 56,
-  name: "Orientica Amber Noir",
-  brand: "Orientica",
-  family: "Ámbar / Especiado",
-  type: "arabic",
-  img: "orientica-amber-noir.jpg",
-  desc: "Ámbar oscuro con especias. Misterioso y elegante."
-},
-{
-  id: 57,
-  name: "Orientica Velvet Gold",
-  brand: "Orientica",
-  family: "Dulce / Floral",
-  type: "sweet",
-  img: "orientica-velvet-gold.jpg",
-  desc: "Dulzor floral con un toque lujoso. Muy femenino."
-},
-{
-  id: 58,
-  name: "Orientica Aqua Blue",
-  brand: "Orientica",
-  family: "Fresco / Marino",
-  type: "fresh",
-  img: "orientica-aqua-blue.jpg",
-  desc: "Aromas marinos limpios. Perfecto para el diario."
-},
-{
-  id: 59,
-  name: "Fleur d’Orientica",
-  brand: "Orientica",
-  family: "Floral / Dulce",
-  type: "sweet",
-  img: "orientica-fleur.jpg",
-  desc: "Flores blancas suaves con dulzor cremoso."
-},
-{
-  id: 60,
-  name: "Rose d’Orientica",
-  brand: "Orientica",
-  family: "Floral / Rosa",
-  type: "sweet",
-  img: "orientica-rose.jpg",
-  desc: "Rosa intensa y femenina con toque moderno."
-},
-{
-  id: 61,
-  name: "Orientica Dania",
-  brand: "Orientica",
-  family: "Dulce / Frutal",
-  type: "sweet",
-  img: "orientica-dania.jpg",
-  desc: "Frutal juvenil con toque dulce vibrante."
-},
-{
-  id: 62,
-  name: "Orientica Melodie",
-  brand: "Orientica",
-  family: "Fresco / Aromático",
-  type: "fresh",
-  img: "orientica-melodie.jpg",
-  desc: "Fresco aromático con toque amaderado suave."
-},
-{
-  id: 63,
-  name: "Orientica Royal Bleu",
-  brand: "Orientica",
-  family: "Fresco / Especiado",
-  type: "fresh",
-  img: "orientica-royal-bleu.jpg",
-  desc: "Elegante, fresco con madera ligera."
-},
-{
-  id: 64,
-  name: "Orientica Royal Amber",
-  brand: "Orientica",
-  family: "Ámbar / Dulce",
-  type: "sweet",
-  img: "orientica-royal-amber.jpg",
-  desc: "Ámbar cálido con dulzor oriental."
-},
-{
-  id: 65,
-  name: "Orientica Amber Rouge",
-  brand: "Orientica",
-  family: "Ámbar / Dulce",
-  type: "sweet",
-  img: "orientica-amber-rouge.jpg",
-  desc: "Inspirado en BR540. Dulce, lujoso y llamativo."
-},
+      { id:50, name:"Armaf Ventana", brand:"Armaf", family:"Fresco / Especiado", type:"fresh", img:"img/armaf-ventana.jpg", desc:"Inspirado en Sauvage." },
 
-// ---- PARIS CORNER (66-81) ----
-{
-  id: 66, name: "Lafayette Street", brand: "Paris Corner", family: "Dulce / Vainilla", type: "sweet", img: "lafayette-street.jpg", desc: "Inspirado en Bond No. 9. Dulce y elegante."
-},
-{
-  id: 67, name: "Game of Spades Emerald", brand: "Paris Corner", family: "Fresco / Masculino", type: "fresh", img: "game-spades-emerald.jpg", desc: "Cítrico aromático. Limpio y juvenil."
-},
-{
-  id: 68, name: "Game of Spades Full House", brand: "Paris Corner", family: "Fresco / Marino", type: "fresh", img: "game-spades-fullhouse.jpg", desc: "Muy versátil. Ideal para el diario."
-},
-{
-  id: 69, name: "Game of Spades High Roller", brand: "Paris Corner", family: "Amaderado / Dulce", type: "woody", img: "game-spades-highroller.jpg", desc: "Madera dulce masculina, buena duración."
-},
-{
-  id: 70, name: "Game of Spades Rouge", brand: "Paris Corner", family: "Ámbar / Dulce", type: "sweet", img: "game-spades-rouge.jpg", desc: "Dulce intenso con presencia fuerte."
-},
-{
-  id: 71, name: "Game of Spades Win", brand: "Paris Corner", family: "Fresco / Verde", type: "fresh", img: "game-spades-win.jpg", desc: "Verde aromático, estilo Aventus fresco."
-},
-{
-  id: 72, name: "Game of Spades Ace", brand: "Paris Corner", family: "Amaderado / Especiado", type: "woody", img: "game-spades-ace.jpg", desc: "Elegante, masculino, de noche."
-},
-{
-  id: 73, name: "Game of Spades Moon", brand: "Paris Corner", family: "Fresco / Aromático", type: "fresh", img: "game-spades-moon.jpg", desc: "Estilo luna nocturna, fresco sexy."
-},
-{
-  id: 74, name: "Game of Spades Wildcard", brand: "Paris Corner", family: "Especiado / Intenso", type: "woody", img: "game-spades-wildcard.jpg", desc: "Más picante y atrevido."
-},
-{
-  id: 75, name: "Game of Spades Royale", brand: "Paris Corner", family: "Ámbar / Especiado", type: "arabic", img: "game-spades-royale.jpg", desc: "Oriental especiado, armónico y lujoso."
-},
-{
-  id: 76, name: "Aoud Edition", brand: "Paris Corner", family: "Oud / Especiado", type: "arabic", img: "aoud-edition.jpg", desc: "Oud poderoso estilo árabe."
-},
-{
-  id: 77, name: "Rome Pour Homme", brand: "Paris Corner", family: "Dulce / Amaderado", type: "sweet", img: "rome-homme.jpg", desc: "Dulzor elegante para noche."
-},
-{
-  id: 78, name: "Rome Pour Femme", brand: "Paris Corner", family: "Floral Dulce", type: "sweet", img: "rome-femme.jpg", desc: "Romántico con flores dulces."
-},
+      // GOOD GIRL LINE (51-55)
+      { id:51, name:"Good Girl EDP", brand:"Carolina Herrera", family:"Dulce / Floral", type:"sweet", img:"img/carolina-herrera-good-girl.jpg", desc:"La clásica del tacón negro. Cacao, café y flores blancas. Muy femenina y elegante." },
+      { id:52, name:"Good Girl Légère", brand:"Carolina Herrera", family:"Dulce / Floral", type:"sweet", img:"img/carolina-herrera-good-girl-legere.jpg", desc:"Versión más ligera y cremosa de la clásica. Ideal para uso diario." },
+      { id:53, name:"Very Good Girl", brand:"Carolina Herrera", family:"Dulce / Frutal", type:"sweet", img:"img/carolina-herrera-very-good-girl.jpg", desc:"Tacón rojo. Notas de lichi y rosa, dulce pero sofisticada." },
+      { id:54, name:"Good Girl Blush", brand:"Carolina Herrera", family:"Floral / Dulce", type:"sweet", img:"img/carolina-herrera-good-girl-blush.jpg", desc:"Tacón rosa pastel. Floral, delicada y romántica, perfecta para el día." },
+      { id:55, name:"Very Good Girl Glam", brand:"Carolina Herrera", family:"Dulce / Intensa", type:"sweet", img:"img/carolina-herrera-very-good-girl-glam.jpg", desc:"Versión más intensa y brillante, ideal para noche y ocasiones especiales." },
 
-// ---- ARMAF (82-83) ----
-{
-  id: 82, name: "Armaf Tag Women", brand: "Armaf", family: "Dulce / Frutal", type: "sweet", img: "armaf-tag-women.jpg", desc: "Dulce juvenil con excelente duración."
-},
-{
-  id: 83, name: "Club de Nuit Woman", brand: "Armaf", family: "Rosa / Dulce", type: "sweet", img: "club-de-nuit-woman.jpg", desc: "Similar a Chanel Chance Eau Tendre."
-},
+      // ORIENTICA (56-65)
+      { id:56, name:"Orientica Amber Noir", brand:"Orientica", family:"Ámbar / Especiado", type:"arabic", img:"img/orientica-amber-noir.jpg", desc:"Ámbar oscuro con especias. Misterioso y elegante." },
+      { id:57, name:"Orientica Velvet Gold", brand:"Orientica", family:"Dulce / Floral", type:"sweet", img:"img/orientica-velvet-gold.jpg", desc:"Dulzor floral con un toque lujoso. Muy femenino." },
+      { id:58, name:"Orientica Aqua Blue", brand:"Orientica", family:"Fresco / Marino", type:"fresh", img:"img/orientica-aqua-blue.jpg", desc:"Aromas marinos limpios. Perfecto para el diario." },
+      { id:59, name:"Fleur d’Orientica", brand:"Orientica", family:"Floral / Dulce", type:"sweet", img:"img/orientica-fleur.jpg", desc:"Flores blancas suaves con dulzor cremoso." },
+      { id:60, name:"Rose d’Orientica", brand:"Orientica", family:"Floral / Rosa", type:"sweet", img:"img/orientica-rose.jpg", desc:"Rosa intensa y femenina con toque moderno." },
+      { id:61, name:"Orientica Dania", brand:"Orientica", family:"Dulce / Frutal", type:"sweet", img:"img/orientica-dania.jpg", desc:"Frutal juvenil con toque dulce vibrante." },
+      { id:62, name:"Orientica Melodie", brand:"Orientica", family:"Fresco / Aromático", type:"fresh", img:"img/orientica-melodie.jpg", desc:"Fresco aromático con toque amaderado suave." },
+      { id:63, name:"Orientica Royal Bleu", brand:"Orientica", family:"Fresco / Especiado", type:"fresh", img:"img/orientica-royal-bleu.jpg", desc:"Elegante, fresco con madera ligera." },
+      { id:64, name:"Orientica Royal Amber", brand:"Orientica", family:"Ámbar / Dulce", type:"sweet", img:"img/orientica-royal-amber.jpg", desc:"Ámbar cálido con dulzor oriental." },
+      { id:65, name:"Orientica Amber Rouge", brand:"Orientica", family:"Ámbar / Dulce", type:"sweet", img:"img/orientica-amber-rouge.jpg", desc:"Inspirado en BR540. Dulce, lujoso y llamativo." },
 
-// ---- AJMAL / LATTAFA / RASASI (84-92) ----
-{
-  id: 84, name: "Hawas Viper", brand: "Rasasi", family: "Dulce / Especiado", type: "sweet", img: "hawas-viper.jpg", desc: "Dulce especiado con potencia."
-},
-{
-  id: 85, name: "Hawas Atlantis", brand: "Rasasi", family: "Marino / Fresco", type: "fresh", img: "hawas-atlantis.jpg", desc: "Acuático moderno, ideal verano."
-},
-{
-  id: 86, name: "Hawas Pink", brand: "Rasasi", family: "Dulce / Frutal", type: "sweet", img: "hawas-pink.jpg", desc: "Dulce frutal femenino y fresco."
-},
-{
-  id: 87, name: "Hawas Diva", brand: "Rasasi", family: "Floral / Dulce", type: "sweet", img: "hawas-diva.jpg", desc: "Femenina, elegante para la noche."
-},
-{
-  id: 88, name: "Hawas Éclat", brand: "Rasasi", family: "Floral / Citrica", type: "fresh", img: "hawas-eclat.jpg", desc: "Floral cítrico, muy refrescante."
-},
-{
-  id: 89, name: "Qaed Al Fursan", brand: "Lattafa", family: "Árabe / Especiado", type: "arabic", img: "qaed-al-fursan.jpg", desc: "Oud dulce árabe moderno y masculino."
-},
-{
-  id: 90, name: "Ishq Al Shuyukh Gold", brand: "Lattafa", family: "Oud / Dulce", type: "arabic", img: "ishq-al-shuyukh-gold.jpg", desc: "Oud dulce con presencia poderosa."
-},
-{
-  id: 91, name: "Yara Pink", brand: "Lattafa", family: "Dulce / Cremosa", type: "sweet", img: "yara-pink.jpg", desc: "Muy popular. Dulce cremosa femenina."
-},
+      // PARIS CORNER (66-78)
+      { id:66, name:"Lafayette Street", brand:"Paris Corner", family:"Dulce / Vainilla", type:"sweet", img:"img/lafayette-street.jpg", desc:"Inspirado en Bond No. 9. Dulce y elegante." },
+      { id:67, name:"Game of Spades Emerald", brand:"Paris Corner", family:"Fresco / Masculino", type:"fresh", img:"img/game-spades-emerald.jpg", desc:"Cítrico aromático. Limpio y juvenil." },
+      { id:68, name:"Game of Spades Full House", brand:"Paris Corner", family:"Fresco / Marino", type:"fresh", img:"img/game-spades-fullhouse.jpg", desc:"Muy versátil. Ideal para el diario." },
+      { id:69, name:"Game of Spades High Roller", brand:"Paris Corner", family:"Amaderado / Dulce", type:"woody", img:"img/game-spades-highroller.jpg", desc:"Madera dulce masculina, buena duración." },
+      { id:70, name:"Game of Spades Rouge", brand:"Paris Corner", family:"Ámbar / Dulce", type:"sweet", img:"img/game-spades-rouge.jpg", desc:"Dulce intenso con presencia fuerte." },
+      { id:71, name:"Game of Spades Win", brand:"Paris Corner", family:"Fresco / Verde", type:"fresh", img:"img/game-spades-win.jpg", desc:"Verde aromático, estilo Aventus fresco." },
+      { id:72, name:"Game of Spades Ace", brand:"Paris Corner", family:"Amaderado / Especiado", type:"woody", img:"img/game-spades-ace.jpg", desc:"Elegante, masculino, de noche." },
+      { id:73, name:"Game of Spades Moon", brand:"Paris Corner", family:"Fresco / Aromático", type:"fresh", img:"img/game-spades-moon.jpg", desc:"Estilo luna nocturna, fresco sexy." },
+      { id:74, name:"Game of Spades Wildcard", brand:"Paris Corner", family:"Especiado / Intenso", type:"woody", img:"img/game-spades-wildcard.jpg", desc:"Más picante y atrevido." },
+      { id:75, name:"Game of Spades Royale", brand:"Paris Corner", family:"Ámbar / Especiado", type:"arabic", img:"img/game-spades-royale.jpg", desc:"Oriental especiado, armónico y lujoso." },
+      { id:76, name:"Aoud Edition", brand:"Paris Corner", family:"Oud / Especiado", type:"arabic", img:"img/aoud-edition.jpg", desc:"Oud poderoso estilo árabe." },
+      { id:77, name:"Rome Pour Homme", brand:"Paris Corner", family:"Dulce / Amaderado", type:"sweet", img:"img/rome-homme.jpg", desc:"Dulzor elegante para noche." },
+      { id:78, name:"Rome Pour Femme", brand:"Paris Corner", family:"Floral Dulce", type:"sweet", img:"img/rome-femme.jpg", desc:"Romántico con flores dulces." },
 
-// ---- OTROS (93-99) ----
-{
-  id: 93, name: "Territoire Femme Roma", brand: "Territoire", family: "Dulce / Floral", type: "sweet", img: "territoire-roma.jpg", desc: "Femenino dulce con elegancia."
-},
-{
-  id: 94, name: "Anarchy Rebel One Women", brand: "Paris Corner", family: "Dulce / Frutal", type: "sweet", img: "anarchy-rebel-women.jpg", desc: "Dulce atrevida con buena estela."
-},
-{
-  id: 95, name: "Anarchy No Rules", brand: "Paris Corner", family: "Dulce / Picante", type: "sweet", img: "anarchy-norules.jpg", desc: "Aroma rebelde con personalidad."
-},
-{
-  id: 96, name: "La Bomba", brand: "Lattafa", family: "Dulce / Floral", type: "sweet", img: "la-bomba.jpg", desc: "Muy dulce y femenina."
-},
-{
-  id: 97, name: "Ariana Grande Cloud", brand: "Ariana Grande", family: "Dulce / Almendrado", type: "sweet", img: "ariana-cloud.jpg", desc: "Dulce tipo nube, súper popular."
-},
-{
-  id: 98, name: "Nitro Red", brand: "Dumont", family: "Amaderado / Especiado", type: "woody", img: "nitro-red.jpg", desc: "Especiado masculino moderno."
-},
-{
-  id: 99, name: "Nitro Green", brand: "Dumont", family: "Fresco / Verde", type: "fresh", img: "nitro-green.jpg", desc: "Fresco aromático natural."
-}
+      // ARMAF WOMEN (82-83)
+      { id:82, name:"Armaf Tag Women", brand:"Armaf", family:"Dulce / Frutal", type:"sweet", img:"img/armaf-tag-women.jpg", desc:"Dulce juvenil con excelente duración." },
+      { id:83, name:"Club de Nuit Woman", brand:"Armaf", family:"Rosa / Dulce", type:"sweet", img:"img/club-de-nuit-woman.jpg", desc:"Similar a Chanel Chance Eau Tendre." },
 
+      // AJMAL / RASASI / LATTAFA (84-91)
+      { id:84, name:"Hawas Viper", brand:"Rasasi", family:"Dulce / Especiado", type:"sweet", img:"img/hawas-viper.jpg", desc:"Dulce especiado con potencia." },
+      { id:85, name:"Hawas Atlantis", brand:"Rasasi", family:"Marino / Fresco", type:"fresh", img:"img/hawas-atlantis.jpg", desc:"Acuático moderno, ideal verano." },
+      { id:86, name:"Hawas Pink", brand:"Rasasi", family:"Dulce / Frutal", type:"sweet", img:"img/hawas-pink.jpg", desc:"Dulce frutal femenino y fresco." },
+      { id:87, name:"Hawas Diva", brand:"Rasasi", family:"Floral / Dulce", type:"sweet", img:"img/hawas-diva.jpg", desc:"Femenina, elegante para la noche." },
+      { id:88, name:"Hawas Éclat", brand:"Rasasi", family:"Floral / Cítrica", type:"fresh", img:"img/hawas-eclat.jpg", desc:"Floral cítrico, muy refrescante." },
+      { id:89, name:"Qaed Al Fursan", brand:"Lattafa", family:"Árabe / Especiado", type:"arabic", img:"img/qaed-al-fursan.jpg", desc:"Oud dulce árabe moderno y masculino." },
+      { id:90, name:"Ishq Al Shuyukh Gold", brand:"Lattafa", family:"Oud / Dulce", type:"arabic", img:"img/ishq-al-shuyukh-gold.jpg", desc:"Oud dulce con presencia poderosa." },
+      { id:91, name:"Yara Pink", brand:"Lattafa", family:"Dulce / Cremosa", type:"sweet", img:"img/yara-pink.jpg", desc:"Muy popular. Dulce cremosa femenina." },
+
+      // OTROS (93-99)
+      { id:93, name:"Territoire Femme Roma", brand:"Territoire", family:"Dulce / Floral", type:"sweet", img:"img/territoire-roma.jpg", desc:"Femenino dulce con elegancia." },
+      { id:94, name:"Anarchy Rebel One Women", brand:"Paris Corner", family:"Dulce / Frutal", type:"sweet", img:"img/anarchy-rebel-women.jpg", desc:"Dulce atrevida con buena estela." },
+      { id:95, name:"Anarchy No Rules", brand:"Paris Corner", family:"Dulce / Picante", type:"sweet", img:"img/anarchy-norules.jpg", desc:"Aroma rebelde con personalidad." },
+      { id:96, name:"La Bomba", brand:"Lattafa", family:"Dulce / Floral", type:"sweet", img:"img/la-bomba.jpg", desc:"Muy dulce y femenina." },
+      { id:97, name:"Ariana Grande Cloud", brand:"Ariana Grande", family:"Dulce / Almendrado", type:"sweet", img:"img/ariana-cloud.jpg", desc:"Dulce tipo nube, súper popular." },
+      { id:98, name:"Nitro Red", brand:"Dumont", family:"Amaderado / Especiado", type:"woody", img:"img/nitro-red.jpg", desc:"Especiado masculino moderno." },
+      { id:99, name:"Nitro Green", brand:"Dumont", family:"Fresco / Verde", type:"fresh", img:"img/nitro-green.jpg", desc:"Fresco aromático natural." }
     ];
 
     // DOM
@@ -690,6 +523,7 @@ select:focus {
     const search = document.getElementById("search");
     const filter = document.getElementById("filter");
     const brandFilter = document.getElementById("brandFilter");
+    const genderFilter = document.getElementById("genderFilter");
 
     const selTitle = document.getElementById("selTitle");
     const selSub = document.getElementById("selSub");
@@ -699,7 +533,6 @@ select:focus {
     const clearBtn = document.getElementById("clearBtn");
     const waFloat = document.getElementById("waFloat");
 
-    // Helpers
     const typeLabel = (t) => ({
       fresh:"Fresco",
       sweet:"Dulce",
@@ -722,13 +555,41 @@ select:focus {
       }
     }
 
+    // IDs de perfumes femeninos
+    const womenIds = [
+      // Good Girl line
+      51, 52, 53, 54, 55,
+      // Orientica femeninos
+      57, 59, 60, 61,
+      // Rome Femme
+      78,
+      // Armaf women
+      82, 83,
+      // Hawas mujeres
+      86, 87, 88,
+      // Yara Pink
+      91,
+      // Territoire mujer
+      93,
+      // Anarchy Rebel Women
+      94,
+      // La Bomba
+      96,
+      // Ariana Grande Cloud
+      97
+    ];
+
+    function isWomanPerfume(p){
+      return womenIds.includes(p.id);
+    }
+
     let selected = null;
 
     function selectPerfume(p){
       selected = p;
       selTitle.textContent = "Seleccionado";
       selSub.textContent = "Escríbeme para precio, disponibilidad y envío.";
-      selName.textContent = `${p.name}`;
+      selName.textContent = `${p.name} — ${p.brand}`;
       selDetails.textContent = `${p.desc}`;
 
       const msg = `Hola! 👋 Estoy interesado en el perfume "${p.name}" (${p.brand}). ` +
@@ -749,6 +610,7 @@ select:focus {
       const q = (search.value || "").toLowerCase().trim();
       const t = filter.value;
       const b = brandFilter.value;
+      const g = genderFilter.value; // all / men / women
 
       const list = perfumes.filter(p => {
         const matchText =
@@ -760,7 +622,12 @@ select:focus {
         const matchType = (t === "all") ? true : (p.type === t);
         const matchBrand = (b === "all") ? true : (p.brand === b);
 
-        return matchText && matchType && matchBrand;
+        const woman = isWomanPerfume(p);
+        let matchGender = true;
+        if (g === "women") matchGender = woman;
+        else if (g === "men") matchGender = !woman;
+
+        return matchText && matchType && matchBrand && matchGender;
       });
 
       grid.innerHTML = "";
@@ -784,7 +651,6 @@ select:focus {
         grid.appendChild(card);
       }
 
-      // Ajusta el WhatsApp flotante (mensaje general)
       const generalMsg = "Hola! 👋 Quisiera información sobre tus perfumes (precio, disponibilidad y envío).";
       waFloat.href = waLink(generalMsg);
     }
@@ -798,6 +664,7 @@ select:focus {
     search.addEventListener("input", render);
     filter.addEventListener("change", render);
     brandFilter.addEventListener("change", render);
+    genderFilter.addEventListener("change", render);
     clearBtn.addEventListener("click", clearSelection);
   </script>
 </body>
