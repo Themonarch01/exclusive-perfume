@@ -1022,7 +1022,17 @@
   <!-- LOGIN MODAL OPCIONAL (OCULTO AL INICIO) -->
   <div id="loginOverlay" class="loginOverlay hidden">
     <div class="loginCard">
-      <button id="loginClose" class="loginClose" type="button" aria-label="Cerrar login">✕</button>
+      <!-- X con onclick para cerrar siempre -->
+      <button
+        id="loginClose"
+        class="loginClose"
+        type="button"
+        aria-label="Cerrar login"
+        onclick="document.getElementById('loginOverlay').classList.add('hidden')"
+      >
+        ✕
+      </button>
+
       <h2 class="loginTitle">Iniciar sesión</h2>
       <p class="loginSub">
         Guarda tus perfumes favoritos en este navegador para verlos más rápido.
