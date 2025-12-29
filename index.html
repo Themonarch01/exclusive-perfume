@@ -18,6 +18,9 @@
     }
 
     *{box-sizing:border-box}
+    html{
+      scroll-behavior:smooth;
+    }
     body{
       margin:0;
       font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -220,7 +223,7 @@
       background:rgba(255,255,255,.7);
     }
 
-    /* === LAYOUT PRINCIPAL === */
+    /* === LAYOUT PRINCIPAL (CATÁLOGO) === */
     .layout{
       display:grid;
       grid-template-columns: 1fr 340px;
@@ -431,10 +434,6 @@
       background:rgba(79,124,255,.22);
     }
 
-    .ask{
-      display:none; /* ya se indica abajo con el botón */
-    }
-
     /* Right panel */
     .side{
       padding: 14px;
@@ -609,6 +608,64 @@
       display:none;
     }
 
+    /* Secciones de info (marcas / sobre nosotros) */
+    .infoSection{
+      margin-top:26px;
+      padding:18px 16px 18px 16px;
+      border-radius:20px;
+      background:rgba(8,12,26,.96);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 14px 40px rgba(0,0,0,.55);
+    }
+
+    .infoTitle{
+      margin:0 0 10px 0;
+      font-size:18px;
+      font-weight:800;
+    }
+
+    .infoText{
+      margin:0;
+      font-size:13px;
+      color:var(--muted);
+      line-height:1.5;
+    }
+
+    .brandChips{
+      margin-top:8px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+    }
+
+    .brandChip{
+      font-size:11px;
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(16,23,50,.9);
+      color:rgba(255,255,255,.86);
+    }
+
+    .aboutLines{
+      margin-top:8px;
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      font-size:14px;
+    }
+
+    .aboutPhone{
+      margin-top:10px;
+      font-size:13px;
+    }
+
+    .aboutPhone a{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:700;
+    }
+
     @media (max-width: 1020px){
       .layout{ grid-template-columns: 1fr; }
       .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -657,7 +714,7 @@
   </style>
 </head>
 
-<body>
+<body id="top">
   <div class="wrap">
     <header class="site-header">
       <!-- NAVBAR -->
@@ -667,10 +724,10 @@
           <span>Exclusive Perfume</span>
         </div>
         <nav class="navLinks">
-          <a href="#" class="navLink active">Inicio</a>
-          <a href="#" class="navLink">Catálogo</a>
-          <a href="#" class="navLink">Marcas</a>
-          <a href="#" class="navLink">Sobre nosotros</a>
+          <a href="#top" class="navLink active" id="linkInicio">Inicio</a>
+          <a href="#catalogo" class="navLink" id="linkCatalogo">Catálogo</a>
+          <a href="#marcas" class="navLink" id="linkMarcas">Marcas</a>
+          <a href="#sobre-nosotros" class="navLink" id="linkSobre">Sobre nosotros</a>
         </nav>
         <button class="loginBtn" type="button">Login</button>
       </div>
@@ -692,7 +749,7 @@
           </div>
           <!-- chips de género -->
           <div class="heroFilterPills">
-            <button type="button" class="heroPill heroPill-active heroPillAll" data-g="all">
+            <button type="button" class="heroPill active" data-g="all">
               <span class="pillDot"></span> Todos
             </button>
             <button type="button" class="heroPill" data-g="men">
@@ -706,7 +763,8 @@
       </div>
     </header>
 
-    <div class="layout">
+    <!-- CATÁLOGO -->
+    <div id="catalogo" class="layout">
       <!-- LEFT: Catalog -->
       <section class="panel">
         <div class="panelHead">
@@ -772,6 +830,52 @@
         </div>
       </aside>
     </div>
+
+    <!-- MARCAS -->
+    <section id="marcas" class="infoSection">
+      <h2 class="infoTitle">Marcas destacadas</h2>
+      <p class="infoText">
+        Trabajamos con una selección cuidada de perfumes de diseñador y casas nicho.
+        Aquí encuentras fragancias icónicas y alternativas árabes de alto rendimiento.
+      </p>
+      <div class="brandChips">
+        <span class="brandChip">Dior</span>
+        <span class="brandChip">Chanel</span>
+        <span class="brandChip">Versace</span>
+        <span class="brandChip">Yves Saint Laurent</span>
+        <span class="brandChip">Giorgio Armani</span>
+        <span class="brandChip">Paco Rabanne</span>
+        <span class="brandChip">Tom Ford</span>
+        <span class="brandChip">Parfums de Marly</span>
+        <span class="brandChip">Lattafa</span>
+        <span class="brandChip">Afnan</span>
+        <span class="brandChip">Rasasi</span>
+        <span class="brandChip">Orientica</span>
+        <span class="brandChip">Paris Corner</span>
+        <span class="brandChip">Armaf</span>
+        <span class="brandChip">Ariana Grande</span>
+        <span class="brandChip">Territoire</span>
+        <span class="brandChip">Dumont</span>
+      </div>
+    </section>
+
+    <!-- SOBRE NOSOTROS -->
+    <section id="sobre-nosotros" class="infoSection">
+      <h2 class="infoTitle">Sobre Exclusive Perfume</h2>
+      <p class="infoText">
+        Cuidamos cada detalle, desde la selección del perfume hasta la forma en que te llega a las manos.
+      </p>
+      <div class="aboutLines">
+        <span>💧 <strong>Originalidad en cada gota</strong></span>
+        <span>💨 <strong>Exclusividad en cada aroma</strong></span>
+        <span>🔥 <strong>Donde el lujo se convierte en fragancia</strong></span>
+      </div>
+      <p class="aboutPhone">
+        📲 Contáctame directo: 
+        <a href="tel:9392937940">939&nbsp;293&nbsp;7940</a> 
+        o por WhatsApp para consultas, precios y envíos.
+      </p>
+    </section>
   </div>
 
   <!-- Floating WhatsApp general -->
@@ -802,7 +906,7 @@
   <script>
     // ✅ Tu número de WhatsApp (formato internacional sin +)
     // Puerto Rico: 1 + número
-    const WHATSAPP_NUMBER = "19392937940"; // cámbialo si quieres otro
+    const WHATSAPP_NUMBER = "19392937940";
 
     const perfumes = [
       { id:1, name:"Dior Sauvage EDP", brand:"Dior", family:"Fresco / Amaderado", type:"fresh", img:"img/dior-sauvage.jpg", desc:"Bergamota y ambroxan. Muy masculino y duradero." },
@@ -946,6 +1050,13 @@
     const selectionClear = document.getElementById("selectionClear");
     const selectionQuote = document.getElementById("selectionQuote");
 
+    const navLinks = {
+      inicio: document.getElementById("linkInicio"),
+      catalogo: document.getElementById("linkCatalogo"),
+      marcas: document.getElementById("linkMarcas"),
+      sobre: document.getElementById("linkSobre")
+    };
+
     const typeLabel = (t) => ({
       fresh:"Fresco",
       sweet:"Dulce",
@@ -970,25 +1081,15 @@
 
     // IDs de perfumes femeninos
     const womenIds = [
-      // Good Girl line
-      51, 52, 53, 54, 55,
-      // Orientica femeninos
-      57, 59, 60, 61,
-      // Rome Femme
+      51,52,53,54,55,
+      57,59,60,61,
       78,
-      // Armaf women
-      82, 83,
-      // Hawas mujeres
-      86, 87, 88,
-      // Yara Pink
+      82,83,
+      86,87,88,
       91,
-      // Territoire mujer
       93,
-      // Anarchy Rebel Women
       94,
-      // La Bomba
       96,
-      // Ariana Grande Cloud
       97
     ];
 
@@ -1039,7 +1140,6 @@
       if (selectedIds.size === 0) {
         lastSelected = null;
       } else if (!lastSelected || !selectedIds.has(lastSelected.id)) {
-        // si el último ya no está, escoger el primero de la selección
         const firstId = selectedIds.values().next().value;
         lastSelected = perfumes.find(x => x.id === firstId) || null;
       }
@@ -1069,21 +1169,17 @@
         ? "1 perfume seleccionado"
         : `${n} perfumes seleccionados`;
 
-      // mensaje WhatsApp para selección múltiple
       const selectedPerfumes = perfumes.filter(p => selectedIds.has(p.id));
-      const list = selectedPerfumes.map(p => `- ${p.name} (${p.brand})`).join("%0A");
+      const list = selectedPerfumes.map(p => `- ${p.name} (${p.brand})`).join("\n");
       const msg =
-        `Hola! 👋 Estoy interesado en estos perfumes:%0A${list}%0A%0A¿Me puedes indicar precio, disponibilidad y opciones de envío?`;
-      selectionQuote.href = waLink(decodeURIComponent(msg));
+        `Hola! 👋 Estoy interesado en estos perfumes:\n${list}\n\n¿Me puedes indicar precio, disponibilidad y opciones de envío?`;
+      selectionQuote.href = waLink(msg);
     }
 
     function syncHeroPills(){
       const g = genderFilter.value;
       heroPills.forEach(btn => {
         btn.classList.toggle("active", btn.dataset.g === g);
-        if (btn.dataset.g === "all") {
-          btn.classList.toggle("heroPill-active", g === "all");
-        }
       });
     }
 
@@ -1091,7 +1187,7 @@
       const q = (search.value || "").toLowerCase().trim();
       const t = filter.value;
       const b = brandFilter.value;
-      const g = genderFilter.value; // all / men / women
+      const g = genderFilter.value;
 
       const list = perfumes.filter(p => {
         const matchText =
@@ -1156,7 +1252,6 @@
         grid.appendChild(card);
       }
 
-      // Contador de resultados
       if (resultCount){
         const n = list.length;
         if (showFavoritesOnly) {
@@ -1166,12 +1261,22 @@
         }
       }
 
-      // sincronizar chips de género
       syncHeroPills();
 
       const generalMsg = "Hola! 👋 Quisiera información sobre tus perfumes (precio, disponibilidad y envío).";
       waFloat.href = waLink(generalMsg);
     }
+
+    // Nav activo según click (simple)
+    function setActiveNav(id){
+      Object.values(navLinks).forEach(link => link.classList.remove("active"));
+      if (navLinks[id]) navLinks[id].classList.add("active");
+    }
+
+    navLinks.inicio.addEventListener("click", () => setActiveNav("inicio"));
+    navLinks.catalogo.addEventListener("click", () => setActiveNav("catalogo"));
+    navLinks.marcas.addEventListener("click", () => setActiveNav("marcas"));
+    navLinks.sobre.addEventListener("click", () => setActiveNav("sobre"));
 
     // Init
     loadBrands();
