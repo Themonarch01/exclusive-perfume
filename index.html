@@ -8,7 +8,7 @@
     :root{
       --bg:#070b14;
       --panel:#0b1020;
-      --card:#0e1630;
+      --card:#0e1630;     
       --text:#f4f6ff;
       --muted:rgba(255,255,255,.72);
       --line:rgba(255,255,255,.12);
@@ -96,6 +96,12 @@
       font-weight:600;
     }
 
+    .resultCount{
+      font-size: 12px;
+      color: var(--muted);
+      font-weight:400;
+    }
+
     .tools{
       display:flex;
       gap:10px;
@@ -116,6 +122,50 @@
     }
     .input{ flex: 1 1 240px; }
     .select{ flex: 0 0 auto; min-width: 150px; }
+
+    .quickGender{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      width:100%;
+      margin-top: 4px;
+    }
+
+    .pillBtn{
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.02);
+      color:var(--muted);
+      padding:6px 10px;
+      font-size:11px;
+      cursor:pointer;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      transition: background .12s ease, border-color .12s ease, color .12s ease, transform .12s ease;
+    }
+
+    .pillBtn:hover{
+      transform: translateY(-1px);
+      background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.26);
+      color:var(--text);
+    }
+
+    .pillBtn.active{
+      background:rgba(79,124,255,.24);
+      border-color:var(--accent2);
+      color:var(--text);
+    }
+
+    .pillDot{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:rgba(255,255,255,.6);
+    }
+    .pillBtn[data-g="men"] .pillDot{ background:#4f7cff; }
+    .pillBtn[data-g="women"] .pillDot{ background:#ff7cb7; }
 
     .grid{
       display:grid;
@@ -168,6 +218,14 @@
       background: rgba(255,255,255,.05);
       padding: 4px 8px;
       border-radius: 999px;
+    }
+    .tag-men{
+      border-color: rgba(79,124,255,.65);
+      background: rgba(79,124,255,.16);
+    }
+    .tag-fem{
+      border-color: rgba(255,124,183,.85);
+      background: rgba(255,124,183,.20);
     }
     .desc{
       margin: 0;
@@ -329,6 +387,7 @@
       <section class="panel">
         <div class="panelHead">
           <span>Catálogo de perfumes</span>
+          <span id="resultCount" class="resultCount"></span>
         </div>
 
         <div class="tools">
@@ -351,6 +410,19 @@
             <option value="men">Solo hombres</option>
             <option value="women">Solo mujeres</option>
           </select>
+
+          <!-- Botones rápidos de género -->
+          <div class="quickGender">
+            <button type="button" class="pillBtn genderQuickBtn active" data-g="all">
+              <span class="pillDot"></span> Todos
+            </button>
+            <button type="button" class="pillBtn genderQuickBtn" data-g="men">
+              <span class="pillDot"></span> Solo hombres
+            </button>
+            <button type="button" class="pillBtn genderQuickBtn" data-g="women">
+              <span class="pillDot"></span> Solo mujeres
+            </button>
+          </div>
         </div>
 
         <div id="grid" class="grid"></div>
@@ -524,6 +596,8 @@
     const filter = document.getElementById("filter");
     const brandFilter = document.getElementById("brandFilter");
     const genderFilter = document.getElementById("genderFilter");
+    const resultCount = document.getElementById("resultCount");
+    const genderQuickBtns = document.querySelectorAll(".genderQuickBtn");
 
     const selTitle = document.getElementById("selTitle");
     const selSub = document.getElementById("selSub");
@@ -592,8 +666,7 @@
       selName.textContent = `${p.name} — ${p.brand}`;
       selDetails.textContent = `${p.desc}`;
 
-      const msg = `Hola! 👋 Estoy interesado en el perfume "${p.name}" (${p.brand}). ` +
-                  `Quisiera saber el precio, disponibilidad y cómo hacen el envío. Gracias!`;
+      const msg = `Hola! 👋 Estoy interesado en el perfume "${p.name}" (${p.brand}). Quisiera saber el precio, disponibilidad y cómo hacen el envío. Gracias!`;
       waBtn.href = waLink(msg);
     }
 
@@ -604,6 +677,13 @@
       selName.textContent = "—";
       selDetails.textContent = "Elige uno del catálogo para ver la descripción.";
       waBtn.href = waLink("Hola! 👋 Quisiera información sobre tus perfumes. Gracias!");
+    }
+
+    function syncGenderQuick(){
+      const g = genderFilter.value;
+      genderQuickBtns.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.g === g);
+      });
     }
 
     function render(){
@@ -633,6 +713,10 @@
       grid.innerHTML = "";
 
       for(const p of list){
+        const isW = isWomanPerfume(p);
+        const genderLabel = isW ? "Mujer" : "Hombre";
+        const genderClass = isW ? "tag-fem" : "tag-men";
+
         const card = document.createElement("div");
         card.className = "card";
         card.innerHTML = `
@@ -642,6 +726,7 @@
             <div class="meta">
               <span class="tag">${p.brand}</span>
               <span class="tag">${typeLabel(p.type)}</span>
+              <span class="tag ${genderClass}">${genderLabel}</span>
             </div>
             <p class="desc">${p.desc}</p>
             <div class="ask">Precio: Consultar por WhatsApp</div>
@@ -650,6 +735,15 @@
         card.addEventListener("click", () => selectPerfume(p));
         grid.appendChild(card);
       }
+
+      // Contador de resultados
+      if (resultCount){
+        const n = list.length;
+        resultCount.textContent = n === 1 ? "1 perfume encontrado" : `${n} perfumes encontrados`;
+      }
+
+      // Sincronizar botones rápidos
+      syncGenderQuick();
 
       const generalMsg = "Hola! 👋 Quisiera información sobre tus perfumes (precio, disponibilidad y envío).";
       waFloat.href = waLink(generalMsg);
@@ -666,6 +760,14 @@
     brandFilter.addEventListener("change", render);
     genderFilter.addEventListener("change", render);
     clearBtn.addEventListener("click", clearSelection);
+
+    genderQuickBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const g = btn.dataset.g;
+        genderFilter.value = g;
+        render();
+      });
+    });
   </script>
 </body>
 </html>
