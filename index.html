@@ -33,7 +33,7 @@
     .wrap{
       max-width: 1200px;
       margin: 0 auto;
-      padding: 18px 18px 80px 18px; /* espacio para la barra inferior */
+      padding: 18px 18px 80px 18px; /* espacio para barra inferior */
     }
 
     /* === NAVBAR + HERO === */
@@ -666,6 +666,125 @@
       font-weight:700;
     }
 
+    /* === LOGIN MODAL (GLASSMORPHISM) === */
+    .loginOverlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.65);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:1200;
+    }
+
+    .loginCard{
+      width:100%;
+      max-width:380px;
+      padding:18px 18px 16px 18px;
+      border-radius:24px;
+      border:1px solid rgba(255,255,255,.18);
+      background:linear-gradient(135deg, rgba(15,23,42,.96), rgba(48,64,110,.92));
+      box-shadow:0 22px 60px rgba(0,0,0,.75);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+      color:var(--text);
+      position:relative;
+    }
+
+    .loginClose{
+      position:absolute;
+      right:12px;
+      top:10px;
+      background:transparent;
+      border:none;
+      color:rgba(255,255,255,.7);
+      cursor:pointer;
+      font-size:18px;
+    }
+
+    .loginTitle{
+      margin:0 0 4px 0;
+      font-size:18px;
+      font-weight:800;
+    }
+
+    .loginSub{
+      margin:0 0 14px 0;
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .loginField{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      margin-bottom:10px;
+      font-size:12px;
+    }
+
+    .loginField label{
+      color:rgba(255,255,255,.78);
+    }
+
+    .loginInput{
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(7,10,24,.95);
+      padding:9px 12px;
+      color:var(--text);
+      font-size:13px;
+      outline:none;
+    }
+
+    .loginInput::placeholder{
+      color:rgba(255,255,255,.4);
+    }
+
+    .loginPrimary{
+      width:100%;
+      margin-top:6px;
+      border-radius:999px;
+      border:none;
+      padding:9px 14px;
+      background:linear-gradient(120deg,#4f7cff,#25d366);
+      color:#020617;
+      font-weight:800;
+      font-size:13px;
+      cursor:pointer;
+      box-shadow:0 14px 35px rgba(0,0,0,.7);
+    }
+
+    .loginTips{
+      margin-top:8px;
+      font-size:11px;
+      color:var(--muted);
+      line-height:1.4;
+    }
+
+    .loginFooterActions{
+      margin-top:10px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+      font-size:11px;
+    }
+
+    .logoutBtn{
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.3);
+      background:transparent;
+      color:rgba(255,255,255,.9);
+      padding:6px 12px;
+      cursor:pointer;
+      font-size:11px;
+    }
+
+    .loginUserTag{
+      color:rgba(255,255,255,.75);
+      font-size:11px;
+    }
+
     @media (max-width: 1020px){
       .layout{ grid-template-columns: 1fr; }
       .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -729,7 +848,7 @@
           <a href="#marcas" class="navLink" id="linkMarcas">Marcas</a>
           <a href="#sobre-nosotros" class="navLink" id="linkSobre">Sobre nosotros</a>
         </nav>
-        <button class="loginBtn" type="button">Login</button>
+        <button class="loginBtn" type="button" id="openLoginBtn">Login</button>
       </div>
 
       <!-- HERO -->
@@ -741,9 +860,7 @@
         <div class="heroSearchRow">
           <!-- barra de búsqueda principal -->
           <div class="heroSearchWrap">
-            <span class="heroSearchIcon">
-              🔍
-            </span>
+            <span class="heroSearchIcon">🔍</span>
             <input id="search" type="text"
               placeholder="Buscar por marca, nombre o tipo de perfume..." />
           </div>
@@ -903,10 +1020,45 @@
     </div>
   </div>
 
+  <!-- LOGIN MODAL -->
+  <div id="loginOverlay" class="loginOverlay hidden">
+    <div class="loginCard">
+      <button id="loginClose" class="loginClose" type="button" aria-label="Cerrar login">✕</button>
+      <h2 class="loginTitle">Iniciar sesión</h2>
+      <p class="loginSub" id="loginSubText">
+        Guarda tus perfumes favoritos en este navegador para verlos más rápido.
+      </p>
+
+      <form id="loginForm">
+        <div class="loginField">
+          <label for="loginName">Nombre</label>
+          <input id="loginName" class="loginInput" type="text" placeholder="Ej. Carlos, Ana..." />
+        </div>
+        <div class="loginField">
+          <label for="loginEmail">Correo electrónico</label>
+          <input id="loginEmail" class="loginInput" type="email" placeholder="ejemplo@correo.com" required />
+        </div>
+        <button type="submit" class="loginPrimary">Entrar</button>
+      </form>
+
+      <div class="loginTips">
+        No se crea una cuenta real ni se envía información a un servidor. <br>
+        Solo se guarda tu sesión y tus favoritos en este dispositivo.
+      </div>
+
+      <div class="loginFooterActions">
+        <span id="loginUserTag" class="loginUserTag hidden"></span>
+        <button id="logoutBtn" class="logoutBtn hidden" type="button">Cerrar sesión</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // ✅ Tu número de WhatsApp (formato internacional sin +)
-    // Puerto Rico: 1 + número
     const WHATSAPP_NUMBER = "19392937940";
+
+    const STORAGE_KEY_USER = "ep_user";
+    const STORAGE_KEY_FAVS_PREFIX = "ep_favs_";
 
     const perfumes = [
       { id:1, name:"Dior Sauvage EDP", brand:"Dior", family:"Fresco / Amaderado", type:"fresh", img:"img/dior-sauvage.jpg", desc:"Bergamota y ambroxan. Muy masculino y duradero." },
@@ -1057,6 +1209,15 @@
       sobre: document.getElementById("linkSobre")
     };
 
+    const openLoginBtn = document.getElementById("openLoginBtn");
+    const loginOverlay = document.getElementById("loginOverlay");
+    const loginClose = document.getElementById("loginClose");
+    const loginForm = document.getElementById("loginForm");
+    const loginNameInput = document.getElementById("loginName");
+    const loginEmailInput = document.getElementById("loginEmail");
+    const loginUserTag = document.getElementById("loginUserTag");
+    const logoutBtn = document.getElementById("logoutBtn");
+
     const typeLabel = (t) => ({
       fresh:"Fresco",
       sweet:"Dulce",
@@ -1101,6 +1262,7 @@
     const selectedIds = new Set(); // selección múltiple
     const favoriteIds = new Set(); // favoritos
     let showFavoritesOnly = false;
+    let currentUser = null;
 
     function updateDetailPanel(){
       if (selectedIds.size === 0 || !lastSelected || !selectedIds.has(lastSelected.id)) {
@@ -1148,9 +1310,31 @@
       render();
     }
 
+    function persistFavorites(){
+      if (!currentUser || !currentUser.email) return;
+      const key = STORAGE_KEY_FAVS_PREFIX + currentUser.email;
+      localStorage.setItem(key, JSON.stringify(Array.from(favoriteIds)));
+    }
+
+    function loadFavoritesForUser(){
+      favoriteIds.clear();
+      if (!currentUser || !currentUser.email) return;
+      const key = STORAGE_KEY_FAVS_PREFIX + currentUser.email;
+      const saved = localStorage.getItem(key);
+      if (saved){
+        try{
+          const arr = JSON.parse(saved);
+          if (Array.isArray(arr)){
+            arr.forEach(id => favoriteIds.add(id));
+          }
+        }catch(e){}
+      }
+    }
+
     function toggleFavorite(p){
       if (favoriteIds.has(p.id)) favoriteIds.delete(p.id);
       else favoriteIds.add(p.id);
+      persistFavorites();
       render();
     }
 
@@ -1278,8 +1462,78 @@
     navLinks.marcas.addEventListener("click", () => setActiveNav("marcas"));
     navLinks.sobre.addEventListener("click", () => setActiveNav("sobre"));
 
+    /* === LOGIN LOGIC === */
+    function openLogin(){
+      loginOverlay.classList.remove("hidden");
+      loginNameInput.focus();
+    }
+
+    function closeLogin(){
+      loginOverlay.classList.add("hidden");
+    }
+
+    openLoginBtn.addEventListener("click", openLogin);
+    loginClose.addEventListener("click", closeLogin);
+    loginOverlay.addEventListener("click", (e) => {
+      if (e.target === loginOverlay) closeLogin();
+    });
+
+    function updateLoginUI(){
+      if (currentUser){
+        const nameToShow = currentUser.name && currentUser.name.trim() !== "" ? currentUser.name.trim() : "Mi cuenta";
+        openLoginBtn.textContent = nameToShow;
+        loginUserTag.textContent = `Sesión: ${currentUser.email}`;
+        loginUserTag.classList.remove("hidden");
+        logoutBtn.classList.remove("hidden");
+      } else {
+        openLoginBtn.textContent = "Login";
+        loginUserTag.classList.add("hidden");
+        logoutBtn.classList.add("hidden");
+      }
+    }
+
+    function loadSession(){
+      const raw = localStorage.getItem(STORAGE_KEY_USER);
+      if (!raw) return;
+      try{
+        const parsed = JSON.parse(raw);
+        if (parsed && parsed.email){
+          currentUser = parsed;
+          loadFavoritesForUser();
+        }
+      }catch(e){}
+      updateLoginUI();
+    }
+
+    loginForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = loginNameInput.value.trim();
+      const email = loginEmailInput.value.trim();
+      if (!email){
+        alert("Por favor escribe tu correo electrónico.");
+        return;
+      }
+      currentUser = { name, email };
+      localStorage.setItem(STORAGE_KEY_USER, JSON.stringify(currentUser));
+      loadFavoritesForUser();
+      updateLoginUI();
+      render();
+      closeLogin();
+    });
+
+    logoutBtn.addEventListener("click", () => {
+      currentUser = null;
+      localStorage.removeItem(STORAGE_KEY_USER);
+      favoriteIds.clear();
+      updateLoginUI();
+      render();
+      updateSelectionBar();
+      alert("Sesión cerrada en este navegador.");
+    });
+
     // Init
     loadBrands();
+    loadSession();
     updateDetailPanel();
     updateSelectionBar();
     render();
