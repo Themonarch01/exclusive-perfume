@@ -33,7 +33,7 @@
     .wrap{
       max-width: 1200px;
       margin: 0 auto;
-      padding: 18px 18px 80px 18px; /* espacio para barra inferior */
+      padding: 18px 18px 80px 18px;
     }
 
     /* === NAVBAR + HERO === */
@@ -608,7 +608,7 @@
       display:none;
     }
 
-    /* Secciones de info (marcas / sobre nosotros) */
+    /* Secciones info */
     .infoSection{
       margin-top:26px;
       padding:18px 16px 18px 16px;
@@ -848,7 +848,8 @@
           <a href="#marcas" class="navLink" id="linkMarcas">Marcas</a>
           <a href="#sobre-nosotros" class="navLink" id="linkSobre">Sobre nosotros</a>
         </nav>
-        <button class="loginBtn" type="button" id="openLoginBtn">Login</button>
+        <!-- 🔹 Botón de login opcional -->
+        <button class="loginBtn" type="button" id="openLoginBtn">Crear cuenta / Login</button>
       </div>
 
       <!-- HERO -->
@@ -858,13 +859,11 @@
           Selecciona un perfume y escríbeme por WhatsApp para precio y envío.
         </p>
         <div class="heroSearchRow">
-          <!-- barra de búsqueda principal -->
           <div class="heroSearchWrap">
             <span class="heroSearchIcon">🔍</span>
             <input id="search" type="text"
               placeholder="Buscar por marca, nombre o tipo de perfume..." />
           </div>
-          <!-- chips de género -->
           <div class="heroFilterPills">
             <button type="button" class="heroPill active" data-g="all">
               <span class="pillDot"></span> Todos
@@ -1020,30 +1019,31 @@
     </div>
   </div>
 
-  <!-- LOGIN MODAL -->
+  <!-- LOGIN MODAL OPCIONAL -->
   <div id="loginOverlay" class="loginOverlay hidden">
     <div class="loginCard">
       <button id="loginClose" class="loginClose" type="button" aria-label="Cerrar login">✕</button>
-      <h2 class="loginTitle">Iniciar sesión</h2>
+      <h2 class="loginTitle">Crear tu cuenta (opcional)</h2>
       <p class="loginSub" id="loginSubText">
-        Guarda tus perfumes favoritos en este navegador para verlos más rápido.
+        Si quieres, puedes crear una cuenta sencilla para guardar tus perfumes favoritos en este dispositivo.
+        <br><strong>No es obligatorio, puedes seguir usando la página sin registrarte.</strong>
       </p>
 
       <form id="loginForm">
         <div class="loginField">
-          <label for="loginName">Nombre</label>
+          <label for="loginName">Nombre (opcional)</label>
           <input id="loginName" class="loginInput" type="text" placeholder="Ej. Carlos, Ana..." />
         </div>
         <div class="loginField">
           <label for="loginEmail">Correo electrónico</label>
           <input id="loginEmail" class="loginInput" type="email" placeholder="ejemplo@correo.com" required />
         </div>
-        <button type="submit" class="loginPrimary">Entrar</button>
+        <button type="submit" class="loginPrimary">Guardar cuenta en este dispositivo</button>
       </form>
 
       <div class="loginTips">
         No se crea una cuenta real ni se envía información a un servidor. <br>
-        Solo se guarda tu sesión y tus favoritos en este dispositivo.
+        Solo se guarda tu sesión y tus favoritos en este navegador.
       </div>
 
       <div class="loginFooterActions">
@@ -1054,7 +1054,6 @@
   </div>
 
   <script>
-    // ✅ Tu número de WhatsApp (formato internacional sin +)
     const WHATSAPP_NUMBER = "19392937940";
 
     const STORAGE_KEY_USER = "ep_user";
@@ -1179,7 +1178,6 @@
       { id:99, name:"Nitro Green", brand:"Dumont", family:"Fresco / Verde", type:"fresh", img:"img/nitro-green.jpg", desc:"Fresco aromático natural." }
     ];
 
-    // DOM
     const grid = document.getElementById("grid");
     const search = document.getElementById("search");
     const filter = document.getElementById("filter");
@@ -1240,7 +1238,6 @@
       }
     }
 
-    // IDs de perfumes femeninos
     const womenIds = [
       51,52,53,54,55,
       57,59,60,61,
@@ -1259,8 +1256,8 @@
     }
 
     let lastSelected = null;
-    const selectedIds = new Set(); // selección múltiple
-    const favoriteIds = new Set(); // favoritos
+    const selectedIds = new Set();
+    const favoriteIds = new Set();
     let showFavoritesOnly = false;
     let currentUser = null;
 
@@ -1451,7 +1448,6 @@
       waFloat.href = waLink(generalMsg);
     }
 
-    // Nav activo según click (simple)
     function setActiveNav(id){
       Object.values(navLinks).forEach(link => link.classList.remove("active"));
       if (navLinks[id]) navLinks[id].classList.add("active");
@@ -1462,7 +1458,7 @@
     navLinks.marcas.addEventListener("click", () => setActiveNav("marcas"));
     navLinks.sobre.addEventListener("click", () => setActiveNav("sobre"));
 
-    /* === LOGIN LOGIC === */
+    /* === LOGIN LOGIC OPCIONAL === */
     function openLogin(){
       loginOverlay.classList.remove("hidden");
       loginNameInput.focus();
@@ -1482,11 +1478,11 @@
       if (currentUser){
         const nameToShow = currentUser.name && currentUser.name.trim() !== "" ? currentUser.name.trim() : "Mi cuenta";
         openLoginBtn.textContent = nameToShow;
-        loginUserTag.textContent = `Sesión: ${currentUser.email}`;
+        loginUserTag.textContent = `Sesión guardada: ${currentUser.email}`;
         loginUserTag.classList.remove("hidden");
         logoutBtn.classList.remove("hidden");
       } else {
-        openLoginBtn.textContent = "Login";
+        openLoginBtn.textContent = "Crear cuenta / Login";
         loginUserTag.classList.add("hidden");
         logoutBtn.classList.add("hidden");
       }
@@ -1538,7 +1534,6 @@
     updateSelectionBar();
     render();
 
-    // Events
     search.addEventListener("input", render);
     filter.addEventListener("change", render);
     brandFilter.addEventListener("change", render);
