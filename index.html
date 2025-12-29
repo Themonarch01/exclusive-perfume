@@ -848,7 +848,7 @@
           <a href="#marcas" class="navLink" id="linkMarcas">Marcas</a>
           <a href="#sobre-nosotros" class="navLink" id="linkSobre">Sobre nosotros</a>
         </nav>
-        <!-- 🔹 Botón de login opcional -->
+        <!-- Botón login (abre modal) -->
         <button class="loginBtn" type="button" id="openLoginBtn">Crear cuenta / Login</button>
       </div>
 
@@ -1019,14 +1019,14 @@
     </div>
   </div>
 
-  <!-- LOGIN MODAL OPCIONAL -->
+  <!-- LOGIN MODAL OPCIONAL (OCULTO AL INICIO) -->
   <div id="loginOverlay" class="loginOverlay hidden">
     <div class="loginCard">
       <button id="loginClose" class="loginClose" type="button" aria-label="Cerrar login">✕</button>
-      <h2 class="loginTitle">Crear tu cuenta (opcional)</h2>
-      <p class="loginSub" id="loginSubText">
-        Si quieres, puedes crear una cuenta sencilla para guardar tus perfumes favoritos en este dispositivo.
-        <br><strong>No es obligatorio, puedes seguir usando la página sin registrarte.</strong>
+      <h2 class="loginTitle">Iniciar sesión</h2>
+      <p class="loginSub">
+        Guarda tus perfumes favoritos en este navegador para verlos más rápido.
+        <br><strong>No es obligatorio, puedes usar toda la página sin registrarte.</strong>
       </p>
 
       <form id="loginForm">
@@ -1038,12 +1038,12 @@
           <label for="loginEmail">Correo electrónico</label>
           <input id="loginEmail" class="loginInput" type="email" placeholder="ejemplo@correo.com" required />
         </div>
-        <button type="submit" class="loginPrimary">Guardar cuenta en este dispositivo</button>
+        <button type="submit" class="loginPrimary">Entrar</button>
       </form>
 
       <div class="loginTips">
-        No se crea una cuenta real ni se envía información a un servidor. <br>
-        Solo se guarda tu sesión y tus favoritos en este navegador.
+        No se crea una cuenta real ni se envía información a un servidor.
+        Solo se guarda tu sesión y tus favoritos en este dispositivo.
       </div>
 
       <div class="loginFooterActions">
@@ -1537,9 +1537,7 @@
     search.addEventListener("input", render);
     filter.addEventListener("change", render);
     brandFilter.addEventListener("change", render);
-    genderFilter.addEventListener("change", () => {
-      render();
-    });
+    genderFilter.addEventListener("change", render);
     clearBtn.addEventListener("click", clearSelection);
 
     heroPills.forEach(btn => {
