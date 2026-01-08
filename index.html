@@ -52,7 +52,7 @@
       padding: 18px 18px 80px 18px;
     }
 
-    /* === HEADER STICKY PREMIUM === */
+    /* === HEADER (sticky) === */
     .site-header{
       position: sticky;
       top: 0;
@@ -126,7 +126,7 @@
     }
 
     .navLink:hover{ color:var(--text); }
-    .navLink.active{ color:#ffffff; font-weight:700; }
+    .navLink.active{ color:#ffffff; font-weight:800; }
     .navLink.active::after{ opacity:1; transform:scaleX(1); }
 
     .loginBtn{
@@ -136,48 +136,180 @@
       background: linear-gradient(135deg, rgba(79,124,255,.92), rgba(37,211,102,.55));
       color:#fff;
       font-size:13px;
-      font-weight:800;
+      font-weight:900;
       cursor:pointer;
       box-shadow: var(--shadowSoft);
       transition: transform .12s ease, filter .12s ease;
     }
     .loginBtn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
 
-    /* === HERO PREMIUM === */
-    .hero{ margin-top:0; padding:0; }
-
-    .heroCard{
-      margin-top: 10px;
+    /* ===== Landing hero tipo referencia (separado del catálogo) ===== */
+    .landingHero{
+      margin-top: 8px;
       border: 1px solid rgba(255,255,255,.12);
-      border-radius: 22px;
+      border-radius: 24px;
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(8,12,26,.96));
       box-shadow: var(--shadowHard);
       overflow: hidden;
     }
 
-    .heroInner{
-      padding: 18px;
+    .landingInner{
+      padding: 22px;
       display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 14px;
-      align-items: start;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items: center;
     }
 
-    .heroTitle{
-      margin:0 0 4px 0;
-      font-size:30px;
-      font-weight:900;
-      letter-spacing:-.02em;
+    .landingKicker{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:6px 10px;
+      border:1px solid rgba(255,255,255,.14);
+      border-radius:999px;
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.80);
+      font-size: 12px;
+      margin-bottom: 12px;
     }
 
-    .heroSub{
-      margin:0 0 16px 0;
-      font-size:13px;
-      color:var(--muted);
-      max-width:60ch;
+    .landingTitle{
+      margin:0 0 10px 0;
+      font-size: clamp(34px, 4.2vw, 56px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 0.98;
+    }
+
+    .landingSub{
+      margin:0 0 18px 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+      max-width: 62ch;
+    }
+
+    .landingBtns{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom: 14px;
+    }
+
+    .cta{
+      border-radius: 14px;
+      padding: 11px 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      font-weight: 900;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      transition: transform .12s ease, filter .12s ease, background .12s ease;
+      font-size: 13px;
+    }
+    .cta:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+
+    .cta.primary{
+      border-color: rgba(79,124,255,.55);
+      background: linear-gradient(135deg, rgba(79,124,255,.85), rgba(37,211,102,.35));
+    }
+
+    .ratingRow{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      color: rgba(255,255,255,.70);
+      font-size: 12px;
+    }
+
+    .stars{
+      letter-spacing: 2px;
+      color: rgba(37,211,102,.85);
+    }
+
+    /* Widget derecha (imagen que cambia) */
+    .featureCard{
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.20);
+      box-shadow: 0 18px 50px rgba(0,0,0,.55);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .featureImg{
+      height: 340px;
+      width: 100%;
+      background: rgba(255,255,255,.04);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .featureImg img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.02);
+      transition: opacity .35s ease, transform .35s ease;
+      opacity: 1;
+    }
+
+    .featureFadeOut img{ opacity: 0; transform: scale(1.06); }
+
+    .featureMeta{
+      padding: 14px 14px 16px 14px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+
+    .featureName{
+      margin:0;
+      font-weight: 900;
+      font-size: 14px;
+    }
+
+    .featureDesc{
+      margin:0;
+      color: var(--muted);
+      font-size: 12.5px;
       line-height: 1.45;
     }
 
+    .featurePills{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      margin-top: 6px;
+    }
+
+    .dots{
+      position:absolute;
+      right: 12px;
+      top: 12px;
+      display:flex;
+      gap:6px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(7,10,22,.70);
+      border: 1px solid rgba(255,255,255,.12);
+      backdrop-filter: blur(10px);
+    }
+    .dot{
+      width:7px;height:7px;border-radius:50%;
+      background: rgba(255,255,255,.22);
+      cursor:pointer;
+    }
+    .dot.active{ background: rgba(79,124,255,.95); }
+
+    /* === Buscador / pills reutilizados (para catálogo) === */
     .heroSearchRow{
       display:flex;
       flex-wrap:wrap;
@@ -202,6 +334,7 @@
       outline:none;
       box-shadow: 0 12px 45px rgba(0,0,0,.45);
     }
+
     .heroSearchWrap input::placeholder{ color:rgba(255,255,255,.42); }
 
     .heroSearchIcon{
@@ -220,7 +353,6 @@
       flex-wrap:wrap;
       gap:8px;
       font-size:11px;
-      margin-top: 8px;
     }
 
     .heroPill{
@@ -235,12 +367,14 @@
       gap:6px;
       transition:background .12s ease, border-color .12s ease, color .12s ease, transform .12s ease;
     }
+
     .heroPill:hover{
       transform:translateY(-1px);
       background:rgba(255,255,255,.06);
       border-color:rgba(255,255,255,.26);
       color:var(--text);
     }
+
     .heroPill.active{
       background:rgba(79,124,255,.28);
       border-color:var(--accent2);
@@ -254,15 +388,38 @@
       background:rgba(255,255,255,.7);
     }
 
-    .heroWidgets{ display:grid; gap:10px; }
-    .heroWidget{
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.22);
-      border-radius: 16px;
-      padding: 12px;
+    /* === Sección catálogo separada === */
+    .catalogSection{
+      margin-top: 22px;
+      padding-top: 8px;
     }
-    .heroWidget strong{ display:block; font-size: 13px; margin-bottom:4px; }
-    .heroWidget span{ display:block; color: var(--muted); font-size: 12.5px; line-height:1.35; }
+
+    .catalogHead{
+      margin: 14px 0 14px 0;
+      padding: 18px 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(8,12,26,.80);
+      box-shadow: var(--shadowSoft);
+    }
+
+    .catalogTitle{
+      margin: 0 0 6px 0;
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -.01em;
+    }
+
+    .catalogSub{
+      margin: 0 0 12px 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .catalogSearchRow{
+      margin-top: 10px;
+    }
 
     /* === LAYOUT PRINCIPAL (CATÁLOGO) === */
     .layout{
@@ -313,8 +470,10 @@
       gap:6px;
       transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
+
     .favToggleBtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); }
     .favToggleBtn span.heartIcon{ font-size:12px; }
+
     .favToggleBtn.active{
       background:rgba(255,255,255,.10);
       color:#fff;
@@ -554,7 +713,7 @@
       line-height: 1.45;
     }
 
-    /* Floating WhatsApp general */
+    /* Floating WhatsApp */
     .wa-float{
       position: fixed;
       right: 18px;
@@ -632,6 +791,7 @@
       white-space:nowrap;
       transition: transform .12s ease, filter .12s ease;
     }
+
     .selectionBtn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
 
     .selectionBtn.ghost{
@@ -705,15 +865,16 @@
     }
 
     @media (max-width: 1020px){
+      .landingInner{ grid-template-columns: 1fr; }
+      .featureImg{ height: 300px; }
+
       .layout{ grid-template-columns: 1fr; }
       .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .selectionInner{ flex-direction:column; align-items:flex-start; }
       .selectionActions{ align-self:stretch; justify-content:flex-end; }
-      .heroInner{ grid-template-columns: 1fr; }
     }
     @media (max-width: 640px){
       .navLinks{ display:none; }
-      .layout{ margin-top:6px; }
       .grid{ grid-template-columns: 1fr; }
       .selectionInner{ align-items:flex-start; }
       .selectionActions{ width:100%; justify-content:space-between; }
@@ -744,127 +905,153 @@
           <span>Exclusive Perfume</span>
         </div>
         <nav class="navLinks">
-          <a href="#top" class="navLink active" id="linkInicio">Inicio</a>
+          <a href="#inicio" class="navLink active" id="linkInicio">Inicio</a>
           <a href="#catalogo" class="navLink" id="linkCatalogo">Catálogo</a>
           <a href="#marcas" class="navLink" id="linkMarcas">Marcas</a>
           <a href="#sobre-nosotros" class="navLink" id="linkSobre">Sobre nosotros</a>
         </nav>
         <button class="loginBtn" type="button" id="contactBtn">Contactar</button>
       </div>
+    </header>
 
-      <!-- HERO PREMIUM -->
-      <div class="hero">
-        <div class="heroCard">
-          <div class="heroInner">
-            <div>
-              <h1 class="heroTitle">Colección Exclusiva</h1>
-              <p class="heroSub">
-                Selecciona un perfume y escríbeme por WhatsApp para precio y envío.
-              </p>
+    <!-- INICIO (Landing separado) -->
+    <section id="inicio" class="landingHero" aria-label="Inicio">
+      <div class="landingInner">
+        <div>
+          <div class="landingKicker">✨ Exclusive Perfume · Colección curada</div>
 
-              <div class="heroSearchRow">
-                <div class="heroSearchWrap">
-                  <span class="heroSearchIcon">🔍</span>
-                  <input id="search" type="text" placeholder="Buscar por marca, nombre o tipo de perfume..." />
-                </div>
+          <h1 class="landingTitle">Essence of the<br>Exclusive</h1>
 
-                <div class="heroFilterPills">
-                  <button type="button" class="heroPill active" data-g="all"><span class="pillDot"></span> Todos</button>
-                  <button type="button" class="heroPill" data-g="men"><span class="pillDot"></span> Hombres</button>
-                  <button type="button" class="heroPill" data-g="women"><span class="pillDot"></span> Mujeres</button>
-                  <button type="button" class="heroPill" data-g="unisex"><span class="pillDot"></span> Unisex</button>
-                </div>
-              </div>
+          <p class="landingSub">
+            Fragancias con presencia. Descubre tu estilo y luego pasa al catálogo.
+          </p>
+
+          <div class="landingBtns">
+            <a class="cta primary" href="#catalogo">Shop Now</a>
+            <a class="cta" href="#marcas">Discover</a>
+          </div>
+
+          <div class="ratingRow">
+            <span class="stars">★★★★★</span>
+            <span id="featuredSmallText">Destacado esta semana</span>
+          </div>
+        </div>
+
+        <!-- Widget que cambia -->
+        <div class="featureCard" id="featureCard">
+          <div class="dots" id="featureDots"></div>
+
+          <div class="featureImg" id="featureImgWrap">
+            <img id="featureImg" src="" alt="Perfume destacado">
+          </div>
+
+          <div class="featureMeta">
+            <p class="featureName" id="featureName">—</p>
+            <p class="featureDesc" id="featureDesc">—</p>
+
+            <div class="featurePills">
+              <span class="tag" id="featureType">—</span>
+              <span class="tag" id="featureGender">—</span>
             </div>
 
-            <div class="heroWidgets">
-              <div class="heroWidget">
-                <strong>🚚 Envío en Puerto Rico</strong>
-                <span>Coordinamos por WhatsApp según disponibilidad.</span>
-              </div>
-              <div class="heroWidget">
-                <strong>✅ Atención rápida</strong>
-                <span>Respondo directo para precios, opciones y envío.</span>
-              </div>
-              <div class="heroWidget">
-                <strong>🔥 Recomendaciones</strong>
-                <span>Te ayudo a elegir por ocasión: iglesia, trabajo, citas, etc.</span>
-              </div>
+            <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="cta primary" href="#catalogo">Ver catálogo</a>
+              <button class="cta" type="button" id="featureSelectBtn">Seleccionar</button>
             </div>
-
           </div>
         </div>
       </div>
-    </header>
+    </section>
 
-    <!-- CATÁLOGO -->
-    <div id="catalogo" class="layout">
-      <!-- LEFT: Catalog -->
-      <section class="panel">
-        <div class="panelHead">
-          <span>Catálogo de perfumes</span>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <span id="resultCount" class="resultCount"></span>
-            <button id="favToggle" type="button" class="favToggleBtn">
-              <span class="heartIcon">♡</span>
-              <span>Ver favoritos</span>
-            </button>
+    <!-- CATÁLOGO (Sección separada) -->
+    <section id="catalogo" class="catalogSection">
+      <div class="catalogHead">
+        <h2 class="catalogTitle">Catálogo</h2>
+        <p class="catalogSub">Busca por marca, nombre o tipo. Filtra por género y selecciona para WhatsApp.</p>
+
+        <div class="heroSearchRow catalogSearchRow">
+          <div class="heroSearchWrap">
+            <span class="heroSearchIcon">🔍</span>
+            <input id="search" type="text" placeholder="Buscar por marca, nombre o tipo de perfume..." />
+          </div>
+
+          <div class="heroFilterPills">
+            <button type="button" class="heroPill active" data-g="all"><span class="pillDot"></span> Todos</button>
+            <button type="button" class="heroPill" data-g="men"><span class="pillDot"></span> Hombres</button>
+            <button type="button" class="heroPill" data-g="women"><span class="pillDot"></span> Mujeres</button>
+            <button type="button" class="heroPill" data-g="unisex"><span class="pillDot"></span> Unisex</button>
           </div>
         </div>
+      </div>
 
-        <div class="tools">
-          <select id="filter" class="select">
-            <option value="all">Todos los tipos</option>
-            <option value="fresh">Frescos</option>
-            <option value="sweet">Dulces</option>
-            <option value="arabic">Árabes</option>
-            <option value="woody">Amaderados</option>
-          </select>
-
-          <select id="brandFilter" class="select">
-            <option value="all">Todas las marcas</option>
-          </select>
-
-          <select id="genderFilter" class="select">
-            <option value="all">Hombres y mujeres</option>
-            <option value="men">Solo hombres</option>
-            <option value="women">Solo mujeres</option>
-            <option value="unisex">Unisex</option>
-          </select>
-        </div>
-
-        <div id="grid" class="grid"></div>
-      </section>
-
-      <!-- RIGHT: Selection -->
-      <aside class="panel">
-        <div class="panelHead"><strong>Tu selección</strong></div>
-        <div class="side">
-          <h2 id="selTitle">Selecciona un perfume</h2>
-          <p class="sub" id="selSub">Te muestro detalles aquí y puedes escribirme directo por WhatsApp.</p>
-
-          <div class="selectedBox">
-            <p class="selectedName" id="selName">—</p>
-            <p class="selectedDetails" id="selDetails">Elige uno del catálogo para ver la descripción.</p>
-            <p class="selectedDetails" style="margin-top:8px;opacity:.9;">
-              <strong>Precio:</strong> Consultar por WhatsApp
-            </p>
-
-            <div class="btnRow">
-              <a id="waBtn" class="btn wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
-              <button id="clearBtn" class="btn" type="button">Limpiar</button>
+      <div class="layout">
+        <!-- LEFT: Catalog -->
+        <section class="panel">
+          <div class="panelHead">
+            <span>Catálogo de perfumes</span>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span id="resultCount" class="resultCount"></span>
+              <button id="favToggle" type="button" class="favToggleBtn">
+                <span class="heartIcon">♡</span>
+                <span>Ver favoritos</span>
+              </button>
             </div>
           </div>
 
-          <div class="how">
-            <strong>Cómo comprar:</strong><br>
-            1) Selecciona uno o varios perfumes.<br>
-            2) Usa el botón verde de abajo o el de la derecha para escribirme por WhatsApp.<br>
-            3) Coordinamos precio, disponibilidad y envío por chat.
+          <div class="tools">
+            <select id="filter" class="select">
+              <option value="all">Todos los tipos</option>
+              <option value="fresh">Frescos</option>
+              <option value="sweet">Dulces</option>
+              <option value="arabic">Árabes</option>
+              <option value="woody">Amaderados</option>
+            </select>
+
+            <select id="brandFilter" class="select">
+              <option value="all">Todas las marcas</option>
+            </select>
+
+            <select id="genderFilter" class="select">
+              <option value="all">Hombres y mujeres</option>
+              <option value="men">Solo hombres</option>
+              <option value="women">Solo mujeres</option>
+              <option value="unisex">Unisex</option>
+            </select>
           </div>
-        </div>
-      </aside>
-    </div>
+
+          <div id="grid" class="grid"></div>
+        </section>
+
+        <!-- RIGHT: Selection -->
+        <aside class="panel">
+          <div class="panelHead"><strong>Tu selección</strong></div>
+          <div class="side">
+            <h2 id="selTitle">Selecciona un perfume</h2>
+            <p class="sub" id="selSub">Te muestro detalles aquí y puedes escribirme directo por WhatsApp.</p>
+
+            <div class="selectedBox">
+              <p class="selectedName" id="selName">—</p>
+              <p class="selectedDetails" id="selDetails">Elige uno del catálogo para ver la descripción.</p>
+              <p class="selectedDetails" style="margin-top:8px;opacity:.9;">
+                <strong>Precio:</strong> Consultar por WhatsApp
+              </p>
+
+              <div class="btnRow">
+                <a id="waBtn" class="btn wa" href="#" target="_blank" rel="noopener">WhatsApp</a>
+                <button id="clearBtn" class="btn" type="button">Limpiar</button>
+              </div>
+            </div>
+
+            <div class="how">
+              <strong>Cómo comprar:</strong><br>
+              1) Selecciona uno o varios perfumes.<br>
+              2) Usa el botón verde de abajo o el de la derecha para escribirme por WhatsApp.<br>
+              3) Coordinamos precio, disponibilidad y envío por chat.
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
 
     <!-- MARCAS -->
     <section id="marcas" class="infoSection">
@@ -928,8 +1115,12 @@
         <span class="selectionHint">Listos para consulta de precio por WhatsApp.</span>
       </div>
       <div class="selectionActions">
-        <button id="selectionClear" class="selectionBtn ghost" type="button">Limpiar selección</button>
-        <a id="selectionQuote" class="selectionBtn primary" href="#" target="_blank" rel="noopener">Solicitar cotización</a>
+        <button id="selectionClear" class="selectionBtn ghost" type="button">
+          Limpiar selección
+        </button>
+        <a id="selectionQuote" class="selectionBtn primary" href="#" target="_blank" rel="noopener">
+          Solicitar cotización
+        </a>
       </div>
     </div>
   </div>
@@ -1068,7 +1259,7 @@
       { id:105, name:"Parfums de Marly Castley", brand:"Parfums de Marly", family:"Amaderado / Elegante", type:"woody", img:"img/parfums-de-marly-castley.jpg", desc:"Amaderado fino y formal. Para ocasiones." },
       { id:106, name:"Parfums de Marly Sedley", brand:"Parfums de Marly", family:"Fresco / Cítrico", type:"fresh", img:"img/parfums-de-marly-sedley.jpg", desc:"Cítrico refrescante. Súper clean." },
       { id:107, name:"Parfums de Marly Kalan", brand:"Parfums de Marly", family:"Especiado / Intenso", type:"woody", img:"img/parfums-de-marly-kalan.jpg", desc:"Especiado con carácter. Mejor para noche/clima fresco." },
-      { id:108, name:"Parfums de Marly Carlisle", brand:"Parfums de Marly", family:"Dulce / Amaderado", type:"sweet", img:"img/parfums-de-marly-carlisle.jpg", desc:"Dulce oscuro amaderado, elegante y potente." },
+      { id:108, name:"Parfums de Marly Carlisle", brand:"Parfums de Marly", family:"Dulce / Amaderado", type:"sweet", img:"img/parfums-de-marly-carlisle.jpg", desc:"Dulce oscuro amaderado, elegante y potente." }
     ];
 
     const grid = document.getElementById("grid");
@@ -1128,10 +1319,28 @@
       }
     }
 
-    const womenIds = [51,52,53,54,55,57,59,60,61,78,82,83,86,87,88,91,93,94,96,97];
+    // PERFUMES DE MUJER (según tu lógica actual)
+    const womenIds = [
+      51,52,53,54,55,
+      57,59,60,61,
+      78,
+      82,83,
+      86,87,88,
+      91,
+      93,
+      94,
+      96,
+      97
+    ];
     function isWomanPerfume(p){ return womenIds.includes(p.id); }
 
-    const unisexIds = [11,12,13,14,15,24,25,56,64,65,66];
+    // PERFUMES UNISEX
+    const unisexIds = [
+      11,12,13,14,15,
+      24,25,
+      56,64,65,
+      66
+    ];
     function isUnisexPerfume(p){ return unisexIds.includes(p.id); }
 
     let lastSelected = null;
@@ -1168,11 +1377,16 @@
     }
 
     function toggleSelect(p){
-      if (selectedIds.has(p.id)) selectedIds.delete(p.id);
-      else { selectedIds.add(p.id); lastSelected = p; }
+      if (selectedIds.has(p.id)) {
+        selectedIds.delete(p.id);
+      } else {
+        selectedIds.add(p.id);
+        lastSelected = p;
+      }
 
-      if (selectedIds.size === 0) lastSelected = null;
-      else if (!lastSelected || !selectedIds.has(lastSelected.id)) {
+      if (selectedIds.size === 0) {
+        lastSelected = null;
+      } else if (!lastSelected || !selectedIds.has(lastSelected.id)) {
         const firstId = selectedIds.values().next().value;
         lastSelected = perfumes.find(x => x.id === firstId) || null;
       }
@@ -1214,17 +1428,22 @@
       }
 
       selectionBar.classList.remove("hidden");
-      selectionText.textContent = n === 1 ? "1 perfume seleccionado" : `${n} perfumes seleccionados`;
+      selectionText.textContent = n === 1
+        ? "1 perfume seleccionado"
+        : `${n} perfumes seleccionados`;
 
       const selectedPerfumes = perfumes.filter(p => selectedIds.has(p.id));
       const list = selectedPerfumes.map(p => `- ${p.name} (${p.brand})`).join("\n");
-      const msg = `Hola! 👋 Estoy interesado en estos perfumes:\n${list}\n\n¿Me puedes indicar precio, disponibilidad y opciones de envío?`;
+      const msg =
+        `Hola! 👋 Estoy interesado en estos perfumes:\n${list}\n\n¿Me puedes indicar precio, disponibilidad y opciones de envío?`;
       selectionQuote.href = waLink(msg);
     }
 
     function syncHeroPills(){
       const g = genderFilter.value;
-      heroPills.forEach(btn => btn.classList.toggle("active", btn.dataset.g === g));
+      heroPills.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.g === g);
+      });
     }
 
     function render(){
@@ -1304,12 +1523,15 @@
 
       if (resultCount){
         const n = list.length;
-        resultCount.textContent = showFavoritesOnly
-          ? (n === 1 ? "1 perfume favorito" : `${n} perfumes favoritos`)
-          : (n === 1 ? "1 perfume encontrado" : `${n} perfumes encontrados`);
+        if (showFavoritesOnly) {
+          resultCount.textContent = n === 1 ? "1 perfume favorito" : `${n} perfumes favoritos`;
+        } else {
+          resultCount.textContent = n === 1 ? "1 perfume encontrado" : `${n} perfumes encontrados`;
+        }
       }
 
       syncHeroPills();
+
       const generalMsg = "Hola! 👋 Quisiera información sobre tus perfumes (precio, disponibilidad y envío).";
       waFloat.href = waLink(generalMsg);
     }
@@ -1324,7 +1546,7 @@
     navLinks.marcas.addEventListener("click", () => setActiveNav("marcas"));
     navLinks.sobre.addEventListener("click", () => setActiveNav("sobre"));
 
-    // Init
+    // Init base
     loadBrands();
     loadFavorites();
     updateDetailPanel();
@@ -1354,6 +1576,103 @@
     });
 
     selectionClear.addEventListener("click", clearSelection);
+
+    /* ===== Featured widget (Inicio): perfumes rotando ===== */
+    const featureImgWrap = document.getElementById("featureImgWrap");
+    const featureImg = document.getElementById("featureImg");
+    const featureName = document.getElementById("featureName");
+    const featureDesc = document.getElementById("featureDesc");
+    const featureType = document.getElementById("featureType");
+    const featureGender = document.getElementById("featureGender");
+    const featureDots = document.getElementById("featureDots");
+    const featureSelectBtn = document.getElementById("featureSelectBtn");
+    const featuredSmallText = document.getElementById("featuredSmallText");
+
+    let featureIndex = 0;
+    let featureTimer = null;
+
+    const featuredIds = [2, 1, 15, 12, 17, 21, 24, 65, 100, 108];
+    const featuredList = featuredIds.map(id => perfumes.find(p => p.id === id)).filter(Boolean);
+    if (featuredList.length === 0) featuredList.push(...perfumes.slice(0, 10));
+
+    function genderInfo(p){
+      const woman = isWomanPerfume(p);
+      const unisex = isUnisexPerfume(p);
+      const label = unisex ? "Unisex" : (woman ? "Mujer" : "Hombre");
+      const cls = unisex ? "tag-unisex" : (woman ? "tag-fem" : "tag-men");
+      return { label, cls };
+    }
+
+    function buildDots(){
+      featureDots.innerHTML = "";
+      featuredList.slice(0, 10).forEach((_, i) => {
+        const d = document.createElement("span");
+        d.className = "dot" + (i === featureIndex ? " active" : "");
+        d.addEventListener("click", () => {
+          featureIndex = i;
+          updateFeatured(true);
+          restartFeaturedTimer();
+        });
+        featureDots.appendChild(d);
+      });
+    }
+
+    function updateDots(){
+      [...featureDots.children].forEach((d, i) => d.classList.toggle("active", i === featureIndex));
+    }
+
+    function updateFeatured(withFade){
+      const p = featuredList[featureIndex % featuredList.length];
+      if (!p) return;
+
+      const { label, cls } = genderInfo(p);
+
+      const apply = () => {
+        featureImg.src = p.img;
+        featureImg.alt = `${p.name} - ${p.brand}`;
+        featureName.textContent = `${p.name} — ${p.brand}`;
+        featureDesc.textContent = p.desc;
+        featureType.textContent = typeLabel(p.type);
+        featureGender.textContent = label;
+        featureGender.className = `tag ${cls}`;
+        featuredSmallText.textContent = `Destacado: ${p.brand}`;
+        updateDots();
+      };
+
+      if (withFade){
+        featureImgWrap.classList.add("featureFadeOut");
+        setTimeout(() => {
+          apply();
+          featureImgWrap.classList.remove("featureFadeOut");
+        }, 220);
+      } else {
+        apply();
+      }
+
+      featureSelectBtn.onclick = () => {
+        toggleSelect(p);
+        document.getElementById("catalogo")?.scrollIntoView({behavior:"smooth", block:"start"});
+      };
+
+      featureImg.onclick = () => featureSelectBtn.click();
+      featureImg.style.cursor = "pointer";
+    }
+
+    function startFeaturedTimer(){
+      if (featureTimer) clearInterval(featureTimer);
+      featureTimer = setInterval(() => {
+        featureIndex = (featureIndex + 1) % featuredList.length;
+        updateFeatured(true);
+      }, 3500);
+    }
+
+    function restartFeaturedTimer(){
+      startFeaturedTimer();
+    }
+
+    buildDots();
+    updateFeatured(false);
+    startFeaturedTimer();
   </script>
 </body>
 </html>
