@@ -63,8 +63,13 @@
       border-bottom: 1px solid rgba(255,255,255,.10);
       margin-bottom: 10px;
     }
+    .header-scrolled .site-header{
+      background: rgba(7,11,20,.72);
+      border-bottom-color: rgba(255,255,255,.14);
+    }
+    .header-scrolled .navBar{ padding:10px 0 8px 0; }
 
-    /* === NAVBAR === */
+    /* NAVBAR */
     .navBar{
       display:flex;
       align-items:center;
@@ -72,37 +77,21 @@
       gap:18px;
       padding:12px 0 10px 0;
     }
-
     .navBrand{
       display:flex;
       align-items:center;
       gap:10px;
       min-width: 220px;
     }
-
     .navBrand img{
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
+      width: 32px;height: 32px;border-radius: 10px;
       object-fit: contain;
       padding:4px;
       background: rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.16);
     }
-
-    .navBrand span{
-      font-weight:800;
-      font-size:15px;
-      letter-spacing:.04em;
-    }
-
-    .navLinks{
-      display:flex;
-      gap:18px;
-      justify-content:center;
-      flex:1;
-    }
-
+    .navBrand span{ font-weight:800; font-size:15px; letter-spacing:.04em; }
+    .navLinks{ display:flex; gap:18px; justify-content:center; flex:1; }
     .navLink{
       font-size:13px;
       text-decoration:none;
@@ -110,23 +99,17 @@
       padding:6px 0;
       position:relative;
     }
-
     .navLink::after{
       content:"";
       position:absolute;
-      left:0;
-      right:0;
-      bottom:-4px;
-      height:2px;
-      border-radius:999px;
+      left:0; right:0; bottom:-4px;
+      height:2px; border-radius:999px;
       background:linear-gradient(90deg,#4f7cff,#25d366);
-      opacity:0;
-      transform:scaleX(.4);
+      opacity:0; transform:scaleX(.4);
       transition:opacity .12s ease, transform .12s ease;
     }
-
     .navLink:hover{ color:var(--text); }
-    .navLink.active{ color:#ffffff; font-weight:800; }
+    .navLink.active{ color:#fff; font-weight:900; }
     .navLink.active::after{ opacity:1; transform:scaleX(1); }
 
     .loginBtn{
@@ -143,7 +126,7 @@
     }
     .loginBtn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
 
-    /* ===== Landing hero tipo referencia (separado del catálogo) ===== */
+    /* ===== INICIO (Landing) ===== */
     .landingHero{
       margin-top: 8px;
       border: 1px solid rgba(255,255,255,.12);
@@ -152,7 +135,6 @@
       box-shadow: var(--shadowHard);
       overflow: hidden;
     }
-
     .landingInner{
       padding: 22px;
       display: grid;
@@ -160,7 +142,6 @@
       gap: 18px;
       align-items: center;
     }
-
     .landingKicker{
       display:inline-flex;
       align-items:center;
@@ -173,7 +154,6 @@
       font-size: 12px;
       margin-bottom: 12px;
     }
-
     .landingTitle{
       margin:0 0 10px 0;
       font-size: clamp(34px, 4.2vw, 56px);
@@ -181,7 +161,6 @@
       letter-spacing: -0.03em;
       line-height: 0.98;
     }
-
     .landingSub{
       margin:0 0 18px 0;
       color: var(--muted);
@@ -189,14 +168,7 @@
       line-height: 1.5;
       max-width: 62ch;
     }
-
-    .landingBtns{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-bottom: 14px;
-    }
-
+    .landingBtns{ display:flex; gap:10px; flex-wrap:wrap; margin-bottom: 14px; }
     .cta{
       border-radius: 14px;
       padding: 11px 14px;
@@ -213,26 +185,14 @@
       font-size: 13px;
     }
     .cta:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-
     .cta.primary{
       border-color: rgba(79,124,255,.55);
       background: linear-gradient(135deg, rgba(79,124,255,.85), rgba(37,211,102,.35));
     }
+    .ratingRow{ display:flex; align-items:center; gap:10px; color: rgba(255,255,255,.70); font-size: 12px; }
+    .stars{ letter-spacing: 2px; color: rgba(37,211,102,.85); }
 
-    .ratingRow{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      color: rgba(255,255,255,.70);
-      font-size: 12px;
-    }
-
-    .stars{
-      letter-spacing: 2px;
-      color: rgba(37,211,102,.85);
-    }
-
-    /* Widget derecha (imagen que cambia) */
+    /* Widget derecha (inicio) */
     .featureCard{
       border-radius: 22px;
       border: 1px solid rgba(255,255,255,.12);
@@ -241,88 +201,48 @@
       overflow: hidden;
       position: relative;
     }
-
-    .featureImg{
-      height: 340px;
-      width: 100%;
-      background: rgba(255,255,255,.04);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-    }
-
+    .featureImg{ height: 340px; width: 100%; background: rgba(255,255,255,.04); overflow:hidden; }
     .featureImg img{
-      width: 100%;
-      height: 100%;
+      width:100%; height:100%;
       object-fit: cover;
       transform: scale(1.02);
       transition: opacity .35s ease, transform .35s ease;
       opacity: 1;
+      cursor:pointer;
     }
-
     .featureFadeOut img{ opacity: 0; transform: scale(1.06); }
-
-    .featureMeta{
-      padding: 14px 14px 16px 14px;
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-
-    .featureName{
-      margin:0;
-      font-weight: 900;
-      font-size: 14px;
-    }
-
-    .featureDesc{
-      margin:0;
-      color: var(--muted);
-      font-size: 12.5px;
-      line-height: 1.45;
-    }
-
-    .featurePills{
-      display:flex;
-      gap:6px;
-      flex-wrap:wrap;
-      margin-top: 6px;
-    }
-
+    .featureMeta{ padding: 14px 14px 16px 14px; display:flex; flex-direction:column; gap:6px; }
+    .featureName{ margin:0; font-weight: 900; font-size: 14px; }
+    .featureDesc{ margin:0; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
+    .featurePills{ display:flex; gap:6px; flex-wrap:wrap; margin-top: 6px; }
     .dots{
-      position:absolute;
-      right: 12px;
-      top: 12px;
-      display:flex;
-      gap:6px;
+      position:absolute; right: 12px; top: 12px;
+      display:flex; gap:6px;
       padding: 8px 10px;
       border-radius: 999px;
       background: rgba(7,10,22,.70);
       border: 1px solid rgba(255,255,255,.12);
       backdrop-filter: blur(10px);
     }
-    .dot{
-      width:7px;height:7px;border-radius:50%;
-      background: rgba(255,255,255,.22);
-      cursor:pointer;
-    }
+    .dot{ width:7px;height:7px;border-radius:50%; background: rgba(255,255,255,.22); cursor:pointer; }
     .dot.active{ background: rgba(79,124,255,.95); }
 
-    /* === Buscador / pills reutilizados (para catálogo) === */
-    .heroSearchRow{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      align-items:center;
+    /* ===== CATÁLOGO ===== */
+    .catalogSection{ margin-top: 22px; padding-top: 8px; }
+    .catalogHead{
+      margin: 14px 0 14px 0;
+      padding: 18px 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(8,12,26,.80);
+      box-shadow: var(--shadowSoft);
     }
+    .catalogTitle{ margin: 0 0 6px 0; font-size: 20px; font-weight: 900; letter-spacing: -.01em; }
+    .catalogSub{ margin: 0 0 12px 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
 
-    .heroSearchWrap{
-      position:relative;
-      flex:1 1 260px;
-      max-width:520px;
-    }
-
+    /* Search + pills */
+    .heroSearchRow{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+    .heroSearchWrap{ position:relative; flex:1 1 260px; max-width:520px; }
     .heroSearchWrap input{
       width:100%;
       padding:11px 44px 11px 36px;
@@ -334,27 +254,12 @@
       outline:none;
       box-shadow: 0 12px 45px rgba(0,0,0,.45);
     }
-
-    .heroSearchWrap input::placeholder{ color:rgba(255,255,255,.42); }
-
     .heroSearchIcon{
-      position:absolute;
-      left:12px;
-      top:50%;
-      width:14px;
-      height:14px;
+      position:absolute; left:12px; top:50%;
       transform:translateY(-50%);
-      opacity:.7;
-      pointer-events:none;
+      opacity:.7; pointer-events:none;
     }
-
-    .heroFilterPills{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      font-size:11px;
-    }
-
+    .heroFilterPills{ display:flex; flex-wrap:wrap; gap:8px; font-size:11px; }
     .heroPill{
       border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
@@ -367,61 +272,11 @@
       gap:6px;
       transition:background .12s ease, border-color .12s ease, color .12s ease, transform .12s ease;
     }
+    .heroPill:hover{ transform:translateY(-1px); background:rgba(255,255,255,.06); border-color:rgba(255,255,255,.26); color:var(--text); }
+    .heroPill.active{ background:rgba(79,124,255,.28); border-color:var(--accent2); color:#fff; }
+    .pillDot{ width:7px; height:7px; border-radius:50%; background:rgba(255,255,255,.7); }
 
-    .heroPill:hover{
-      transform:translateY(-1px);
-      background:rgba(255,255,255,.06);
-      border-color:rgba(255,255,255,.26);
-      color:var(--text);
-    }
-
-    .heroPill.active{
-      background:rgba(79,124,255,.28);
-      border-color:var(--accent2);
-      color:#fff;
-    }
-
-    .pillDot{
-      width:7px;
-      height:7px;
-      border-radius:50%;
-      background:rgba(255,255,255,.7);
-    }
-
-    /* === Sección catálogo separada === */
-    .catalogSection{
-      margin-top: 22px;
-      padding-top: 8px;
-    }
-
-    .catalogHead{
-      margin: 14px 0 14px 0;
-      padding: 18px 18px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(8,12,26,.80);
-      box-shadow: var(--shadowSoft);
-    }
-
-    .catalogTitle{
-      margin: 0 0 6px 0;
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: -.01em;
-    }
-
-    .catalogSub{
-      margin: 0 0 12px 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-
-    .catalogSearchRow{
-      margin-top: 10px;
-    }
-
-    /* === LAYOUT PRINCIPAL (CATÁLOGO) === */
+    /* Layout catálogo */
     .layout{
       display:grid;
       grid-template-columns: 1fr 340px;
@@ -429,7 +284,6 @@
       align-items:start;
       margin-top:12px;
     }
-
     .panel{
       background: rgba(8,12,26,.96);
       border: 1px solid var(--line);
@@ -437,7 +291,6 @@
       overflow:hidden;
       box-shadow: var(--shadowHard);
     }
-
     .panelHead{
       padding: 14px 14px 12px 14px;
       border-bottom:1px solid var(--line);
@@ -450,13 +303,7 @@
       font-weight:700;
       letter-spacing: .2px;
     }
-
-    .resultCount{
-      font-size: 12px;
-      color: var(--muted);
-      font-weight:500;
-    }
-
+    .resultCount{ font-size: 12px; color: var(--muted); font-weight:500; }
     .favToggleBtn{
       border-radius:999px;
       border:1px solid rgba(255,255,255,.18);
@@ -468,17 +315,8 @@
       display:inline-flex;
       align-items:center;
       gap:6px;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
-
-    .favToggleBtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); }
-    .favToggleBtn span.heartIcon{ font-size:12px; }
-
-    .favToggleBtn.active{
-      background:rgba(255,255,255,.10);
-      color:#fff;
-      border-color:rgba(255,255,255,.32);
-    }
+    .favToggleBtn.active{ background:rgba(255,255,255,.10); color:#fff; border-color:rgba(255,255,255,.32); }
 
     .tools{
       display:flex;
@@ -488,7 +326,6 @@
       border-bottom:1px solid var(--line);
       background: rgba(0,0,0,.35);
     }
-
     .select{
       background: rgba(255,255,255,.04);
       border: 1px solid rgba(255,255,255,.14);
@@ -497,7 +334,6 @@
       padding: 8px 12px;
       outline:none;
       font-size:12px;
-      flex:0 0 auto;
       min-width: 150px;
       box-shadow: 0 10px 25px rgba(0,0,0,.25);
     }
@@ -515,29 +351,16 @@
       border-radius: 18px;
       overflow:hidden;
       cursor:pointer;
-      transition: transform .15s ease, border-color .15s ease, background .15s ease, box-shadow .15s ease;
+      transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
       display:flex;
       flex-direction:column;
       min-height:100%;
       box-shadow: 0 12px 35px rgba(0,0,0,.30);
     }
-    .card:hover{
-      transform: translateY(-4px);
-      border-color: rgba(255,255,255,.22);
-      box-shadow: 0 18px 55px rgba(0,0,0,.55);
-    }
-    .card-selected{
-      border-color:rgba(79,124,255,.85);
-      box-shadow:0 18px 45px rgba(79,124,255,.45);
-    }
+    .card:hover{ transform: translateY(-4px); border-color: rgba(255,255,255,.22); box-shadow: 0 18px 55px rgba(0,0,0,.55); }
+    .card-selected{ border-color:rgba(79,124,255,.85); box-shadow:0 18px 45px rgba(79,124,255,.45); }
 
-    .cardTop{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:10px 10px 0 10px;
-    }
-
+    .cardTop{ display:flex; align-items:center; justify-content:space-between; padding:10px 10px 0 10px; }
     .badgeBrand{
       font-size:10px;
       text-transform:uppercase;
@@ -548,26 +371,16 @@
       background:rgba(7,10,22,.9);
       color:rgba(255,255,255,.78);
     }
-
     .favBtn{
       border:none;
       background:rgba(0,0,0,.2);
-      width:26px;
-      height:26px;
-      border-radius:999px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
+      width:26px;height:26px;border-radius:999px;
+      display:flex;align-items:center;justify-content:center;
       cursor:pointer;
       font-size:13px;
       color:rgba(255,255,255,.65);
-      transition: transform .12s ease, background .12s ease;
     }
-    .favBtn:hover{ transform: scale(1.05); }
-    .favBtn.fav-active{
-      background:rgba(255,94,165,.2);
-      color:#ff7cb3;
-    }
+    .favBtn.fav-active{ background:rgba(255,94,165,.2); color:#ff7cb3; }
 
     .img{
       height: 190px;
@@ -579,55 +392,15 @@
       background-repeat: no-repeat;
       border: 1px solid rgba(255,255,255,.05);
     }
+    .cbody{ padding: 10px 12px 12px 12px; display:flex; flex-direction:column; flex:1; }
+    .name{ font-weight: 900; font-size: 14px; margin: 0 0 6px 0; letter-spacing: -.01em; }
+    .meta{ display:flex; gap:6px; flex-wrap:wrap; margin: 0 0 8px 0; color: var(--muted); font-size: 11px; }
+    .tag{ border:1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.04); padding: 3px 7px; border-radius: 999px; }
+    .tag-men{ border-color: rgba(79,124,255,.7); background: linear-gradient(120deg, rgba(79,124,255,.3), rgba(15,23,42,1)); }
+    .tag-fem{ border-color: rgba(255,124,183,.85); background: linear-gradient(120deg, rgba(255,124,183,.35), rgba(15,23,42,1)); }
+    .tag-unisex{ border-color: rgba(160,120,255,.85); background: linear-gradient(120deg, rgba(160,120,255,.30), rgba(15,23,42,1)); }
 
-    .cbody{
-      padding: 10px 12px 12px 12px;
-      display:flex;
-      flex-direction:column;
-      flex:1;
-    }
-    .name{
-      font-weight: 900;
-      font-size: 14px;
-      margin: 0 0 6px 0;
-      letter-spacing: -.01em;
-    }
-    .meta{
-      display:flex;
-      gap:6px;
-      flex-wrap:wrap;
-      margin: 0 0 8px 0;
-      color: var(--muted);
-      font-size: 11px;
-    }
-    .tag{
-      border:1px solid rgba(255,255,255,.16);
-      background: rgba(255,255,255,.04);
-      padding: 3px 7px;
-      border-radius: 999px;
-    }
-    .tag-men{
-      border-color: rgba(79,124,255,.7);
-      background: linear-gradient(120deg, rgba(79,124,255,.3), rgba(15,23,42,1));
-    }
-    .tag-fem{
-      border-color: rgba(255,124,183,.85);
-      background: linear-gradient(120deg, rgba(255,124,183,.35), rgba(15,23,42,1));
-    }
-    .tag-unisex{
-      border-color: rgba(160,120,255,.85);
-      background: linear-gradient(120deg, rgba(160,120,255,.30), rgba(15,23,42,1));
-    }
-
-    .desc{
-      margin: 0;
-      font-size: 12.5px;
-      color: rgba(255,255,255,.80);
-      line-height: 1.35;
-      min-height: 34px;
-      flex:1;
-    }
-
+    .desc{ margin: 0; font-size: 12.5px; color: rgba(255,255,255,.80); line-height: 1.35; min-height: 34px; flex:1; }
     .cardAction{
       margin-top:10px;
       font-size:12px;
@@ -638,49 +411,27 @@
       border:1px solid rgba(255,255,255,.16);
       background:rgba(255,255,255,.03);
     }
-    .cardAction.active{
-      border-color:rgba(79,124,255,.85);
-      background:rgba(79,124,255,.22);
-    }
+    .cardAction.active{ border-color:rgba(79,124,255,.85); background:rgba(79,124,255,.22); }
 
     /* Right panel */
     .side{ padding: 14px; }
     .side h2{ margin: 0 0 8px 0; font-size: 16px; }
-    .side .sub{
-      margin: 0 0 12px 0;
-      color: var(--muted);
-      font-size: 12.5px;
-      line-height: 1.35;
-    }
+    .side .sub{ margin: 0 0 12px 0; color: var(--muted); font-size: 12.5px; line-height: 1.35; }
     .selectedBox{
       background: rgba(255,255,255,.04);
       border:1px solid rgba(255,255,255,.12);
       border-radius: 16px;
       padding: 12px;
     }
-    .selectedName{
-      font-weight: 900;
-      font-size: 14px;
-      margin: 0 0 6px 0;
-    }
-    .selectedDetails{
-      margin: 0;
-      font-size: 12.5px;
-      color: rgba(255,255,255,.78);
-      line-height: 1.35;
-    }
-    .btnRow{
-      display:flex;
-      gap:10px;
-      margin-top: 12px;
-      flex-wrap:wrap;
-    }
+    .selectedName{ font-weight: 900; font-size: 14px; margin: 0 0 6px 0; }
+    .selectedDetails{ margin: 0; font-size: 12.5px; color: rgba(255,255,255,.78); line-height: 1.35; }
+
+    .btnRow{ display:flex; gap:10px; margin-top: 12px; flex-wrap:wrap; }
     .btn{
       flex:1 1 140px;
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      gap:10px;
       padding: 12px 12px;
       border-radius: 14px;
       border: 1px solid rgba(255,255,255,.12);
@@ -688,20 +439,10 @@
       color: var(--text);
       text-decoration:none;
       font-weight: 900;
-      letter-spacing: .2px;
       cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
       font-size:13px;
     }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,.10);
-      border-color: rgba(255,255,255,.20);
-    }
-    .btn.wa{
-      background: rgba(37,211,102,.15);
-      border-color: rgba(37,211,102,.35);
-    }
+    .btn.wa{ background: rgba(37,211,102,.15); border-color: rgba(37,211,102,.35); }
 
     .how{
       margin-top: 12px;
@@ -712,6 +453,30 @@
       font-size: 12.5px;
       line-height: 1.45;
     }
+
+    /* Info sections */
+    .infoSection{
+      margin-top:26px;
+      padding:18px 16px 18px 16px;
+      border-radius:20px;
+      background:rgba(8,12,26,.96);
+      border:1px solid rgba(255,255,255,.12);
+      box-shadow:0 14px 40px rgba(0,0,0,.55);
+    }
+    .infoTitle{ margin:0 0 10px 0; font-size:18px; font-weight:900; letter-spacing: -.01em; }
+    .infoText{ margin:0; font-size:13px; color:var(--muted); line-height:1.5; }
+    .brandChips{ margin-top:8px; display:flex; flex-wrap:wrap; gap:6px; }
+    .brandChip{
+      font-size:11px;
+      padding:5px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.2);
+      background:rgba(16,23,50,.9);
+      color:rgba(255,255,255,.86);
+    }
+    .aboutLines{ margin-top:8px; display:flex; flex-direction:column; gap:4px; font-size:14px; }
+    .aboutPhone{ margin-top:10px; font-size:13px; }
+    .aboutPhone a{ color:var(--accent); text-decoration:none; font-weight:900; }
 
     /* Floating WhatsApp */
     .wa-float{
@@ -726,26 +491,13 @@
       align-items:center;
       justify-content:center;
       box-shadow: 0 16px 50px rgba(0,0,0,.45);
-      border: 0;
-      cursor:pointer;
       text-decoration:none;
       z-index: 999;
-      transition: transform .12s ease, filter .12s ease;
     }
-    .wa-float:hover{ transform: translateY(-2px); filter: brightness(1.05); }
     .wa-float svg{ width: 28px; height: 28px; fill:#fff; }
 
-    /* Barra inferior selección múltiple */
-    .selectionBar{
-      position:fixed;
-      left:0;
-      right:0;
-      bottom:0;
-      z-index:998;
-      padding:10px 8px;
-      pointer-events:none;
-    }
-
+    /* Selection bar */
+    .selectionBar{ position:fixed; left:0; right:0; bottom:0; z-index:998; padding:10px 8px; pointer-events:none; }
     .selectionInner{
       max-width:1200px;
       margin:0 auto;
@@ -760,23 +512,10 @@
       gap:12px;
       pointer-events:auto;
     }
-
-    .selectionInfo{
-      display:flex;
-      flex-direction:column;
-      gap:2px;
-      font-size:12px;
-    }
-
+    .selectionInfo{ display:flex; flex-direction:column; gap:2px; font-size:12px; }
     .selectionInfo strong{ font-size:13px; }
     .selectionHint{ color:var(--muted); font-size:11px; }
-
-    .selectionActions{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
+    .selectionActions{ display:flex; gap:8px; flex-wrap:wrap; }
     .selectionBtn{
       border-radius:999px;
       padding:8px 14px;
@@ -789,85 +528,20 @@
       align-items:center;
       justify-content:center;
       white-space:nowrap;
-      transition: transform .12s ease, filter .12s ease;
     }
-
-    .selectionBtn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-
-    .selectionBtn.ghost{
-      background:transparent;
-      border-color:rgba(255,255,255,.32);
-      color:var(--text);
-    }
-
+    .selectionBtn.ghost{ background:transparent; border-color:rgba(255,255,255,.32); color:var(--text); }
     .selectionBtn.primary{
       background:var(--accent);
       color:#021f10;
       border-color:rgba(0,0,0,.12);
       box-shadow:0 10px 30px rgba(3,180,90,.55);
     }
-
     .hidden{ display:none; }
 
-    /* Secciones info */
-    .infoSection{
-      margin-top:26px;
-      padding:18px 16px 18px 16px;
-      border-radius:20px;
-      background:rgba(8,12,26,.96);
-      border:1px solid rgba(255,255,255,.12);
-      box-shadow:0 14px 40px rgba(0,0,0,.55);
-    }
-
-    .infoTitle{
-      margin:0 0 10px 0;
-      font-size:18px;
-      font-weight:900;
-      letter-spacing: -.01em;
-    }
-
-    .infoText{
-      margin:0;
-      font-size:13px;
-      color:var(--muted);
-      line-height:1.5;
-    }
-
-    .brandChips{
-      margin-top:8px;
-      display:flex;
-      flex-wrap:wrap;
-      gap:6px;
-    }
-
-    .brandChip{
-      font-size:11px;
-      padding:5px 10px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.2);
-      background:rgba(16,23,50,.9);
-      color:rgba(255,255,255,.86);
-    }
-
-    .aboutLines{
-      margin-top:8px;
-      display:flex;
-      flex-direction:column;
-      gap:4px;
-      font-size:14px;
-    }
-
-    .aboutPhone{ margin-top:10px; font-size:13px; }
-    .aboutPhone a{
-      color:var(--accent);
-      text-decoration:none;
-      font-weight:900;
-    }
-
+    /* Responsive */
     @media (max-width: 1020px){
       .landingInner{ grid-template-columns: 1fr; }
       .featureImg{ height: 300px; }
-
       .layout{ grid-template-columns: 1fr; }
       .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .selectionInner{ flex-direction:column; align-items:flex-start; }
@@ -876,55 +550,67 @@
     @media (max-width: 640px){
       .navLinks{ display:none; }
       .grid{ grid-template-columns: 1fr; }
-      .selectionInner{ align-items:flex-start; }
       .selectionActions{ width:100%; justify-content:space-between; }
-    }
-
-    /* selects oscuro */
-    select,
-    select option {
-      background-color: #0b1020;
-      color: #ffffff;
-    }
-    select option:hover { background-color: #1a2140; }
-    select option:checked { background-color: #2a3cff; color: #ffffff; }
-    select:focus{
-      outline: none;
-      box-shadow: 0 0 0 2px rgba(79,124,255,.4);
     }
   </style>
 </head>
 
-<body id="top">
+<body>
   <div class="wrap">
+    <div id="app"></div>
+  </div>
+
+  <!-- Floating WhatsApp general -->
+  <a id="waFloat" class="wa-float" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M19.11 17.53c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.34-.81-.72-1.35-1.61-1.51-1.88-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.44-.46-.61-.47l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3 0 1.36.99 2.67 1.13 2.86.14.18 1.95 2.98 4.73 4.18.66.28 1.17.45 1.57.58.66.21 1.26.18 1.73.11.53-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32zM16.02 3C9.39 3 4 8.39 4 15.02c0 2.12.56 4.12 1.54 5.86L4 29l8.35-1.5a11.94 11.94 0 0 0 3.67.57C22.65 28.07 28 22.67 28 16.02 28 9.39 22.65 3 16.02 3zm0 22.05c-1.18 0-2.34-.23-3.42-.67l-.49-.2-4.95.89.94-4.82-.23-.5a9.93 9.93 0 0 1-1.05-4.5c0-5.5 4.47-9.97 9.97-9.97 5.49 0 9.97 4.47 9.97 9.97 0 5.5-4.47 9.8-9.74 9.8z"/>
+    </svg>
+  </a>
+
+  <!-- Barra inferior selección múltiple -->
+  <div id="selectionBar" class="selectionBar hidden">
+    <div class="selectionInner">
+      <div class="selectionInfo">
+        <strong id="selectionText">0 perfumes seleccionados</strong>
+        <span class="selectionHint">Listos para consulta de precio por WhatsApp.</span>
+      </div>
+      <div class="selectionActions">
+        <button id="selectionClear" class="selectionBtn ghost" type="button">Limpiar selección</button>
+        <a id="selectionQuote" class="selectionBtn primary" href="#" target="_blank" rel="noopener">Solicitar cotización</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- =======================
+       PLANTILLAS (TEMPLATES)
+       ======================= -->
+  <template id="tpl-header">
     <header class="site-header">
-      <!-- NAVBAR -->
       <div class="navBar">
         <div class="navBrand">
           <img src="logo.png" alt="Exclusive Perfume Logo" />
           <span>Exclusive Perfume</span>
         </div>
+
         <nav class="navLinks">
           <a href="#inicio" class="navLink active" id="linkInicio">Inicio</a>
           <a href="#catalogo" class="navLink" id="linkCatalogo">Catálogo</a>
           <a href="#marcas" class="navLink" id="linkMarcas">Marcas</a>
           <a href="#sobre-nosotros" class="navLink" id="linkSobre">Sobre nosotros</a>
         </nav>
+
         <button class="loginBtn" type="button" id="contactBtn">Contactar</button>
       </div>
     </header>
+  </template>
 
-    <!-- INICIO (Landing separado) -->
+  <template id="tpl-inicio">
     <section id="inicio" class="landingHero" aria-label="Inicio">
       <div class="landingInner">
         <div>
           <div class="landingKicker">✨ Exclusive Perfume · Colección curada</div>
-
           <h1 class="landingTitle">Essence of the<br>Exclusive</h1>
-
-          <p class="landingSub">
-            Fragancias con presencia. Descubre tu estilo y luego pasa al catálogo.
-          </p>
+          <p class="landingSub">Fragancias con presencia. Descubre tu estilo y luego pasa al catálogo.</p>
 
           <div class="landingBtns">
             <a class="cta primary" href="#catalogo">Shop Now</a>
@@ -937,8 +623,7 @@
           </div>
         </div>
 
-        <!-- Widget que cambia -->
-        <div class="featureCard" id="featureCard">
+        <div class="featureCard">
           <div class="dots" id="featureDots"></div>
 
           <div class="featureImg" id="featureImgWrap">
@@ -962,14 +647,15 @@
         </div>
       </div>
     </section>
+  </template>
 
-    <!-- CATÁLOGO (Sección separada) -->
-    <section id="catalogo" class="catalogSection">
+  <template id="tpl-catalogo">
+    <section id="catalogo" class="catalogSection" aria-label="Catálogo">
       <div class="catalogHead">
         <h2 class="catalogTitle">Catálogo</h2>
         <p class="catalogSub">Busca por marca, nombre o tipo. Filtra por género y selecciona para WhatsApp.</p>
 
-        <div class="heroSearchRow catalogSearchRow">
+        <div class="heroSearchRow">
           <div class="heroSearchWrap">
             <span class="heroSearchIcon">🔍</span>
             <input id="search" type="text" placeholder="Buscar por marca, nombre o tipo de perfume..." />
@@ -985,7 +671,6 @@
       </div>
 
       <div class="layout">
-        <!-- LEFT: Catalog -->
         <section class="panel">
           <div class="panelHead">
             <span>Catálogo de perfumes</span>
@@ -1022,7 +707,6 @@
           <div id="grid" class="grid"></div>
         </section>
 
-        <!-- RIGHT: Selection -->
         <aside class="panel">
           <div class="panelHead"><strong>Tu selección</strong></div>
           <div class="side">
@@ -1052,9 +736,10 @@
         </aside>
       </div>
     </section>
+  </template>
 
-    <!-- MARCAS -->
-    <section id="marcas" class="infoSection">
+  <template id="tpl-marcas">
+    <section id="marcas" class="infoSection" aria-label="Marcas">
       <h2 class="infoTitle">Marcas destacadas</h2>
       <p class="infoText">
         Trabajamos con una selección cuidada de perfumes de diseñador y casas nicho.
@@ -1080,9 +765,10 @@
         <span class="brandChip">Dumont</span>
       </div>
     </section>
+  </template>
 
-    <!-- SOBRE NOSOTROS -->
-    <section id="sobre-nosotros" class="infoSection">
+  <template id="tpl-sobre">
+    <section id="sobre-nosotros" class="infoSection" aria-label="Sobre nosotros">
       <h2 class="infoTitle">Sobre Exclusive Perfume</h2>
       <p class="infoText">
         Cuidamos cada detalle, desde la selección del perfume hasta la forma en que te llega a las manos.
@@ -1098,34 +784,28 @@
         o por WhatsApp para consultas, precios y envíos.
       </p>
     </section>
-  </div>
-
-  <!-- Floating WhatsApp general -->
-  <a id="waFloat" class="wa-float" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
-    <svg viewBox="0 0 32 32" aria-hidden="true">
-      <path d="M19.11 17.53c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.15-.42-2.19-1.34-.81-.72-1.35-1.61-1.51-1.88-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.01-.22-.53-.44-.46-.61-.47l-.52-.01c-.18 0-.48.07-.73.34-.25.27-.96.94-.96 2.3 0 1.36.99 2.67 1.13 2.86.14.18 1.95 2.98 4.73 4.18.66.28 1.17.45 1.57.58.66.21 1.26.18 1.73.11.53-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.25-.18-.52-.32zM16.02 3C9.39 3 4 8.39 4 15.02c0 2.12.56 4.12 1.54 5.86L4 29l8.35-1.5a11.94 11.94 0 0 0 3.67.57C22.65 28.07 28 22.67 28 16.02 28 9.39 22.65 3 16.02 3zm0 22.05c-1.18 0-2.34-.23-3.42-.67l-.49-.2-4.95.89.94-4.82-.23-.5a9.93 9.93 0 0 1-1.05-4.5c0-5.5 4.47-9.97 9.97-9.97 5.49 0 9.97 4.47 9.97 9.97 0 5.5-4.47 9.8-9.74 9.8z"/>
-    </svg>
-  </a>
-
-  <!-- Barra inferior selección múltiple -->
-  <div id="selectionBar" class="selectionBar hidden">
-    <div class="selectionInner">
-      <div class="selectionInfo">
-        <strong id="selectionText">0 perfumes seleccionados</strong>
-        <span class="selectionHint">Listos para consulta de precio por WhatsApp.</span>
-      </div>
-      <div class="selectionActions">
-        <button id="selectionClear" class="selectionBtn ghost" type="button">
-          Limpiar selección
-        </button>
-        <a id="selectionQuote" class="selectionBtn primary" href="#" target="_blank" rel="noopener">
-          Solicitar cotización
-        </a>
-      </div>
-    </div>
-  </div>
+  </template>
 
   <script>
+    /* =========
+       RENDER DE PLANTILLAS
+       ========= */
+    function mountTemplate(tplId, into){
+      const tpl = document.getElementById(tplId);
+      const node = tpl.content.cloneNode(true);
+      into.appendChild(node);
+    }
+
+    const app = document.getElementById("app");
+    mountTemplate("tpl-header", app);
+    mountTemplate("tpl-inicio", app);
+    mountTemplate("tpl-catalogo", app);
+    mountTemplate("tpl-marcas", app);
+    mountTemplate("tpl-sobre", app);
+
+    /* =========
+       DATOS + LÓGICA
+       ========= */
     const WHATSAPP_NUMBER = "19392937940";
     const STORAGE_KEY_FAVS = "ep_favs_browser";
 
@@ -1262,6 +942,7 @@
       { id:108, name:"Parfums de Marly Carlisle", brand:"Parfums de Marly", family:"Dulce / Amaderado", type:"sweet", img:"img/parfums-de-marly-carlisle.jpg", desc:"Dulce oscuro amaderado, elegante y potente." }
     ];
 
+    // Elementos (ya existen porque montamos templates)
     const grid = document.getElementById("grid");
     const search = document.getElementById("search");
     const filter = document.getElementById("filter");
@@ -1293,10 +974,7 @@
     };
 
     const typeLabel = (t) => ({
-      fresh:"Fresco",
-      sweet:"Dulce",
-      arabic:"Árabe",
-      woody:"Amaderado"
+      fresh:"Fresco", sweet:"Dulce", arabic:"Árabe", woody:"Amaderado"
     }[t] || t);
 
     function waLink(message){
@@ -1319,28 +997,12 @@
       }
     }
 
-    // PERFUMES DE MUJER (según tu lógica actual)
-    const womenIds = [
-      51,52,53,54,55,
-      57,59,60,61,
-      78,
-      82,83,
-      86,87,88,
-      91,
-      93,
-      94,
-      96,
-      97
-    ];
+    // PERFUMES DE MUJER (tu lista)
+    const womenIds = [51,52,53,54,55,57,59,60,61,78,82,83,86,87,88,91,93,94,96,97];
     function isWomanPerfume(p){ return womenIds.includes(p.id); }
 
-    // PERFUMES UNISEX
-    const unisexIds = [
-      11,12,13,14,15,
-      24,25,
-      56,64,65,
-      66
-    ];
+    // PERFUMES UNISEX (tu lista)
+    const unisexIds = [11,12,13,14,15,24,25,56,64,65,66];
     function isUnisexPerfume(p){ return unisexIds.includes(p.id); }
 
     let lastSelected = null;
@@ -1357,13 +1019,11 @@
         waBtn.href = waLink("Hola! 👋 Quisiera información sobre tus perfumes. Gracias!");
         return;
       }
-
       const p = lastSelected;
       selTitle.textContent = "Seleccionado";
       selSub.textContent = "Escríbeme para precio, disponibilidad y envío.";
       selName.textContent = `${p.name} — ${p.brand}`;
       selDetails.textContent = `${p.desc}`;
-
       const msg = `Hola! 👋 Estoy interesado en el perfume "${p.name}" (${p.brand}). Quisiera saber el precio, disponibilidad y cómo hacen el envío. Gracias!`;
       waBtn.href = waLink(msg);
     }
@@ -1377,16 +1037,11 @@
     }
 
     function toggleSelect(p){
-      if (selectedIds.has(p.id)) {
-        selectedIds.delete(p.id);
-      } else {
-        selectedIds.add(p.id);
-        lastSelected = p;
-      }
+      if (selectedIds.has(p.id)) selectedIds.delete(p.id);
+      else { selectedIds.add(p.id); lastSelected = p; }
 
-      if (selectedIds.size === 0) {
-        lastSelected = null;
-      } else if (!lastSelected || !selectedIds.has(lastSelected.id)) {
+      if (selectedIds.size === 0) lastSelected = null;
+      else if (!lastSelected || !selectedIds.has(lastSelected.id)) {
         const firstId = selectedIds.values().next().value;
         lastSelected = perfumes.find(x => x.id === firstId) || null;
       }
@@ -1399,7 +1054,6 @@
     function persistFavorites(){
       localStorage.setItem(STORAGE_KEY_FAVS, JSON.stringify(Array.from(favoriteIds)));
     }
-
     function loadFavorites(){
       favoriteIds.clear();
       const saved = localStorage.getItem(STORAGE_KEY_FAVS);
@@ -1409,7 +1063,6 @@
         if (Array.isArray(arr)) arr.forEach(id => favoriteIds.add(id));
       }catch(e){}
     }
-
     function toggleFavorite(p){
       if (favoriteIds.has(p.id)) favoriteIds.delete(p.id);
       else favoriteIds.add(p.id);
@@ -1428,22 +1081,17 @@
       }
 
       selectionBar.classList.remove("hidden");
-      selectionText.textContent = n === 1
-        ? "1 perfume seleccionado"
-        : `${n} perfumes seleccionados`;
+      selectionText.textContent = n === 1 ? "1 perfume seleccionado" : `${n} perfumes seleccionados`;
 
       const selectedPerfumes = perfumes.filter(p => selectedIds.has(p.id));
       const list = selectedPerfumes.map(p => `- ${p.name} (${p.brand})`).join("\n");
-      const msg =
-        `Hola! 👋 Estoy interesado en estos perfumes:\n${list}\n\n¿Me puedes indicar precio, disponibilidad y opciones de envío?`;
+      const msg = `Hola! 👋 Estoy interesado en estos perfumes:\n${list}\n\n¿Me puedes indicar precio, disponibilidad y opciones de envío?`;
       selectionQuote.href = waLink(msg);
     }
 
     function syncHeroPills(){
       const g = genderFilter.value;
-      heroPills.forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.g === g);
-      });
+      heroPills.forEach(btn => btn.classList.toggle("active", btn.dataset.g === g));
     }
 
     function render(){
@@ -1471,7 +1119,6 @@
         else if (g === "unisex") matchGender = unisex;
 
         const matchFav = showFavoritesOnly ? favoriteIds.has(p.id) : true;
-
         return matchText && matchType && matchBrand && matchGender && matchFav;
       });
 
@@ -1513,21 +1160,16 @@
 
         card.addEventListener("click", () => toggleSelect(p));
         const favBtn = card.querySelector(".favBtn");
-        favBtn.addEventListener("click", (e) => {
-          e.stopPropagation();
-          toggleFavorite(p);
-        });
+        favBtn.addEventListener("click", (e) => { e.stopPropagation(); toggleFavorite(p); });
 
         grid.appendChild(card);
       }
 
       if (resultCount){
         const n = list.length;
-        if (showFavoritesOnly) {
-          resultCount.textContent = n === 1 ? "1 perfume favorito" : `${n} perfumes favoritos`;
-        } else {
-          resultCount.textContent = n === 1 ? "1 perfume encontrado" : `${n} perfumes encontrados`;
-        }
+        resultCount.textContent = showFavoritesOnly
+          ? (n === 1 ? "1 perfume favorito" : `${n} perfumes favoritos`)
+          : (n === 1 ? "1 perfume encontrado" : `${n} perfumes encontrados`);
       }
 
       syncHeroPills();
@@ -1536,37 +1178,15 @@
       waFloat.href = waLink(generalMsg);
     }
 
-    function setActiveNav(id){
-      Object.values(navLinks).forEach(link => link.classList.remove("active"));
-      if (navLinks[id]) navLinks[id].classList.add("active");
-    }
-
-    navLinks.inicio.addEventListener("click", () => setActiveNav("inicio"));
-    navLinks.catalogo.addEventListener("click", () => setActiveNav("catalogo"));
-    navLinks.marcas.addEventListener("click", () => setActiveNav("marcas"));
-    navLinks.sobre.addEventListener("click", () => setActiveNav("sobre"));
-
-    // Init base
-    loadBrands();
-    loadFavorites();
-    updateDetailPanel();
-    updateSelectionBar();
-    render();
-
-    search.addEventListener("input", render);
-    filter.addEventListener("change", render);
-    brandFilter.addEventListener("change", render);
-    genderFilter.addEventListener("change", render);
-    clearBtn.addEventListener("click", clearSelection);
-
+    // Pills de género
     heroPills.forEach(btn => {
       btn.addEventListener("click", () => {
-        const g = btn.dataset.g;
-        genderFilter.value = g;
+        genderFilter.value = btn.dataset.g;
         render();
       });
     });
 
+    // Favoritos toggle
     favToggle.addEventListener("click", () => {
       showFavoritesOnly = !showFavoritesOnly;
       favToggle.classList.toggle("active", showFavoritesOnly);
@@ -1575,9 +1195,22 @@
       render();
     });
 
+    // Listeners
+    search.addEventListener("input", render);
+    filter.addEventListener("change", render);
+    brandFilter.addEventListener("change", render);
+    genderFilter.addEventListener("change", render);
+    clearBtn.addEventListener("click", clearSelection);
     selectionClear.addEventListener("click", clearSelection);
 
-    /* ===== Featured widget (Inicio): perfumes rotando ===== */
+    // Init catálogo
+    loadBrands();
+    loadFavorites();
+    updateDetailPanel();
+    updateSelectionBar();
+    render();
+
+    /* ===== Widget Inicio: perfumes rotando ===== */
     const featureImgWrap = document.getElementById("featureImgWrap");
     const featureImg = document.getElementById("featureImg");
     const featureName = document.getElementById("featureName");
@@ -1591,7 +1224,7 @@
     let featureIndex = 0;
     let featureTimer = null;
 
-    const featuredIds = [2, 1, 15, 12, 17, 21, 24, 65, 100, 108];
+    const featuredIds = [2,1,15,12,17,21,24,65,100,108];
     const featuredList = featuredIds.map(id => perfumes.find(p => p.id === id)).filter(Boolean);
     if (featuredList.length === 0) featuredList.push(...perfumes.slice(0, 10));
 
@@ -1608,15 +1241,10 @@
       featuredList.slice(0, 10).forEach((_, i) => {
         const d = document.createElement("span");
         d.className = "dot" + (i === featureIndex ? " active" : "");
-        d.addEventListener("click", () => {
-          featureIndex = i;
-          updateFeatured(true);
-          restartFeaturedTimer();
-        });
+        d.addEventListener("click", () => { featureIndex = i; updateFeatured(true); restartFeaturedTimer(); });
         featureDots.appendChild(d);
       });
     }
-
     function updateDots(){
       [...featureDots.children].forEach((d, i) => d.classList.toggle("active", i === featureIndex));
     }
@@ -1641,21 +1269,14 @@
 
       if (withFade){
         featureImgWrap.classList.add("featureFadeOut");
-        setTimeout(() => {
-          apply();
-          featureImgWrap.classList.remove("featureFadeOut");
-        }, 220);
-      } else {
-        apply();
-      }
+        setTimeout(() => { apply(); featureImgWrap.classList.remove("featureFadeOut"); }, 220);
+      } else apply();
 
       featureSelectBtn.onclick = () => {
         toggleSelect(p);
         document.getElementById("catalogo")?.scrollIntoView({behavior:"smooth", block:"start"});
       };
-
       featureImg.onclick = () => featureSelectBtn.click();
-      featureImg.style.cursor = "pointer";
     }
 
     function startFeaturedTimer(){
@@ -1665,14 +1286,51 @@
         updateFeatured(true);
       }, 3500);
     }
-
-    function restartFeaturedTimer(){
-      startFeaturedTimer();
-    }
+    function restartFeaturedTimer(){ startFeaturedTimer(); }
 
     buildDots();
     updateFeatured(false);
     startFeaturedTimer();
+
+    /* ===== Navegación real: sección activa (scroll spy) ===== */
+    const sections = [
+      { id: "inicio", link: navLinks.inicio },
+      { id: "catalogo", link: navLinks.catalogo },
+      { id: "marcas", link: navLinks.marcas },
+      { id: "sobre-nosotros", link: navLinks.sobre }
+    ];
+
+    function setActiveBySectionId(sectionId){
+      Object.values(navLinks).forEach(link => link.classList.remove("active"));
+      const found = sections.find(s => s.id === sectionId);
+      if (found?.link) found.link.classList.add("active");
+    }
+
+    function onScrollSpy(){
+      document.body.classList.toggle("header-scrolled", window.scrollY > 12);
+      const y = window.scrollY + 140;
+
+      let current = "inicio";
+      for (const s of sections){
+        const el = document.getElementById(s.id);
+        if (el && el.offsetTop <= y) current = s.id;
+      }
+      setActiveBySectionId(current);
+    }
+
+    sections.forEach(s => {
+      s.link?.addEventListener("click", (e) => {
+        e.preventDefault();
+        const el = document.getElementById(s.id);
+        if (!el) return;
+        setActiveBySectionId(s.id);
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+
+    window.addEventListener("scroll", onScrollSpy, { passive:true });
+    onScrollSpy();
   </script>
 </body>
 </html>
+
