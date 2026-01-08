@@ -4,29 +4,47 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Exclusive Perfume</title>
+
+  <!-- Fuente premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#070b14;
       --panel:#0b1020;
-      --card:#0e1630;     
+      --card:#0e1630;
       --text:#f4f6ff;
       --muted:rgba(255,255,255,.72);
       --line:rgba(255,255,255,.12);
       --accent:#25d366;
       --accent2:#4f7cff;
       --radius:18px;
+      --shadowSoft: 0 10px 30px rgba(0,0,0,.28);
+      --shadowHard: 0 18px 60px rgba(0,0,0,.50);
     }
 
     *{box-sizing:border-box}
     html{ scroll-behavior:smooth; }
     body{
       margin:0;
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       background: radial-gradient(1200px 700px at 10% 0%, rgba(79,124,255,.30), transparent 60%),
                   radial-gradient(1200px 700px at 90% 0%, rgba(37,211,102,.18), transparent 60%),
                   var(--bg);
       color:var(--text);
     }
+
+    /* Scrollbar pro */
+    *::-webkit-scrollbar{ width:10px; height:10px; }
+    *::-webkit-scrollbar-thumb{
+      background: rgba(255,255,255,.14);
+      border-radius: 999px;
+      border: 2px solid rgba(7,11,20,.65);
+    }
+    *::-webkit-scrollbar-track{ background: rgba(0,0,0,.15); }
+    ::selection{ background: rgba(79,124,255,.35); color: #fff; }
 
     .wrap{
       max-width: 1200px;
@@ -34,15 +52,25 @@
       padding: 18px 18px 80px 18px;
     }
 
-    /* === NAVBAR + HERO === */
-    .site-header{ margin-bottom: 10px; }
+    /* === HEADER STICKY PREMIUM === */
+    .site-header{
+      position: sticky;
+      top: 0;
+      z-index: 80;
+      padding-bottom: 10px;
+      backdrop-filter: blur(14px);
+      background: rgba(7,11,20,.55);
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      margin-bottom: 10px;
+    }
 
+    /* === NAVBAR === */
     .navBar{
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:18px;
-      padding:10px 0 4px 0;
+      padding:12px 0 10px 0;
     }
 
     .navBrand{
@@ -63,9 +91,9 @@
     }
 
     .navBrand span{
-      font-weight:700;
-      font-size:16px;
-      letter-spacing:.03em;
+      font-weight:800;
+      font-size:15px;
+      letter-spacing:.04em;
     }
 
     .navLinks{
@@ -98,37 +126,56 @@
     }
 
     .navLink:hover{ color:var(--text); }
-    .navLink.active{ color:#ffffff; font-weight:600; }
+    .navLink.active{ color:#ffffff; font-weight:700; }
     .navLink.active::after{ opacity:1; transform:scaleX(1); }
 
     .loginBtn{
-      padding:8px 18px;
+      padding:9px 18px;
       border-radius:999px;
-      border:1px solid rgba(79,124,255,.8);
-      background: radial-gradient(circle at 0 0, rgba(79,124,255,.8), rgba(47,88,255,.9));
+      border:1px solid rgba(255,255,255,.14);
+      background: linear-gradient(135deg, rgba(79,124,255,.92), rgba(37,211,102,.55));
       color:#fff;
       font-size:13px;
-      font-weight:600;
+      font-weight:800;
       cursor:pointer;
-      box-shadow:0 10px 25px rgba(0,0,0,.45);
+      box-shadow: var(--shadowSoft);
+      transition: transform .12s ease, filter .12s ease;
+    }
+    .loginBtn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+
+    /* === HERO PREMIUM === */
+    .hero{ margin-top:0; padding:0; }
+
+    .heroCard{
+      margin-top: 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(8,12,26,.96));
+      box-shadow: var(--shadowHard);
+      overflow: hidden;
     }
 
-    .hero{
-      margin-top:10px;
-      padding:8px 2px 4px 2px;
+    .heroInner{
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 14px;
+      align-items: start;
     }
 
     .heroTitle{
       margin:0 0 4px 0;
-      font-size:26px;
-      font-weight:800;
+      font-size:30px;
+      font-weight:900;
+      letter-spacing:-.02em;
     }
 
     .heroSub{
       margin:0 0 16px 0;
       font-size:13px;
       color:var(--muted);
-      max-width:520px;
+      max-width:60ch;
+      line-height: 1.45;
     }
 
     .heroSearchRow{
@@ -148,14 +195,13 @@
       width:100%;
       padding:11px 44px 11px 36px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(8,12,26,.96);
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(10,14,30,.92);
       color:var(--text);
       font-size:13px;
       outline:none;
-      box-shadow:0 10px 35px rgba(0,0,0,.55);
+      box-shadow: 0 12px 45px rgba(0,0,0,.45);
     }
-
     .heroSearchWrap input::placeholder{ color:rgba(255,255,255,.42); }
 
     .heroSearchIcon{
@@ -174,6 +220,7 @@
       flex-wrap:wrap;
       gap:8px;
       font-size:11px;
+      margin-top: 8px;
     }
 
     .heroPill{
@@ -188,14 +235,12 @@
       gap:6px;
       transition:background .12s ease, border-color .12s ease, color .12s ease, transform .12s ease;
     }
-
     .heroPill:hover{
       transform:translateY(-1px);
       background:rgba(255,255,255,.06);
       border-color:rgba(255,255,255,.26);
       color:var(--text);
     }
-
     .heroPill.active{
       background:rgba(79,124,255,.28);
       border-color:var(--accent2);
@@ -208,6 +253,16 @@
       border-radius:50%;
       background:rgba(255,255,255,.7);
     }
+
+    .heroWidgets{ display:grid; gap:10px; }
+    .heroWidget{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.22);
+      border-radius: 16px;
+      padding: 12px;
+    }
+    .heroWidget strong{ display:block; font-size: 13px; margin-bottom:4px; }
+    .heroWidget span{ display:block; color: var(--muted); font-size: 12.5px; line-height:1.35; }
 
     /* === LAYOUT PRINCIPAL (CATÁLOGO) === */
     .layout{
@@ -223,7 +278,7 @@
       border: 1px solid var(--line);
       border-radius: var(--radius);
       overflow:hidden;
-      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      box-shadow: var(--shadowHard);
     }
 
     .panelHead{
@@ -235,13 +290,14 @@
       justify-content:space-between;
       gap:8px;
       font-size:14px;
-      font-weight:600;
+      font-weight:700;
+      letter-spacing: .2px;
     }
 
     .resultCount{
       font-size: 12px;
       color: var(--muted);
-      font-weight:400;
+      font-weight:500;
     }
 
     .favToggleBtn{
@@ -255,12 +311,12 @@
       display:inline-flex;
       align-items:center;
       gap:6px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
     }
-
+    .favToggleBtn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06); }
     .favToggleBtn span.heartIcon{ font-size:12px; }
-
     .favToggleBtn.active{
-      background:rgba(255,255,255,.08);
+      background:rgba(255,255,255,.10);
       color:#fff;
       border-color:rgba(255,255,255,.32);
     }
@@ -284,6 +340,7 @@
       font-size:12px;
       flex:0 0 auto;
       min-width: 150px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
     }
 
     .grid{
@@ -303,11 +360,12 @@
       display:flex;
       flex-direction:column;
       min-height:100%;
+      box-shadow: 0 12px 35px rgba(0,0,0,.30);
     }
     .card:hover{
-      transform: translateY(-3px);
+      transform: translateY(-4px);
       border-color: rgba(255,255,255,.22);
-      box-shadow:0 16px 40px rgba(0,0,0,.55);
+      box-shadow: 0 18px 55px rgba(0,0,0,.55);
     }
     .card-selected{
       border-color:rgba(79,124,255,.85);
@@ -344,7 +402,9 @@
       cursor:pointer;
       font-size:13px;
       color:rgba(255,255,255,.65);
+      transition: transform .12s ease, background .12s ease;
     }
+    .favBtn:hover{ transform: scale(1.05); }
     .favBtn.fav-active{
       background:rgba(255,94,165,.2);
       color:#ff7cb3;
@@ -354,7 +414,7 @@
       height: 190px;
       margin:8px 10px 0 10px;
       border-radius:14px;
-      background-color: rgba(0,0,0,.18);
+      background-color: rgba(255,255,255,.03);
       background-size: contain;
       background-position: center;
       background-repeat: no-repeat;
@@ -368,9 +428,10 @@
       flex:1;
     }
     .name{
-      font-weight: 800;
+      font-weight: 900;
       font-size: 14px;
       margin: 0 0 6px 0;
+      letter-spacing: -.01em;
     }
     .meta{
       display:flex;
@@ -411,7 +472,7 @@
     .cardAction{
       margin-top:10px;
       font-size:12px;
-      font-weight:700;
+      font-weight:900;
       text-align:center;
       padding:8px 10px;
       border-radius:999px;
@@ -493,7 +554,7 @@
       line-height: 1.45;
     }
 
-    /* Floating WhatsApp */
+    /* Floating WhatsApp general */
     .wa-float{
       position: fixed;
       right: 18px;
@@ -510,7 +571,9 @@
       cursor:pointer;
       text-decoration:none;
       z-index: 999;
+      transition: transform .12s ease, filter .12s ease;
     }
+    .wa-float:hover{ transform: translateY(-2px); filter: brightness(1.05); }
     .wa-float svg{ width: 28px; height: 28px; fill:#fff; }
 
     /* Barra inferior selección múltiple */
@@ -559,7 +622,7 @@
       border-radius:999px;
       padding:8px 14px;
       font-size:12px;
-      font-weight:700;
+      font-weight:900;
       cursor:pointer;
       border:1px solid transparent;
       text-decoration:none;
@@ -567,7 +630,9 @@
       align-items:center;
       justify-content:center;
       white-space:nowrap;
+      transition: transform .12s ease, filter .12s ease;
     }
+    .selectionBtn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
 
     .selectionBtn.ghost{
       background:transparent;
@@ -597,7 +662,8 @@
     .infoTitle{
       margin:0 0 10px 0;
       font-size:18px;
-      font-weight:800;
+      font-weight:900;
+      letter-spacing: -.01em;
     }
 
     .infoText{
@@ -635,7 +701,7 @@
     .aboutPhone a{
       color:var(--accent);
       text-decoration:none;
-      font-weight:700;
+      font-weight:900;
     }
 
     @media (max-width: 1020px){
@@ -643,6 +709,7 @@
       .grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .selectionInner{ flex-direction:column; align-items:flex-start; }
       .selectionActions{ align-self:stretch; justify-content:flex-end; }
+      .heroInner{ grid-template-columns: 1fr; }
     }
     @media (max-width: 640px){
       .navLinks{ display:none; }
@@ -658,10 +725,8 @@
       background-color: #0b1020;
       color: #ffffff;
     }
-
     select option:hover { background-color: #1a2140; }
     select option:checked { background-color: #2a3cff; color: #ffffff; }
-
     select:focus{
       outline: none;
       box-shadow: 0 0 0 2px rgba(79,124,255,.4);
@@ -687,31 +752,46 @@
         <button class="loginBtn" type="button" id="contactBtn">Contactar</button>
       </div>
 
-      <!-- HERO -->
+      <!-- HERO PREMIUM -->
       <div class="hero">
-        <h1 class="heroTitle">Colección Exclusiva</h1>
-        <p class="heroSub">
-          Selecciona un perfume y escríbeme por WhatsApp para precio y envío.
-        </p>
-        <div class="heroSearchRow">
-          <div class="heroSearchWrap">
-            <span class="heroSearchIcon">🔍</span>
-            <input id="search" type="text"
-              placeholder="Buscar por marca, nombre o tipo de perfume..." />
-          </div>
-          <div class="heroFilterPills">
-            <button type="button" class="heroPill active" data-g="all">
-              <span class="pillDot"></span> Todos
-            </button>
-            <button type="button" class="heroPill" data-g="men">
-              <span class="pillDot"></span> Hombres
-            </button>
-            <button type="button" class="heroPill" data-g="women">
-              <span class="pillDot"></span> Mujeres
-            </button>
-            <button type="button" class="heroPill" data-g="unisex">
-              <span class="pillDot"></span> Unisex
-            </button>
+        <div class="heroCard">
+          <div class="heroInner">
+            <div>
+              <h1 class="heroTitle">Colección Exclusiva</h1>
+              <p class="heroSub">
+                Selecciona un perfume y escríbeme por WhatsApp para precio y envío.
+              </p>
+
+              <div class="heroSearchRow">
+                <div class="heroSearchWrap">
+                  <span class="heroSearchIcon">🔍</span>
+                  <input id="search" type="text" placeholder="Buscar por marca, nombre o tipo de perfume..." />
+                </div>
+
+                <div class="heroFilterPills">
+                  <button type="button" class="heroPill active" data-g="all"><span class="pillDot"></span> Todos</button>
+                  <button type="button" class="heroPill" data-g="men"><span class="pillDot"></span> Hombres</button>
+                  <button type="button" class="heroPill" data-g="women"><span class="pillDot"></span> Mujeres</button>
+                  <button type="button" class="heroPill" data-g="unisex"><span class="pillDot"></span> Unisex</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="heroWidgets">
+              <div class="heroWidget">
+                <strong>🚚 Envío en Puerto Rico</strong>
+                <span>Coordinamos por WhatsApp según disponibilidad.</span>
+              </div>
+              <div class="heroWidget">
+                <strong>✅ Atención rápida</strong>
+                <span>Respondo directo para precios, opciones y envío.</span>
+              </div>
+              <div class="heroWidget">
+                <strong>🔥 Recomendaciones</strong>
+                <span>Te ayudo a elegir por ocasión: iglesia, trabajo, citas, etc.</span>
+              </div>
+            </div>
+
           </div>
         </div>
       </div>
@@ -826,8 +906,8 @@
         <span>🔥 <strong>Donde el lujo se convierte en fragancia</strong></span>
       </div>
       <p class="aboutPhone">
-        📲 Contáctame directo: 
-        <a href="tel:9392937940">939&nbsp;293&nbsp;7940</a> 
+        📲 Contáctame directo:
+        <a href="tel:9392937940">939&nbsp;293&nbsp;7940</a>
         o por WhatsApp para consultas, precios y envíos.
       </p>
     </section>
@@ -848,12 +928,8 @@
         <span class="selectionHint">Listos para consulta de precio por WhatsApp.</span>
       </div>
       <div class="selectionActions">
-        <button id="selectionClear" class="selectionBtn ghost" type="button">
-          Limpiar selección
-        </button>
-        <a id="selectionQuote" class="selectionBtn primary" href="#" target="_blank" rel="noopener">
-          Solicitar cotización
-        </a>
+        <button id="selectionClear" class="selectionBtn ghost" type="button">Limpiar selección</button>
+        <a id="selectionQuote" class="selectionBtn primary" href="#" target="_blank" rel="noopener">Solicitar cotización</a>
       </div>
     </div>
   </div>
@@ -883,7 +959,7 @@
       { id:16, name:"Lattafa Asad", brand:"Lattafa", family:"Árabe / Dulce", type:"arabic", img:"img/lattafa-asad.jpg", desc:"Vainilla y ámbar." },
       { id:17, name:"Lattafa Khamrah", brand:"Lattafa", family:"Árabe / Gourmand", type:"arabic", img:"img/lattafa-khamrah.jpg", desc:"Canela y dátiles." },
 
-      <!-- CAMBIO: Emir Gold -> Lattafa Fakhar Eau de Parfum -->
+      // CAMBIO: Emir Gold -> Lattafa Fakhar Eau de Parfum
       { id:18, name:"Lattafa Fakhar Eau de Parfum", brand:"Lattafa", family:"Árabe / Fresco", type:"arabic", img:"img/lattafa-fakhar-black.jpg", desc:"Fresco elegante tipo diario. Ideal para el día a día." },
 
       { id:19, name:"Lattafa Oud For Glory", brand:"Lattafa", family:"Árabe / Oud", type:"arabic", img:"img/lattafa-oud-for-glory.jpg", desc:"Oud potente." },
@@ -936,9 +1012,7 @@
       // ORIENTICA (56-65)
       { id:56, name:"Orientica Amber Noir", brand:"Orientica", family:"Ámbar / Especiado", type:"arabic", img:"img/orientica-amber-noir.jpg", desc:"Ámbar oscuro con especias. Misterioso y elegante." },
       { id:57, name:"Orientica Velvet Gold", brand:"Orientica", family:"Dulce / Floral", type:"sweet", img:"img/orientica-velvet-gold.jpg", desc:"Dulzor floral con un toque lujoso. Muy femenino." },
-
-      <!-- ELIMINADO: Orientica Aqua Blue (id:58) -->
-
+      // ELIMINADO: Orientica Aqua Blue (id:58)
       { id:59, name:"Fleur d’Orientica", brand:"Orientica", family:"Floral / Dulce", type:"sweet", img:"img/orientica-fleur.jpg", desc:"Flores blancas suaves con dulzor cremoso." },
       { id:60, name:"Rose d’Orientica", brand:"Orientica", family:"Floral / Rosa", type:"sweet", img:"img/orientica-rose.jpg", desc:"Rosa intensa y femenina con toque moderno." },
       { id:61, name:"Orientica Dania", brand:"Orientica", family:"Dulce / Frutal", type:"sweet", img:"img/orientica-dania.jpg", desc:"Frutal juvenil con toque dulce vibrante." },
@@ -985,17 +1059,16 @@
       { id:98, name:"Nitro Red", brand:"Dumont", family:"Amaderado / Especiado", type:"woody", img:"img/nitro-red.jpg", desc:"Especiado masculino moderno." },
       { id:99, name:"Nitro Green", brand:"Dumont", family:"Fresco / Verde", type:"fresh", img:"img/nitro-green.jpg", desc:"Fresco aromático natural." },
 
-     // PARFUMS DE MARLY (100-108)
-{ id:100, name:"Parfums de Marly Percival", brand:"Parfums de Marly", family:"Fresco / Aromático", type:"fresh", img:"img/parfums-de-marly-percival.jpg", desc:"Fresco y limpio, súper versátil para diario." },
-{ id:101, name:"Parfums de Marly Althaïr", brand:"Parfums de Marly", family:"Dulce / Vainilla", type:"sweet", img:"img/parfums-de-marly-althair.jpg", desc:"Vainilla elegante y cremosa. Ideal para noche." },
-{ id:102, name:"Parfums de Marly Greenley", brand:"Parfums de Marly", family:"Fresco / Verde", type:"fresh", img:"img/parfums-de-marly-greenley.jpg", desc:"Verde frutal-fresco con manzana. Perfecto para calor." },
-{ id:103, name:"Parfums de Marly Haltane", brand:"Parfums de Marly", family:"Amaderado / Aromático", type:"woody", img:"img/parfums-de-marly-haltane.jpg", desc:"Amaderado elegante, oscuro y sofisticado." },
-{ id:104, name:"Parfums de Marly Galloway", brand:"Parfums de Marly", family:"Fresco / Especiado", type:"fresh", img:"img/parfums-de-marly-galloway.jpg", desc:"Fresco especiado limpio. Muy bonito para oficina." },
-{ id:105, name:"Parfums de Marly Castley", brand:"Parfums de Marly", family:"Amaderado / Elegante", type:"woody", img:"img/parfums-de-marly-castley.jpg", desc:"Amaderado fino y formal. Para ocasiones." },
-{ id:106, name:"Parfums de Marly Sedley", brand:"Parfums de Marly", family:"Fresco / Cítrico", type:"fresh", img:"img/parfums-de-marly-sedley.jpg", desc:"Cítrico refrescante. Súper clean." },
-{ id:107, name:"Parfums de Marly Kalan", brand:"Parfums de Marly", family:"Especiado / Intenso", type:"woody", img:"img/parfums-de-marly-kalan.jpg", desc:"Especiado con carácter. Mejor para noche/clima fresco." },
-{ id:108, name:"Parfums de Marly Carlisle", brand:"Parfums de Marly", family:"Dulce / Amaderado", type:"sweet", img:"img/parfums-de-marly-carlisle.jpg", desc:"Dulce oscuro amaderado, elegante y potente." },
-
+      // PARFUMS DE MARLY (100-108)
+      { id:100, name:"Parfums de Marly Percival", brand:"Parfums de Marly", family:"Fresco / Aromático", type:"fresh", img:"img/parfums-de-marly-percival.jpg", desc:"Fresco y limpio, súper versátil para diario." },
+      { id:101, name:"Parfums de Marly Althaïr", brand:"Parfums de Marly", family:"Dulce / Vainilla", type:"sweet", img:"img/parfums-de-marly-althair.jpg", desc:"Vainilla elegante y cremosa. Ideal para noche." },
+      { id:102, name:"Parfums de Marly Greenley", brand:"Parfums de Marly", family:"Fresco / Verde", type:"fresh", img:"img/parfums-de-marly-greenley.jpg", desc:"Verde frutal-fresco con manzana. Perfecto para calor." },
+      { id:103, name:"Parfums de Marly Haltane", brand:"Parfums de Marly", family:"Amaderado / Aromático", type:"woody", img:"img/parfums-de-marly-haltane.jpg", desc:"Amaderado elegante, oscuro y sofisticado." },
+      { id:104, name:"Parfums de Marly Galloway", brand:"Parfums de Marly", family:"Fresco / Especiado", type:"fresh", img:"img/parfums-de-marly-galloway.jpg", desc:"Fresco especiado limpio. Muy bonito para oficina." },
+      { id:105, name:"Parfums de Marly Castley", brand:"Parfums de Marly", family:"Amaderado / Elegante", type:"woody", img:"img/parfums-de-marly-castley.jpg", desc:"Amaderado fino y formal. Para ocasiones." },
+      { id:106, name:"Parfums de Marly Sedley", brand:"Parfums de Marly", family:"Fresco / Cítrico", type:"fresh", img:"img/parfums-de-marly-sedley.jpg", desc:"Cítrico refrescante. Súper clean." },
+      { id:107, name:"Parfums de Marly Kalan", brand:"Parfums de Marly", family:"Especiado / Intenso", type:"woody", img:"img/parfums-de-marly-kalan.jpg", desc:"Especiado con carácter. Mejor para noche/clima fresco." },
+      { id:108, name:"Parfums de Marly Carlisle", brand:"Parfums de Marly", family:"Dulce / Amaderado", type:"sweet", img:"img/parfums-de-marly-carlisle.jpg", desc:"Dulce oscuro amaderado, elegante y potente." },
     ];
 
     const grid = document.getElementById("grid");
@@ -1055,42 +1128,11 @@
       }
     }
 
-    // PERFUMES DE MUJER (según tu lógica actual)
-    const womenIds = [
-      51,52,53,54,55,
-      57,59,60,61,
-      78,
-      82,83,
-      86,87,88,
-      91,
-      93,
-      94,
-      96,
-      97
-    ];
+    const womenIds = [51,52,53,54,55,57,59,60,61,78,82,83,86,87,88,91,93,94,96,97];
+    function isWomanPerfume(p){ return womenIds.includes(p.id); }
 
-    function isWomanPerfume(p){
-      return womenIds.includes(p.id);
-    }
-
-    // PERFUMES UNISEX (nuevo filtro)
-    const unisexIds = [
-      11, // Creed Aventus
-      12, // BR540
-      13, // Oud Wood
-      14, // Tobacco Vanille
-      15, // Layton
-      24, // CDNIM
-      25, // Untold
-      56, // Orientica Amber Noir
-      64, // Orientica Royal Amber
-      65, // Orientica Amber Rouge
-      66  // Lafayette Street
-    ];
-
-    function isUnisexPerfume(p){
-      return unisexIds.includes(p.id);
-    }
+    const unisexIds = [11,12,13,14,15,24,25,56,64,65,66];
+    function isUnisexPerfume(p){ return unisexIds.includes(p.id); }
 
     let lastSelected = null;
     const selectedIds = new Set();
@@ -1126,18 +1168,15 @@
     }
 
     function toggleSelect(p){
-      if (selectedIds.has(p.id)) {
-        selectedIds.delete(p.id);
-      } else {
-        selectedIds.add(p.id);
-        lastSelected = p;
-      }
-      if (selectedIds.size === 0) {
-        lastSelected = null;
-      } else if (!lastSelected || !selectedIds.has(lastSelected.id)) {
+      if (selectedIds.has(p.id)) selectedIds.delete(p.id);
+      else { selectedIds.add(p.id); lastSelected = p; }
+
+      if (selectedIds.size === 0) lastSelected = null;
+      else if (!lastSelected || !selectedIds.has(lastSelected.id)) {
         const firstId = selectedIds.values().next().value;
         lastSelected = perfumes.find(x => x.id === firstId) || null;
       }
+
       updateDetailPanel();
       updateSelectionBar();
       render();
@@ -1175,22 +1214,17 @@
       }
 
       selectionBar.classList.remove("hidden");
-      selectionText.textContent = n === 1
-        ? "1 perfume seleccionado"
-        : `${n} perfumes seleccionados`;
+      selectionText.textContent = n === 1 ? "1 perfume seleccionado" : `${n} perfumes seleccionados`;
 
       const selectedPerfumes = perfumes.filter(p => selectedIds.has(p.id));
       const list = selectedPerfumes.map(p => `- ${p.name} (${p.brand})`).join("\n");
-      const msg =
-        `Hola! 👋 Estoy interesado en estos perfumes:\n${list}\n\n¿Me puedes indicar precio, disponibilidad y opciones de envío?`;
+      const msg = `Hola! 👋 Estoy interesado en estos perfumes:\n${list}\n\n¿Me puedes indicar precio, disponibilidad y opciones de envío?`;
       selectionQuote.href = waLink(msg);
     }
 
     function syncHeroPills(){
       const g = genderFilter.value;
-      heroPills.forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.g === g);
-      });
+      heroPills.forEach(btn => btn.classList.toggle("active", btn.dataset.g === g));
     }
 
     function render(){
@@ -1270,15 +1304,12 @@
 
       if (resultCount){
         const n = list.length;
-        if (showFavoritesOnly) {
-          resultCount.textContent = n === 1 ? "1 perfume favorito" : `${n} perfumes favoritos`;
-        } else {
-          resultCount.textContent = n === 1 ? "1 perfume encontrado" : `${n} perfumes encontrados`;
-        }
+        resultCount.textContent = showFavoritesOnly
+          ? (n === 1 ? "1 perfume favorito" : `${n} perfumes favoritos`)
+          : (n === 1 ? "1 perfume encontrado" : `${n} perfumes encontrados`);
       }
 
       syncHeroPills();
-
       const generalMsg = "Hola! 👋 Quisiera información sobre tus perfumes (precio, disponibilidad y envío).";
       waFloat.href = waLink(generalMsg);
     }
@@ -1326,4 +1357,3 @@
   </script>
 </body>
 </html>
-
