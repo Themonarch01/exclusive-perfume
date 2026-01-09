@@ -616,15 +616,16 @@ body {
 
 /* Mejoras al header */
 .site-header {
-  backdrop-filter: blur(20px) saturate(180%) !important;
-  background: rgba(7,11,20,.75) !important;
+  backdrop-filter: blur(10px) saturate(150%) !important;
+  background: rgba(7,11,20,.2) !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border-bottom: 1px solid rgba(255,255,255,.05) !important;
 }
 
 .header-scrolled .site-header {
-  background: rgba(7,11,20,.85) !important;
-  border-bottom-color: rgba(255,255,255,.18) !important;
-  box-shadow: 0 8px 32px rgba(0,0,0,.4) !important;
+  background: rgba(7,11,20,.4) !important;
+  border-bottom-color: rgba(255,255,255,.1) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,.2) !important;
 }
 
 /* Mejoras al navBrand */
@@ -638,12 +639,15 @@ body {
 
 .navBrand img {
   transition: all 0.3s ease !important;
+  background: transparent !important;
+  border: none !important;
 }
 
 .navBrand:hover img {
-  background: rgba(79,124,255,.15) !important;
-  border-color: rgba(79,124,255,.4) !important;
-  box-shadow: 0 0 20px rgba(79,124,255,.3) !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  opacity: 0.9 !important;
 }
 
 .navBrand span {
