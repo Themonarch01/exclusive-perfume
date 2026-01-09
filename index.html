@@ -9,6 +9,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Three.js para modelos 3D -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
   <style>
     :root{
@@ -552,10 +555,712 @@
       .grid{ grid-template-columns: 1fr; }
       .selectionActions{ width:100%; justify-content:space-between; }
     }
+
+/* ============================================
+   MEJORAS VISUALES PREMIUM - EXCLUSIVE PERFUME
+   ============================================ */
+
+/* Canvas 3D de fondo */
+#canvas3d {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* Partículas flotantes */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: radial-gradient(circle, rgba(79,124,255,0.8), transparent);
+  border-radius: 50%;
+  animation: float 15s infinite ease-in-out;
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 0.6; }
+  50% { transform: translateY(-100vh) translateX(50px); opacity: 0.8; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-120vh) translateX(0); opacity: 0; }
+}
+
+/* Mejoras al body */
+body {
+  position: relative !important;
+  overflow-x: hidden !important;
+}
+
+/* Mejoras al wrap */
+.wrap {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Mejoras al header */
+.site-header {
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  background: rgba(7,11,20,.75) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.header-scrolled .site-header {
+  background: rgba(7,11,20,.85) !important;
+  border-bottom-color: rgba(255,255,255,.18) !important;
+  box-shadow: 0 8px 32px rgba(0,0,0,.4) !important;
+}
+
+/* Mejoras al navBrand */
+.navBrand {
+  transition: transform 0.3s ease !important;
+}
+
+.navBrand:hover {
+  transform: translateX(3px) !important;
+}
+
+.navBrand img {
+  transition: all 0.3s ease !important;
+}
+
+.navBrand:hover img {
+  background: rgba(79,124,255,.15) !important;
+  border-color: rgba(79,124,255,.4) !important;
+  box-shadow: 0 0 20px rgba(79,124,255,.3) !important;
+}
+
+.navBrand span {
+  background: linear-gradient(135deg, #fff, rgba(79,124,255,0.9)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Mejoras a los navLinks */
+.navLink {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.navLink::after {
+  transition: opacity .3s ease, transform .3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.navLink:hover {
+  transform: translateY(-2px) !important;
+}
+
+/* Mejoras al loginBtn */
+.loginBtn {
+  box-shadow: 0 4px 20px rgba(79,124,255,.4) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.loginBtn::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.loginBtn:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.loginBtn:hover {
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 8px 30px rgba(79,124,255,.6) !important;
+}
+
+/* Mejoras al landingHero */
+.landingHero {
+  box-shadow: var(--shadowHard), 0 0 60px rgba(79,124,255,.15) !important;
+  position: relative !important;
+  animation: fadeInUp 0.8s ease-out !important;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.landingHero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(79,124,255,.08) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.landingInner {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* Animaciones escalonadas para elementos del landing */
+.landingKicker {
+  backdrop-filter: blur(10px) !important;
+  animation: fadeIn 1s ease-out 0.2s both !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.landingTitle {
+  background: linear-gradient(135deg, #fff 0%, rgba(79,124,255,0.9) 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  animation: fadeIn 1s ease-out 0.4s both !important;
+}
+
+.landingSub {
+  animation: fadeIn 1s ease-out 0.6s both !important;
+}
+
+.landingBtns {
+  animation: fadeIn 1s ease-out 0.8s both !important;
+}
+
+.ratingRow {
+  animation: fadeIn 1s ease-out 1s both !important;
+}
+
+.stars {
+  animation: pulse 2s ease-in-out infinite !important;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.85; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Mejoras a los CTAs */
+.cta {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.cta:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+.cta:hover {
+  transform: translateY(-3px) scale(1.02) !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,.3) !important;
+}
+
+.cta.primary {
+  box-shadow: 0 4px 20px rgba(79,124,255,.4) !important;
+}
+
+.cta.primary:hover {
+  box-shadow: 0 8px 35px rgba(79,124,255,.6) !important;
+}
+
+/* Mejoras a featureCard */
+.featureCard {
+  box-shadow: 0 18px 50px rgba(0,0,0,.55), 0 0 40px rgba(79,124,255,.1) !important;
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  animation: fadeIn 1s ease-out 0.5s both !important;
+}
+
+.featureCard:hover {
+  transform: translateY(-8px) scale(1.02) !important;
+  box-shadow: 0 25px 70px rgba(0,0,0,.65), 0 0 60px rgba(79,124,255,.2) !important;
+  border-color: rgba(79,124,255,.3) !important;
+}
+
+.featureImg {
+  position: relative !important;
+}
+
+.featureImg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+  transition: left 0.5s;
+}
+
+.featureCard:hover .featureImg::before {
+  left: 100%;
+}
+
+.featureImg img {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.featureCard:hover .featureImg img {
+  transform: scale(1.1) !important;
+}
+
+.featureMeta {
+  background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.5)) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.dots {
+  transition: all 0.3s ease !important;
+}
+
+.dots:hover {
+  background: rgba(7,10,22,.85) !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+
+.dot {
+  transition: all 0.3s ease !important;
+}
+
+.dot:hover {
+  background: rgba(255,255,255,.5) !important;
+  transform: scale(1.3) !important;
+}
+
+.dot.active {
+  box-shadow: 0 0 10px rgba(79,124,255,.8) !important;
+}
+
+/* Mejoras al catálogo */
+.catalogSection {
+  animation: fadeInUp 0.8s ease-out 0.3s both !important;
+}
+
+.catalogHead {
+  box-shadow: var(--shadowSoft), 0 0 40px rgba(79,124,255,.08) !important;
+  backdrop-filter: blur(15px) !important;
+  transition: all 0.3s ease !important;
+}
+
+.catalogHead:hover {
+  border-color: rgba(255,255,255,.18) !important;
+  box-shadow: var(--shadowHard), 0 0 50px rgba(79,124,255,.12) !important;
+}
+
+.catalogTitle {
+  background: linear-gradient(135deg, #fff, rgba(79,124,255,0.9)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Mejoras al search */
+.heroSearchWrap input {
+  transition: all 0.3s ease !important;
+}
+
+.heroSearchWrap input:focus {
+  border-color: rgba(79,124,255,.5) !important;
+  box-shadow: 0 12px 45px rgba(0,0,0,.45), 0 0 20px rgba(79,124,255,.3) !important;
+  transform: translateY(-2px) !important;
+}
+
+.heroSearchIcon {
+  transition: opacity 0.3s ease !important;
+}
+
+.heroSearchWrap input:focus ~ .heroSearchIcon {
+  opacity: 1 !important;
+}
+
+/* Mejoras a heroPills */
+.heroPill {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.heroPill::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(79,124,255,.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s, height 0.4s;
+}
+
+.heroPill:hover::before {
+  width: 200px;
+  height: 200px;
+}
+
+.heroPill:hover {
+  transform: translateY(-2px) scale(1.05) !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,.3) !important;
+}
+
+.heroPill.active {
+  box-shadow: 0 4px 20px rgba(79,124,255,.4) !important;
+}
+
+.pillDot {
+  transition: all 0.3s ease !important;
+}
+
+.heroPill:hover .pillDot {
+  background: rgba(255,255,255,1) !important;
+  box-shadow: 0 0 8px rgba(255,255,255,.6) !important;
+}
+
+/* Mejoras a los panels */
+.panel {
+  box-shadow: var(--shadowHard), 0 0 40px rgba(79,124,255,.08) !important;
+  backdrop-filter: blur(15px) !important;
+  transition: all 0.3s ease !important;
+}
+
+.panel:hover {
+  border-color: rgba(255,255,255,.18) !important;
+  box-shadow: var(--shadowHard), 0 0 50px rgba(79,124,255,.12) !important;
+}
+
+/* Mejoras a los selects */
+.select {
+  transition: all 0.3s ease !important;
+}
+
+.select:hover, .select:focus {
+  border-color: rgba(79,124,255,.4) !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,.3) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Mejoras a las cards con efectos 3D */
+.card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  transform-style: preserve-3d !important;
+  perspective: 1000px !important;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(79,124,255,.0) 0%, rgba(79,124,255,.15) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: translateY(-10px) rotateX(2deg) scale(1.03) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 40px rgba(79,124,255,.2) !important;
+  border-color: rgba(79,124,255,.3) !important;
+}
+
+.card-selected {
+  box-shadow: 0 10px 40px rgba(0,0,0,.45), 0 0 30px rgba(37,211,102,.3) !important;
+}
+
+.card-selected:hover {
+  box-shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 50px rgba(37,211,102,.4) !important;
+}
+
+/* Mejoras al badgeBrand */
+.badgeBrand {
+  transition: all 0.3s ease !important;
+}
+
+.card:hover .badgeBrand {
+  background: rgba(79,124,255,.3) !important;
+  border-color: rgba(79,124,255,.5) !important;
+  box-shadow: 0 4px 15px rgba(79,124,255,.3) !important;
+}
+
+/* Mejoras al favBtn */
+.favBtn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.favBtn:hover {
+  transform: scale(1.15) rotate(10deg) !important;
+  background: rgba(255,50,100,.25) !important;
+  border-color: rgba(255,50,100,.5) !important;
+  box-shadow: 0 4px 15px rgba(255,50,100,.4) !important;
+}
+
+.favBtn.fav-active {
+  animation: heartBeat 0.6s ease !important;
+}
+
+@keyframes heartBeat {
+  0%, 100% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  50% { transform: scale(1.1); }
+  75% { transform: scale(1.25); }
+}
+
+/* Mejoras a la imagen de la card */
+.img {
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.img::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,.1) 50%, transparent 70%);
+  transform: rotate(45deg);
+  transition: all 0.6s;
+  opacity: 0;
+}
+
+.card:hover .img::before {
+  opacity: 1;
+  left: 100%;
+  top: 100%;
+}
+
+/* Mejoras a los tags */
+.tag {
+  transition: all 0.3s ease !important;
+}
+
+.card:hover .tag {
+  background: rgba(255,255,255,.12) !important;
+  border-color: rgba(255,255,255,.2) !important;
+}
+
+/* Mejoras al cardAction */
+.cardAction {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.card:hover .cardAction {
+  transform: translateY(-2px) !important;
+}
+
+.cardAction.active {
+  box-shadow: 0 4px 20px rgba(37,211,102,.3) !important;
+}
+
+/* Mejoras al selectedBox */
+.selectedBox {
+  backdrop-filter: blur(10px) !important;
+  transition: all 0.3s ease !important;
+}
+
+.selectedBox:hover {
+  border-color: rgba(255,255,255,.18) !important;
+  background: rgba(0,0,0,.35) !important;
+}
+
+/* Mejoras a los botones */
+.btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(0,0,0,.3) !important;
+}
+
+.btn.wa {
+  box-shadow: 0 6px 25px rgba(37,211,102,.4) !important;
+}
+
+.btn.wa:hover {
+  box-shadow: 0 8px 30px rgba(37,211,102,.6) !important;
+  transform: translateY(-3px) scale(1.05) !important;
+}
+
+/* Mejoras a las secciones info */
+.infoSection {
+  animation: fadeInUp 0.8s ease-out !important;
+  transition: all 0.3s ease !important;
+  box-shadow: var(--shadowHard), 0 0 40px rgba(79,124,255,.08) !important;
+  backdrop-filter: blur(15px) !important;
+}
+
+.infoSection:hover {
+  border-color: rgba(255,255,255,.18) !important;
+  box-shadow: var(--shadowHard), 0 0 50px rgba(79,124,255,.12) !important;
+}
+
+.infoTitle {
+  background: linear-gradient(135deg, #fff, rgba(79,124,255,0.9)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+}
+
+/* Mejoras a brandChips */
+.brandChip {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  cursor: pointer !important;
+}
+
+.brandChip:hover {
+  transform: translateY(-3px) scale(1.05) !important;
+  background: rgba(79,124,255,.18) !important;
+  border-color: rgba(79,124,255,.35) !important;
+  box-shadow: 0 6px 20px rgba(79,124,255,.3) !important;
+}
+
+/* Mejoras al aboutPhone */
+.aboutPhone a {
+  transition: all 0.3s ease !important;
+}
+
+.aboutPhone a:hover {
+  color: var(--accent) !important;
+  text-shadow: 0 0 10px rgba(37,211,102,.5) !important;
+}
+
+/* Mejoras al wa-float */
+.wa-float {
+  animation: floatBounce 3s ease-in-out infinite !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+@keyframes floatBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.wa-float:hover {
+  transform: scale(1.15) rotate(10deg) !important;
+  box-shadow: 0 12px 45px rgba(37,211,102,.75) !important;
+}
+
+/* Mejoras a selectionBar */
+.selectionBar:not(.hidden) {
+  animation: slideUp 0.4s ease-out !important;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.selectionInner {
+  box-shadow: 0 -10px 35px rgba(0,0,0,.7), 0 0 40px rgba(79,124,255,.15) !important;
+  backdrop-filter: blur(20px) !important;
+}
+
+/* Mejoras a selectionBtn */
+.selectionBtn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.selectionBtn:hover {
+  transform: translateY(-2px) scale(1.05) !important;
+}
+
+.selectionBtn.ghost:hover {
+  box-shadow: 0 4px 15px rgba(0,0,0,.3) !important;
+}
+
+.selectionBtn.primary:hover {
+  box-shadow: 0 12px 40px rgba(3,180,90,.7) !important;
+}
+
+/* Mejoras al favToggleBtn */
+.favToggleBtn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.favToggleBtn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,.3) !important;
+}
+
   </style>
 </head>
 
 <body>
+  <!-- Canvas 3D de fondo -->
+  <canvas id="canvas3d"></canvas>
+
+  <!-- Partículas flotantes -->
+  <div class="particles" id="particles"></div>
+
   <div class="wrap">
     <div id="app"></div>
   </div>
@@ -1331,6 +2036,110 @@
     window.addEventListener("scroll", onScrollSpy, { passive:true });
     onScrollSpy();
   </script>
+  <script>
+/* =========================================
+   INICIALIZACIÓN DE EFECTOS VISUALES 3D
+   ========================================= */
+
+// Crear partículas flotantes
+function createParticles() {
+  const particlesContainer = document.getElementById('particles');
+  if (!particlesContainer) return;
+  
+  const particleCount = 30;
+  
+  for (let i = 0; i < particleCount; i++) {
+    const particle = document.createElement('div');
+    particle.className = 'particle';
+    particle.style.left = Math.random() * 100 + '%';
+    particle.style.top = Math.random() * 100 + '%';
+    particle.style.animationDelay = Math.random() * 15 + 's';
+    particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+    particlesContainer.appendChild(particle);
+  }
+}
+
+// Inicializar Three.js para fondo 3D
+function init3DBackground() {
+  const canvas = document.getElementById('canvas3d');
+  if (!canvas || typeof THREE === 'undefined') return;
+  
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+  camera.position.z = 5;
+
+  // Crear geometría de frascos de perfume (cilindros)
+  const bottles = [];
+  const bottleGeometry = new THREE.CylinderGeometry(0.3, 0.3, 1, 32);
+  const bottleMaterial = new THREE.MeshPhongMaterial({
+    color: 0x4f7cff,
+    transparent: true,
+    opacity: 0.3,
+    shininess: 100,
+    specular: 0x25d366
+  });
+
+  for (let i = 0; i < 8; i++) {
+    const bottle = new THREE.Mesh(bottleGeometry, bottleMaterial);
+    bottle.position.x = (Math.random() - 0.5) * 10;
+    bottle.position.y = (Math.random() - 0.5) * 10;
+    bottle.position.z = (Math.random() - 0.5) * 10;
+    bottle.rotation.x = Math.random() * Math.PI;
+    bottle.rotation.y = Math.random() * Math.PI;
+    scene.add(bottle);
+    bottles.push(bottle);
+  }
+
+  // Iluminación
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+  scene.add(ambientLight);
+  
+  const pointLight = new THREE.PointLight(0x4f7cff, 1, 100);
+  pointLight.position.set(5, 5, 5);
+  scene.add(pointLight);
+
+  const pointLight2 = new THREE.PointLight(0x25d366, 0.8, 100);
+  pointLight2.position.set(-5, -5, 5);
+  scene.add(pointLight2);
+
+  // Animación
+  function animate() {
+    requestAnimationFrame(animate);
+    
+    bottles.forEach((bottle, index) => {
+      bottle.rotation.x += 0.001 * (index % 2 === 0 ? 1 : -1);
+      bottle.rotation.y += 0.002 * (index % 2 === 0 ? 1 : -1);
+      bottle.position.y += Math.sin(Date.now() * 0.001 + index) * 0.001;
+    });
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  // Responsive
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+}
+
+// Inicializar efectos visuales cuando el DOM esté listo
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', function() {
+    createParticles();
+    init3DBackground();
+  });
+} else {
+  createParticles();
+  init3DBackground();
+}
+
+  </script>
 </body>
 </html>
-
