@@ -556,705 +556,473 @@
       .selectionActions{ width:100%; justify-content:space-between; }
     }
 
-/* ============================================
-   MEJORAS VISUALES PREMIUM - EXCLUSIVE PERFUME
-   ============================================ */
-
-/* Canvas 3D de fondo */
-#canvas3d {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.4;
-}
-
-/* Partículas flotantes */
-.particles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: radial-gradient(circle, rgba(79,124,255,0.8), transparent);
-  border-radius: 50%;
-  animation: float 15s infinite ease-in-out;
-  opacity: 0.6;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-  10% { opacity: 0.6; }
-  50% { transform: translateY(-100vh) translateX(50px); opacity: 0.8; }
-  90% { opacity: 0.6; }
-  100% { transform: translateY(-120vh) translateX(0); opacity: 0; }
-}
-
-/* Mejoras al body */
-body {
-  position: relative !important;
-  overflow-x: hidden !important;
-}
-
-/* Mejoras al wrap */
-.wrap {
-  position: relative !important;
-  z-index: 10 !important;
-}
-
-/* Mejoras al header */
-.site-header {
-  backdrop-filter: blur(10px) saturate(150%) !important;
-  background: rgba(7,11,20,.2) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  border-bottom: 1px solid rgba(255,255,255,.05) !important;
-}
-
-.header-scrolled .site-header {
-  background: rgba(7,11,20,.4) !important;
-  border-bottom-color: rgba(255,255,255,.1) !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,.2) !important;
-}
-
-/* Mejoras al navBrand */
-.navBrand {
-  transition: transform 0.3s ease !important;
-}
-
-.navBrand:hover {
-  transform: translateX(3px) !important;
-}
-
-.navBrand img {
-  transition: all 0.3s ease !important;
-  background: transparent !important;
-  border: none !important;
-}
-
-.navBrand:hover img {
-  background: transparent !important;
-  border-color: transparent !important;
-  box-shadow: none !important;
-  opacity: 0.9 !important;
-}
-
-.navBrand span {
-  background: linear-gradient(135deg, #fff, rgba(79,124,255,0.9)) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-/* Mejoras a los navLinks */
-.navLink {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.navLink::after {
-  transition: opacity .3s ease, transform .3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.navLink:hover {
-  transform: translateY(-2px) !important;
-}
-
-/* Mejoras al loginBtn */
-.loginBtn {
-  box-shadow: 0 4px 20px rgba(79,124,255,.4) !important;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-.loginBtn::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  border-radius: 50%;
-  background: rgba(255,255,255,.2);
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.loginBtn:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-.loginBtn:hover {
-  transform: translateY(-2px) scale(1.05) !important;
-  box-shadow: 0 8px 30px rgba(79,124,255,.6) !important;
-}
-
-/* Mejoras al landingHero */
-.landingHero {
-  box-shadow: var(--shadowHard), 0 0 60px rgba(79,124,255,.15) !important;
-  position: relative !important;
-  animation: fadeInUp 0.8s ease-out !important;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.landingHero::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(79,124,255,.08) 0%, transparent 70%);
-  animation: rotate 20s linear infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.landingInner {
-  position: relative !important;
-  z-index: 2 !important;
-}
-
-/* Animaciones escalonadas para elementos del landing */
-.landingKicker {
-  backdrop-filter: blur(10px) !important;
-  animation: fadeIn 1s ease-out 0.2s both !important;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.landingTitle {
-  background: linear-gradient(135deg, #fff 0%, rgba(79,124,255,0.9) 100%) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-  animation: fadeIn 1s ease-out 0.4s both !important;
-}
-
-.landingSub {
-  animation: fadeIn 1s ease-out 0.6s both !important;
-}
-
-.landingBtns {
-  animation: fadeIn 1s ease-out 0.8s both !important;
-}
-
-.ratingRow {
-  animation: fadeIn 1s ease-out 1s both !important;
-}
-
-.stars {
-  animation: pulse 2s ease-in-out infinite !important;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.85; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); }
-}
-
-/* Mejoras a los CTAs */
-.cta {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-.cta::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(255,255,255,.1);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.6s, height 0.6s;
-}
-
-.cta:hover::before {
-  width: 300px;
-  height: 300px;
-}
-
-.cta:hover {
-  transform: translateY(-3px) scale(1.02) !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,.3) !important;
-}
-
-.cta.primary {
-  box-shadow: 0 4px 20px rgba(79,124,255,.4) !important;
-}
-
-.cta.primary:hover {
-  box-shadow: 0 8px 35px rgba(79,124,255,.6) !important;
-}
-
-/* Mejoras a featureCard */
-.featureCard {
-  box-shadow: 0 18px 50px rgba(0,0,0,.55), 0 0 40px rgba(79,124,255,.1) !important;
-  backdrop-filter: blur(10px) !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  animation: fadeIn 1s ease-out 0.5s both !important;
-}
-
-.featureCard:hover {
-  transform: translateY(-8px) scale(1.02) !important;
-  box-shadow: 0 25px 70px rgba(0,0,0,.65), 0 0 60px rgba(79,124,255,.2) !important;
-  border-color: rgba(79,124,255,.3) !important;
-}
-
-.featureImg {
-  position: relative !important;
-}
-
-.featureImg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
-  transition: left 0.5s;
-}
-
-.featureCard:hover .featureImg::before {
-  left: 100%;
-}
-
-.featureImg img {
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.featureCard:hover .featureImg img {
-  transform: scale(1.1) !important;
-}
-
-.featureMeta {
-  background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.5)) !important;
-  backdrop-filter: blur(10px) !important;
-}
-
-.dots {
-  transition: all 0.3s ease !important;
-}
-
-.dots:hover {
-  background: rgba(7,10,22,.85) !important;
-  border-color: rgba(255,255,255,.2) !important;
-}
-
-.dot {
-  transition: all 0.3s ease !important;
-}
-
-.dot:hover {
-  background: rgba(255,255,255,.5) !important;
-  transform: scale(1.3) !important;
-}
-
-.dot.active {
-  box-shadow: 0 0 10px rgba(79,124,255,.8) !important;
-}
-
-/* Mejoras al catálogo */
-.catalogSection {
-  animation: fadeInUp 0.8s ease-out 0.3s both !important;
-}
-
-.catalogHead {
-  box-shadow: var(--shadowSoft), 0 0 40px rgba(79,124,255,.08) !important;
-  backdrop-filter: blur(15px) !important;
-  transition: all 0.3s ease !important;
-}
-
-.catalogHead:hover {
-  border-color: rgba(255,255,255,.18) !important;
-  box-shadow: var(--shadowHard), 0 0 50px rgba(79,124,255,.12) !important;
-}
-
-.catalogTitle {
-  background: linear-gradient(135deg, #fff, rgba(79,124,255,0.9)) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-/* Mejoras al search */
-.heroSearchWrap input {
-  transition: all 0.3s ease !important;
-}
-
-.heroSearchWrap input:focus {
-  border-color: rgba(79,124,255,.5) !important;
-  box-shadow: 0 12px 45px rgba(0,0,0,.45), 0 0 20px rgba(79,124,255,.3) !important;
-  transform: translateY(-2px) !important;
-}
-
-.heroSearchIcon {
-  transition: opacity 0.3s ease !important;
-}
-
-.heroSearchWrap input:focus ~ .heroSearchIcon {
-  opacity: 1 !important;
-}
-
-/* Mejoras a heroPills */
-.heroPill {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-.heroPill::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  background: rgba(79,124,255,.2);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: width 0.4s, height 0.4s;
-}
-
-.heroPill:hover::before {
-  width: 200px;
-  height: 200px;
-}
-
-.heroPill:hover {
-  transform: translateY(-2px) scale(1.05) !important;
-  box-shadow: 0 4px 15px rgba(0,0,0,.3) !important;
-}
-
-.heroPill.active {
-  box-shadow: 0 4px 20px rgba(79,124,255,.4) !important;
-}
-
-.pillDot {
-  transition: all 0.3s ease !important;
-}
-
-.heroPill:hover .pillDot {
-  background: rgba(255,255,255,1) !important;
-  box-shadow: 0 0 8px rgba(255,255,255,.6) !important;
-}
-
-/* Mejoras a los panels */
-.panel {
-  box-shadow: var(--shadowHard), 0 0 40px rgba(79,124,255,.08) !important;
-  backdrop-filter: blur(15px) !important;
-  transition: all 0.3s ease !important;
-}
-
-.panel:hover {
-  border-color: rgba(255,255,255,.18) !important;
-  box-shadow: var(--shadowHard), 0 0 50px rgba(79,124,255,.12) !important;
-}
-
-/* Mejoras a los selects */
-.select {
-  transition: all 0.3s ease !important;
-}
-
-.select:hover, .select:focus {
-  border-color: rgba(79,124,255,.4) !important;
-  box-shadow: 0 4px 15px rgba(0,0,0,.3) !important;
-  transform: translateY(-1px) !important;
-}
-
-/* Mejoras a las cards con efectos 3D */
-.card {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  position: relative !important;
-  transform-style: preserve-3d !important;
-  perspective: 1000px !important;
-}
-
-.card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(79,124,255,.0) 0%, rgba(79,124,255,.15) 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.card:hover::before {
-  opacity: 1;
-}
-
-.card:hover {
-  transform: translateY(-10px) rotateX(2deg) scale(1.03) !important;
-  box-shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 40px rgba(79,124,255,.2) !important;
-  border-color: rgba(79,124,255,.3) !important;
-}
-
-.card-selected {
-  box-shadow: 0 10px 40px rgba(0,0,0,.45), 0 0 30px rgba(37,211,102,.3) !important;
-}
-
-.card-selected:hover {
-  box-shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 50px rgba(37,211,102,.4) !important;
-}
-
-/* Mejoras al badgeBrand */
-.badgeBrand {
-  transition: all 0.3s ease !important;
-}
-
-.card:hover .badgeBrand {
-  background: rgba(79,124,255,.3) !important;
-  border-color: rgba(79,124,255,.5) !important;
-  box-shadow: 0 4px 15px rgba(79,124,255,.3) !important;
-}
-
-/* Mejoras al favBtn */
-.favBtn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.favBtn:hover {
-  transform: scale(1.15) rotate(10deg) !important;
-  background: rgba(255,50,100,.25) !important;
-  border-color: rgba(255,50,100,.5) !important;
-  box-shadow: 0 4px 15px rgba(255,50,100,.4) !important;
-}
-
-.favBtn.fav-active {
-  animation: heartBeat 0.6s ease !important;
-}
-
-@keyframes heartBeat {
-  0%, 100% { transform: scale(1); }
-  25% { transform: scale(1.2); }
-  50% { transform: scale(1.1); }
-  75% { transform: scale(1.25); }
-}
-
-/* Mejoras a la imagen de la card */
-.img {
-  position: relative !important;
-  overflow: hidden !important;
-}
-
-.img::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,.1) 50%, transparent 70%);
-  transform: rotate(45deg);
-  transition: all 0.6s;
-  opacity: 0;
-}
-
-.card:hover .img::before {
-  opacity: 1;
-  left: 100%;
-  top: 100%;
-}
-
-/* Mejoras a los tags */
-.tag {
-  transition: all 0.3s ease !important;
-}
-
-.card:hover .tag {
-  background: rgba(255,255,255,.12) !important;
-  border-color: rgba(255,255,255,.2) !important;
-}
-
-/* Mejoras al cardAction */
-.cardAction {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.card:hover .cardAction {
-  transform: translateY(-2px) !important;
-}
-
-.cardAction.active {
-  box-shadow: 0 4px 20px rgba(37,211,102,.3) !important;
-}
-
-/* Mejoras al selectedBox */
-.selectedBox {
-  backdrop-filter: blur(10px) !important;
-  transition: all 0.3s ease !important;
-}
-
-.selectedBox:hover {
-  border-color: rgba(255,255,255,.18) !important;
-  background: rgba(0,0,0,.35) !important;
-}
-
-/* Mejoras a los botones */
-.btn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.btn:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 6px 20px rgba(0,0,0,.3) !important;
-}
-
-.btn.wa {
-  box-shadow: 0 6px 25px rgba(37,211,102,.4) !important;
-}
-
-.btn.wa:hover {
-  box-shadow: 0 8px 30px rgba(37,211,102,.6) !important;
-  transform: translateY(-3px) scale(1.05) !important;
-}
-
-/* Mejoras a las secciones info */
-.infoSection {
-  animation: fadeInUp 0.8s ease-out !important;
-  transition: all 0.3s ease !important;
-  box-shadow: var(--shadowHard), 0 0 40px rgba(79,124,255,.08) !important;
-  backdrop-filter: blur(15px) !important;
-}
-
-.infoSection:hover {
-  border-color: rgba(255,255,255,.18) !important;
-  box-shadow: var(--shadowHard), 0 0 50px rgba(79,124,255,.12) !important;
-}
-
-.infoTitle {
-  background: linear-gradient(135deg, #fff, rgba(79,124,255,0.9)) !important;
-  -webkit-background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-  background-clip: text !important;
-}
-
-/* Mejoras a brandChips */
-.brandChip {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-  cursor: pointer !important;
-}
-
-.brandChip:hover {
-  transform: translateY(-3px) scale(1.05) !important;
-  background: rgba(79,124,255,.18) !important;
-  border-color: rgba(79,124,255,.35) !important;
-  box-shadow: 0 6px 20px rgba(79,124,255,.3) !important;
-}
-
-/* Mejoras al aboutPhone */
-.aboutPhone a {
-  transition: all 0.3s ease !important;
-}
-
-.aboutPhone a:hover {
-  color: var(--accent) !important;
-  text-shadow: 0 0 10px rgba(37,211,102,.5) !important;
-}
-
-/* Mejoras al wa-float */
-.wa-float {
-  animation: floatBounce 3s ease-in-out infinite !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-@keyframes floatBounce {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
-.wa-float:hover {
-  transform: scale(1.15) rotate(10deg) !important;
-  box-shadow: 0 12px 45px rgba(37,211,102,.75) !important;
-}
-
-/* Mejoras a selectionBar */
-.selectionBar:not(.hidden) {
-  animation: slideUp 0.4s ease-out !important;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.selectionInner {
-  box-shadow: 0 -10px 35px rgba(0,0,0,.7), 0 0 40px rgba(79,124,255,.15) !important;
-  backdrop-filter: blur(20px) !important;
-}
-
-/* Mejoras a selectionBtn */
-.selectionBtn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.selectionBtn:hover {
-  transform: translateY(-2px) scale(1.05) !important;
-}
-
-.selectionBtn.ghost:hover {
-  box-shadow: 0 4px 15px rgba(0,0,0,.3) !important;
-}
-
-.selectionBtn.primary:hover {
-  box-shadow: 0 12px 40px rgba(3,180,90,.7) !important;
-}
-
-/* Mejoras al favToggleBtn */
-.favToggleBtn {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-}
-
-.favToggleBtn:hover {
-  transform: translateY(-2px) !important;
-  box-shadow: 0 4px 15px rgba(0,0,0,.3) !important;
-}
-
+    /* ============================================
+       MEJORAS VISUALES PREMIUM - EXCLUSIVE PERFUME
+       ============================================ */
+
+    /* Canvas 3D de fondo */
+    #canvas3d {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    /* Partículas flotantes */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: radial-gradient(circle, rgba(79,124,255,0.8), transparent);
+      border-radius: 50%;
+      animation: float 15s infinite ease-in-out;
+      opacity: 0.6;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+      10% { opacity: 0.6; }
+      50% { transform: translateY(-100vh) translateX(50px); opacity: 0.8; }
+      90% { opacity: 0.6; }
+      100% { transform: translateY(-120vh) translateX(0); opacity: 0; }
+    }
+
+    /* Mejoras al body */
+    body {
+      position: relative !important;
+      overflow-x: hidden !important;
+    }
+
+    /* Mejoras al wrap */
+    .wrap {
+      position: relative !important;
+      z-index: 10 !important;
+    }
+
+    /* Mejoras al header */
+    .site-header {
+      backdrop-filter: blur(10px) saturate(150%) !important;
+      background: rgba(7,11,20,.2) !important;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      border-bottom: 1px solid rgba(255,255,255,.05) !important;
+    }
+
+    .header-scrolled .site-header {
+      background: rgba(7,11,20,.4) !important;
+      border-bottom-color: rgba(255,255,255,.1) !important;
+      box-shadow: 0 4px 20px rgba(0,0,0,.2) !important;
+    }
+
+    /* Mejoras al navBrand */
+    .navBrand {
+      transition: transform 0.3s ease !important;
+    }
+
+    .navBrand:hover {
+      transform: translateX(3px) !important;
+    }
+
+    .navBrand img {
+      transition: all 0.3s ease !important;
+      background: transparent !important;
+      border: none !important;
+    }
+
+    .navBrand:hover img {
+      background: transparent !important;
+      border-color: transparent !important;
+      box-shadow: none !important;
+      opacity: 0.9 !important;
+    }
+
+    .navBrand span {
+      background: linear-gradient(135deg, #fff, rgba(79,124,255,0.9)) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+    }
+
+    /* Mejoras a los navLinks */
+    .navLink {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    .navLink::after {
+      transition: opacity .3s ease, transform .3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+
+    .navLink:hover {
+      transform: translateY(-2px) !important;
+    }
+
+    /* Mejoras al loginBtn */
+    .loginBtn {
+      box-shadow: 0 4px 20px rgba(79,124,255,.4) !important;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+
+    .loginBtn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255,255,255,.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .loginBtn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .loginBtn:hover {
+      transform: translateY(-2px) scale(1.05) !important;
+      box-shadow: 0 8px 30px rgba(79,124,255,.6) !important;
+    }
+
+    /* Mejoras al landingHero */
+    .landingHero {
+      box-shadow: var(--shadowHard), 0 0 60px rgba(79,124,255,.15) !important;
+      position: relative !important;
+      animation: fadeInUp 0.8s ease-out !important;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .landingHero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(79,124,255,.08) 0%, transparent 70%);
+      animation: rotate 20s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .landingInner { position: relative !important; z-index: 2 !important; }
+
+    /* Animaciones escalonadas para elementos del landing */
+    .landingKicker { backdrop-filter: blur(10px) !important; animation: fadeIn 1s ease-out 0.2s both !important; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .landingTitle {
+      background: linear-gradient(135deg, #fff 0%, rgba(79,124,255,0.9) 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+      animation: fadeIn 1s ease-out 0.4s both !important;
+    }
+
+    .landingSub { animation: fadeIn 1s ease-out 0.6s both !important; }
+    .landingBtns { animation: fadeIn 1s ease-out 0.8s both !important; }
+    .ratingRow { animation: fadeIn 1s ease-out 1s both !important; }
+
+    .stars { animation: pulse 2s ease-in-out infinite !important; }
+    @keyframes pulse {
+      0%, 100% { opacity: 0.85; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.05); }
+    }
+
+    /* Mejoras a los CTAs */
+    .cta {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+    .cta::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255,255,255,.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+    .cta:hover::before { width: 300px; height: 300px; }
+    .cta:hover { transform: translateY(-3px) scale(1.02) !important; box-shadow: 0 10px 30px rgba(0,0,0,.3) !important; }
+    .cta.primary { box-shadow: 0 4px 20px rgba(79,124,255,.4) !important; }
+    .cta.primary:hover { box-shadow: 0 8px 35px rgba(79,124,255,.6) !important; }
+
+    /* Mejoras a featureCard */
+    .featureCard {
+      box-shadow: 0 18px 50px rgba(0,0,0,.55), 0 0 40px rgba(79,124,255,.1) !important;
+      backdrop-filter: blur(10px) !important;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      animation: fadeIn 1s ease-out 0.5s both !important;
+    }
+    .featureCard:hover {
+      transform: translateY(-8px) scale(1.02) !important;
+      box-shadow: 0 25px 70px rgba(0,0,0,.65), 0 0 60px rgba(79,124,255,.2) !important;
+      border-color: rgba(79,124,255,.3) !important;
+    }
+
+    .featureImg { position: relative !important; }
+    .featureImg::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.1), transparent);
+      transition: left 0.5s;
+    }
+    .featureCard:hover .featureImg::before { left: 100%; }
+
+    .featureImg img { transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+    .featureCard:hover .featureImg img { transform: scale(1.1) !important; }
+
+    .featureMeta { background: linear-gradient(180deg, rgba(0,0,0,.3), rgba(0,0,0,.5)) !important; backdrop-filter: blur(10px) !important; }
+
+    .dots { transition: all 0.3s ease !important; }
+    .dots:hover { background: rgba(7,10,22,.85) !important; border-color: rgba(255,255,255,.2) !important; }
+    .dot { transition: all 0.3s ease !important; }
+    .dot:hover { background: rgba(255,255,255,.5) !important; transform: scale(1.3) !important; }
+    .dot.active { box-shadow: 0 0 10px rgba(79,124,255,.8) !important; }
+
+    /* Mejoras al catálogo */
+    .catalogSection { animation: fadeInUp 0.8s ease-out 0.3s both !important; }
+    .catalogHead {
+      box-shadow: var(--shadowSoft), 0 0 40px rgba(79,124,255,.08) !important;
+      backdrop-filter: blur(15px) !important;
+      transition: all 0.3s ease !important;
+    }
+    .catalogHead:hover {
+      border-color: rgba(255,255,255,.18) !important;
+      box-shadow: var(--shadowHard), 0 0 50px rgba(79,124,255,.12) !important;
+    }
+    .catalogTitle {
+      background: linear-gradient(135deg, #fff, rgba(79,124,255,0.9)) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+    }
+
+    /* Mejoras al search */
+    .heroSearchWrap input { transition: all 0.3s ease !important; }
+    .heroSearchWrap input:focus {
+      border-color: rgba(79,124,255,.5) !important;
+      box-shadow: 0 12px 45px rgba(0,0,0,.45), 0 0 20px rgba(79,124,255,.3) !important;
+      transform: translateY(-2px) !important;
+    }
+    .heroSearchIcon { transition: opacity 0.3s ease !important; }
+
+    /* Mejoras a heroPills */
+    .heroPill {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      position: relative !important;
+      overflow: hidden !important;
+    }
+    .heroPill::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(79,124,255,.2);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s, height 0.4s;
+    }
+    .heroPill:hover::before { width: 200px; height: 200px; }
+    .heroPill:hover {
+      transform: translateY(-2px) scale(1.05) !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,.3) !important;
+    }
+    .heroPill.active { box-shadow: 0 4px 20px rgba(79,124,255,.4) !important; }
+    .pillDot { transition: all 0.3s ease !important; }
+    .heroPill:hover .pillDot {
+      background: rgba(255,255,255,1) !important;
+      box-shadow: 0 0 8px rgba(255,255,255,.6) !important;
+    }
+
+    /* Mejoras a los panels */
+    .panel {
+      box-shadow: var(--shadowHard), 0 0 40px rgba(79,124,255,.08) !important;
+      backdrop-filter: blur(15px) !important;
+      transition: all 0.3s ease !important;
+    }
+    .panel:hover {
+      border-color: rgba(255,255,255,.18) !important;
+      box-shadow: var(--shadowHard), 0 0 50px rgba(79,124,255,.12) !important;
+    }
+
+    /* Mejoras a los selects */
+    .select { transition: all 0.3s ease !important; }
+    .select:hover, .select:focus {
+      border-color: rgba(79,124,255,.4) !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,.3) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    /* Mejoras a las cards con efectos 3D */
+    .card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      position: relative !important;
+      transform-style: preserve-3d !important;
+      perspective: 1000px !important;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(79,124,255,.0) 0%, rgba(79,124,255,.15) 100%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .card:hover::before { opacity: 1; }
+    .card:hover {
+      transform: translateY(-10px) rotateX(2deg) scale(1.03) !important;
+      box-shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 40px rgba(79,124,255,.2) !important;
+      border-color: rgba(79,124,255,.3) !important;
+    }
+    .card-selected { box-shadow: 0 10px 40px rgba(0,0,0,.45), 0 0 30px rgba(37,211,102,.3) !important; }
+    .card-selected:hover { box-shadow: 0 20px 60px rgba(0,0,0,.6), 0 0 50px rgba(37,211,102,.4) !important; }
+
+    /* Mejoras al badgeBrand */
+    .badgeBrand { transition: all 0.3s ease !important; }
+    .card:hover .badgeBrand {
+      background: rgba(79,124,255,.3) !important;
+      border-color: rgba(79,124,255,.5) !important;
+      box-shadow: 0 4px 15px rgba(79,124,255,.3) !important;
+    }
+
+    /* Mejoras al favBtn */
+    .favBtn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+    .favBtn:hover {
+      transform: scale(1.15) rotate(10deg) !important;
+      background: rgba(255,50,100,.25) !important;
+      border-color: rgba(255,50,100,.5) !important;
+      box-shadow: 0 4px 15px rgba(255,50,100,.4) !important;
+    }
+    .favBtn.fav-active { animation: heartBeat 0.6s ease !important; }
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      25% { transform: scale(1.2); }
+      50% { transform: scale(1.1); }
+      75% { transform: scale(1.25); }
+    }
+
+    /* Mejoras a la imagen de la card */
+    .img { position: relative !important; overflow: hidden !important; }
+    .img::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,.1) 50%, transparent 70%);
+      transform: rotate(45deg);
+      transition: all 0.6s;
+      opacity: 0;
+    }
+    .card:hover .img::before { opacity: 1; left: 100%; top: 100%; }
+
+    /* Mejoras a los tags */
+    .tag { transition: all 0.3s ease !important; }
+    .card:hover .tag { background: rgba(255,255,255,.12) !important; border-color: rgba(255,255,255,.2) !important; }
+
+    /* Mejoras al cardAction */
+    .cardAction { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+    .card:hover .cardAction { transform: translateY(-2px) !important; }
+    .cardAction.active { box-shadow: 0 4px 20px rgba(37,211,102,.3) !important; }
+
+    /* Mejoras al selectedBox */
+    .selectedBox { backdrop-filter: blur(10px) !important; transition: all 0.3s ease !important; }
+    .selectedBox:hover { border-color: rgba(255,255,255,.18) !important; background: rgba(0,0,0,.35) !important; }
+
+    /* Mejoras a los botones */
+    .btn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+    .btn:hover { transform: translateY(-2px) !important; box-shadow: 0 6px 20px rgba(0,0,0,.3) !important; }
+    .btn.wa { box-shadow: 0 6px 25px rgba(37,211,102,.4) !important; }
+    .btn.wa:hover { box-shadow: 0 8px 30px rgba(37,211,102,.6) !important; transform: translateY(-3px) scale(1.05) !important; }
+
+    /* Mejoras a las secciones info */
+    .infoSection {
+      animation: fadeInUp 0.8s ease-out !important;
+      transition: all 0.3s ease !important;
+      box-shadow: var(--shadowHard), 0 0 40px rgba(79,124,255,.08) !important;
+      backdrop-filter: blur(15px) !important;
+    }
+    .infoSection:hover { border-color: rgba(255,255,255,.18) !important; box-shadow: var(--shadowHard), 0 0 50px rgba(79,124,255,.12) !important; }
+    .infoTitle {
+      background: linear-gradient(135deg, #fff, rgba(79,124,255,0.9)) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      background-clip: text !important;
+    }
+
+    /* Mejoras a brandChips */
+    .brandChip { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; cursor: pointer !important; }
+    .brandChip:hover {
+      transform: translateY(-3px) scale(1.05) !important;
+      background: rgba(79,124,255,.18) !important;
+      border-color: rgba(79,124,255,.35) !important;
+      box-shadow: 0 6px 20px rgba(79,124,255,.3) !important;
+    }
+
+    /* Mejoras al aboutPhone */
+    .aboutPhone a { transition: all 0.3s ease !important; }
+    .aboutPhone a:hover { color: var(--accent) !important; text-shadow: 0 0 10px rgba(37,211,102,.5) !important; }
+
+    /* Mejoras al wa-float */
+    .wa-float { animation: floatBounce 3s ease-in-out infinite !important; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+    @keyframes floatBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    .wa-float:hover { transform: scale(1.15) rotate(10deg) !important; box-shadow: 0 12px 45px rgba(37,211,102,.75) !important; }
+
+    /* Mejoras a selectionBar */
+    .selectionBar:not(.hidden) { animation: slideUp 0.4s ease-out !important; }
+    @keyframes slideUp { from { transform: translateY(100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .selectionInner { box-shadow: 0 -10px 35px rgba(0,0,0,.7), 0 0 40px rgba(79,124,255,.15) !important; backdrop-filter: blur(20px) !important; }
+
+    /* Mejoras a selectionBtn */
+    .selectionBtn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+    .selectionBtn:hover { transform: translateY(-2px) scale(1.05) !important; }
+    .selectionBtn.ghost:hover { box-shadow: 0 4px 15px rgba(0,0,0,.3) !important; }
+    .selectionBtn.primary:hover { box-shadow: 0 12px 40px rgba(3,180,90,.7) !important; }
+
+    /* Mejoras al favToggleBtn */
+    .favToggleBtn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; }
+    .favToggleBtn:hover { transform: translateY(-2px) !important; box-shadow: 0 4px 15px rgba(0,0,0,.3) !important; }
   </style>
 </head>
 
@@ -1648,7 +1416,34 @@ body {
       { id:105, name:"Parfums de Marly Castley", brand:"Parfums de Marly", family:"Amaderado / Elegante", type:"woody", img:"img/parfums-de-marly-castley.jpg", desc:"Amaderado fino y formal. Para ocasiones." },
       { id:106, name:"Parfums de Marly Sedley", brand:"Parfums de Marly", family:"Fresco / Cítrico", type:"fresh", img:"img/parfums-de-marly-sedley.jpg", desc:"Cítrico refrescante. Súper clean." },
       { id:107, name:"Parfums de Marly Kalan", brand:"Parfums de Marly", family:"Especiado / Intenso", type:"woody", img:"img/parfums-de-marly-kalan.jpg", desc:"Especiado con carácter. Mejor para noche/clima fresco." },
-      { id:108, name:"Parfums de Marly Carlisle", brand:"Parfums de Marly", family:"Dulce / Amaderado", type:"sweet", img:"img/parfums-de-marly-carlisle.jpg", desc:"Dulce oscuro amaderado, elegante y potente." }
+      { id:108, name:"Parfums de Marly Carlisle", brand:"Parfums de Marly", family:"Dulce / Amaderado", type:"sweet", img:"img/parfums-de-marly-carlisle.jpg", desc:"Dulce oscuro amaderado, elegante y potente." },
+
+      // ===== NUEVOS: PARIS CORNER - GAME OF SPADES (109-120) =====
+      { id:109, name:"Game of Spades Bonus", brand:"Paris Corner", family:"Dulce / Intenso", type:"sweet", img:"img/game-spades-bonus.jpg", desc:"Dulce con presencia fuerte, ideal para noche." },
+      { id:110, name:"Game of Spades King", brand:"Paris Corner", family:"Amaderado / Elegante", type:"woody", img:"img/game-spades-king.jpg", desc:"Amaderado serio y sofisticado." },
+      { id:111, name:"Game of Spades Bid", brand:"Paris Corner", family:"Fresco / Masculino", type:"fresh", img:"img/game-spades-bid.jpg", desc:"Fresco limpio para diario." },
+      { id:112, name:"Game of Spades Jackpot", brand:"Paris Corner", family:"Ámbar / Dulce", type:"sweet", img:"img/game-spades-jackpot.jpg", desc:"Dulce ambarado con buena duración." },
+      { id:113, name:"Game of Spades Boston", brand:"Paris Corner", family:"Fresco / Versátil", type:"fresh", img:"img/game-spades-boston.jpg", desc:"Fresco moderno, súper usable." },
+      { id:114, name:"Game of Spades Gold", brand:"Paris Corner", family:"Árabe / Dulce", type:"arabic", img:"img/game-spades-gold.jpg", desc:"Dulzor oriental con toque árabe." },
+      { id:115, name:"Game of Spades Diamond", brand:"Paris Corner", family:"Fresco / Elegante", type:"fresh", img:"img/game-spades-diamond.jpg", desc:"Fresco brillante, elegante y limpio." },
+      { id:116, name:"Game of Spades Topa7", brand:"Paris Corner", family:"Amaderado / Especiado", type:"woody", img:"img/game-spades-topa7.jpg", desc:"Madera especiada con carácter." },
+      { id:117, name:"Game of Spades Double Bonus", brand:"Paris Corner", family:"Dulce / Potente", type:"sweet", img:"img/game-spades-double-bonus.jpg", desc:"Dulce fuerte, perfecto para salir." },
+      { id:118, name:"Game of Spades Opal", brand:"Paris Corner", family:"Fresco / Aromático", type:"fresh", img:"img/game-spades-opal.jpg", desc:"Aromático fresco, bien versátil." },
+      { id:119, name:"Game of Spades No Limit", brand:"Paris Corner", family:"Amaderado / Nocturno", type:"woody", img:"img/game-spades-no-limit.jpg", desc:"Oscuro elegante, ideal para noche." },
+      { id:120, name:"Game of Spades Queen", brand:"Paris Corner", family:"Dulce / Elegante", type:"sweet", img:"img/game-spades-queen.jpg", desc:"Dulce elegante con vibra lujosa." },
+
+      // ===== NUEVOS: VERSACE (121-126) =====
+      { id:121, name:"Versace Eros Flame", brand:"Versace", family:"Fresco / Especiado", type:"fresh", img:"img/versace-eros-flame.jpg", desc:"Cítrico especiado, sexy y fuerte." },
+      { id:122, name:"Versace Pour Homme Dylan Blue", brand:"Versace", family:"Fresco / Amaderado", type:"fresh", img:"img/versace-dylan-blue.jpg", desc:"Fresco azul, versátil para diario." },
+      { id:123, name:"Versace Bright Crystal", brand:"Versace", family:"Floral / Dulce", type:"sweet", img:"img/versace-bright-crystal.jpg", desc:"Floral dulce, femenino y elegante." },
+      { id:124, name:"Versace Bright Crystal Absolu", brand:"Versace", family:"Floral / Dulce Intenso", type:"sweet", img:"img/versace-bright-crystal-absolu.jpg", desc:"Más intenso y duradero, súper femenino." },
+      { id:125, name:"Versace Eros Energy", brand:"Versace", family:"Fresco / Energético", type:"fresh", img:"img/versace-eros-energy.jpg", desc:"Fresco moderno con vibra energética." },
+      { id:126, name:"Versace Eros Najim", brand:"Versace", family:"Amaderado / Especiado", type:"woody", img:"img/versace-eros-najim.jpg", desc:"Amaderado especiado con carácter." },
+
+      // ===== NUEVOS: LA VIE EST BELLE (127-129) =====
+      { id:127, name:"La Vie Est Belle L'Elixir", brand:"Lancôme", family:"Dulce / Gourmand", type:"sweet", img:"img/la-vie-est-belle-elixir.jpg", desc:"Gourmand dulce, elegante y adictivo." },
+      { id:128, name:"La Vie Est Belle L'Extrait", brand:"Lancôme", family:"Dulce / Intenso", type:"sweet", img:"img/la-vie-est-belle-extrait.jpg", desc:"Más concentrado, dulce con presencia." },
+      { id:129, name:"La Vie Est Belle Iris Absolu", brand:"Lancôme", family:"Dulce / Iris", type:"sweet", img:"img/la-vie-est-belle-iris-absolu.jpg", desc:"Iris dulce elegante, súper femenino." }
     ];
 
     // Elementos (ya existen porque montamos templates)
@@ -1706,8 +1501,17 @@ body {
       }
     }
 
-    // PERFUMES DE MUJER (tu lista)
-    const womenIds = [51,52,53,54,55,57,59,60,61,78,82,83,86,87,88,91,93,94,96,97];
+    // PERFUMES DE MUJER (actualizado con los nuevos)
+    const womenIds = [
+      51,52,53,54,55,
+      57,59,60,61,
+      78,
+      82,83,
+      86,87,88,
+      91,
+      93,94,96,97,
+      123,124,127,128,129
+    ];
     function isWomanPerfume(p){ return womenIds.includes(p.id); }
 
     // PERFUMES UNISEX (tu lista)
@@ -1812,7 +1616,7 @@ body {
       const list = perfumes.filter(p => {
         const matchText =
           p.name.toLowerCase().includes(q) ||
-          p.family.toLowerCase().includes(q) ||
+          (p.family || "").toLowerCase().includes(q) ||
           p.desc.toLowerCase().includes(q) ||
           p.brand.toLowerCase().includes(q);
 
@@ -1933,6 +1737,7 @@ body {
     let featureIndex = 0;
     let featureTimer = null;
 
+    // Puedes cambiar estos IDs si quieres que en el widget salgan los nuevos también
     const featuredIds = [2,1,15,12,17,21,24,65,100,108];
     const featuredList = featuredIds.map(id => perfumes.find(p => p.id === id)).filter(Boolean);
     if (featuredList.length === 0) featuredList.push(...perfumes.slice(0, 10));
@@ -2147,3 +1952,4 @@ if (document.readyState === 'loading') {
   </script>
 </body>
 </html>
+
